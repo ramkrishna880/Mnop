@@ -71,7 +71,7 @@
     
     NSString *urlString = [NSString stringWithFormat:@"portal?a=register&em=%@&passphrase=%@&mobile=%@&username=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,[_passwordTxtFiled.text MD5String],_mobileNoTxtFiled.text,_userNameTxtFiled.text,[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
     //@"portal?a=register&em=ramkrishna@gmail.com&passphrase=123456&mobile=1234567890&username=ramki"
-    [_client loginWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
+    [_client registrationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
         NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
         if ([responseObject.status isEqualToString:@"fail"]) {
             [self showAlert:@"Login" message:responseObject.message];

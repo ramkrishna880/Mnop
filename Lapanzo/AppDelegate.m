@@ -29,7 +29,8 @@
       ViewController *rootViewController = (ViewController *) [mainstoryBoard instantiateViewControllerWithIdentifier:LOGIN_SEGUE];
         self.window.rootViewController = rootViewController;
     } else{
-      CategoriesVC *rootViewController = (CategoriesVC *) [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_SEGUE];
+        UINavigationController *rootViewController = [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_NAV_SEGUEID];
+//      CategoriesVC *rootViewController = (CategoriesVC *) [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_SEGUE];
         self.window.rootViewController = rootViewController;
     }
     

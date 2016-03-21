@@ -11,16 +11,15 @@
 
 //Seagues
 
-//static NSString *const HOMEVIEW_SEGUE = @"loginVcSegueId";
-//static NSString *const INDICATORDETAIL_SEGUE = @"indicatorDetailSugueId";
 static NSString *const LOGIN_SEGUE = @"loginVcSegueId";
 static NSString *const CATEGORY_SEGUE = @"categoryVcSegueId";
 static NSString *const STORE_SEGUE = @"storesviewSegueId";
 
 static NSString *const CATEGORY_SEGUEID = @"homeViewSegueId";
 static NSString *const CATEGORY_REG_SEGUEID = @"homeFromRegisterSegueId";
+static NSString *const CATEGORY_NAV_SEGUEID = @"navigationCategorySegueId";
 
-//
+
 //view IDs
 static NSString *const POPOVER_VIEWID = @"popoverVcId";
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";

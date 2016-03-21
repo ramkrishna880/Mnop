@@ -49,7 +49,7 @@
     } else if (![_emailTxtFiled.text isValidEmail]){
         [self showAlert:@"Login" message:@"Enter proper Email"];
     } else {
-        
+        [self performLogin];
     }
 }
 

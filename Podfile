@@ -7,6 +7,7 @@ target 'Lapanzo' do
 pod 'AFNetworking', '~> 3.0'
 pod 'SSKeychain'
 pod 'HTHorizontalSelectionList'
+pod 'MBProgressHUD', '~> 0.9.2'
 end
 
 target 'LapanzoTests' do

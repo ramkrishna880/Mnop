@@ -21,6 +21,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *periodLabel;
 @property (nonatomic, weak) IBOutlet UILabel *temparatureLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *dayOrNightImg;
+@property (nonatomic, weak) IBOutlet UILabel *wishLabel;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *quoteLabel;
 
@@ -41,6 +43,7 @@
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
     [self fetchCategories];
+    [self setallLableValues];
 }
 
 - (void)setallLableValues {
@@ -110,7 +113,7 @@
 
 
 - (void)setFirstVendor {
-    _firstVendorImg.image = [UIImage imageNamed:@""];
+    //_firstVendorImg.image = [UIImage imageNamed:@""];
     NSDictionary *venDic = _categories[0];
     _firstVendorName.text = venDic.vendor;
 }
