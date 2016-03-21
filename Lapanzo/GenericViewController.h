@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "NSDictionary+Response.h"
+#import "MBProgressHUD.h"
 
 @interface GenericViewController : UIViewController
 
@@ -22,5 +23,6 @@
 -(NSString *)uniqueDeviceId;
 - (NSString *)iPAddress;
 
-
+- (void)showHUD;
+- (void)hideHud;
 @end

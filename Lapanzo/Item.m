@@ -19,12 +19,12 @@
         //remove for nulls in future if appears
         self.itemId = dictionary[@"id"];
         self.name = dictionary [@"name"];
-        self.price = dictionary [@"price"];
-        self.priceAfterDiscount = dictionary[@"afterdiscountprice"];
-        self.quantity = dictionary[@"quantity"];
-        self.volume = dictionary[@"volume"];
+        self.price = [NSString stringWithFormat:@"%@",dictionary [@"price"]];
+        self.priceAfterDiscount = [NSString stringWithFormat:@"%@",dictionary[@"afterdiscountprice"]];
+        self.quantity = [NSString stringWithFormat:@"%@",dictionary[@"quantity"]];
+        self.volume = [NSString stringWithFormat:@"%@",dictionary[@"volume"]];
         self.unit = dictionary[@"unit"];
-        self.itemCount = dictionary [@"itemcount"];
+        self.itemCount = [NSString stringWithFormat:@"%@",dictionary [@"itemcount"]];
         self.itemDescription = dictionary [@"desc"];
         self.image = dictionary[@"img"];
         //add subcategory info if needed in future
@@ -67,7 +67,9 @@
     return self;
 }
 
-
+- (NSString *)quantityval {
+    return [NSString stringWithFormat:@"%@ %@",_volume,_unit];
+}
 /*
  NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
  NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"savedArray"];

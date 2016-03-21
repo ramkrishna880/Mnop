@@ -16,13 +16,18 @@
 
 @implementation VendorCollectionViewCell
 
+- (void)awakeFromNib {
+    self.layer.borderWidth = 1.0f;
+    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+}
+
 
 - (void)setVendor:(NSDictionary *)vendor {
     if (vendor == _vendor) {
         return;
     }
     _vendor = vendor;
-    self.imgView.image = [UIImage imageNamed:@""];
+    self.imgView.image = [UIImage imageNamed:@"placeholder"];
     self.vendorName.text = vendor.vendor;
 }
 

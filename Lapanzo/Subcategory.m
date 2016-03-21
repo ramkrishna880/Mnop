@@ -14,7 +14,7 @@ static NSString * const KEY_LISTOFITEMS = @"list";
 
 @implementation Subcategory
 
-- (instancetype)subcatogarywithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary {
     if (![dictionary isKindOfClass:[NSDictionary class]]) {
         [NSException raise:@"Invalid parameter." format:@"This method should not be called if parameter is nil or not an NSDictionary"];
     }

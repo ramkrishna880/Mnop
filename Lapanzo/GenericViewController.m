@@ -86,6 +86,7 @@
     [client performOperationWithUrl:[NSString stringWithFormat:@"portal?a=userdetails&userid=%@",client.userId] andCompletionHandler:^(NSDictionary *responseObject) {
         if ([responseObject.status isEqualToString:@"success"]) {
             [client setUserDetails:responseObject];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:USERDETAILSFETCHEDNOTIFICATION object:self userInfo:nil];
         }
     } failure:^(NSError *connectionError) {
         NSLog(@"%@",connectionError.localizedDescription);
@@ -101,6 +102,15 @@
         [self.view layoutIfNeeded];
     }];
 }
+
+- (void)showHUD {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)hideHud {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
 
 //status": "success"
 //"userid": 43

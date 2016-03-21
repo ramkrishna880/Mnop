@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Store.h"
+#import "Store.h"s
 
 
 @interface CategoryCollectionViewCell : UICollectionViewCell

@@ -8,14 +8,23 @@
 
 #import "StoresTableViewCell.h"
 
-@implementation StoresTableViewCell
+@implementation StoresTableViewCell {
+    Item *_currentItem;
+}
+
+/*
+ IBOutlet UILabel *storeTitle;
+ et UILabel *quantityLbl;
+ et UILabel *amountLbl;
+ et PAStepper *stepper;
+ */
 
 - (void)awakeFromNib {
     // Initialization code
     
-    self.stepper.value = 1.0;
-    self.stepper.minimumValue = 1;
-    self.stepper.maximumValue = 50;
+    self.stepper.value = 0.0;
+    self.stepper.minimumValue = 0;
+    self.stepper.maximumValue = 100;
     self.stepper.editableManually = NO;
 }
 
@@ -25,4 +34,14 @@
     // Configure the view for the selected state
 }
 
+- (void)setCurrentItem:(Item *)currentItem {
+    if (currentItem == _currentItem) {
+        return;
+    }
+    _currentItem = currentItem;
+    self.storeTitle.text = currentItem.name;
+    self.quantityLbl.text = currentItem.quantityval;
+    self.amountLbl.text = currentItem.price;
+    self.stepper.value = 0.0;
+}
 @end

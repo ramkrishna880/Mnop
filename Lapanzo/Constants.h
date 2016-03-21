@@ -19,7 +19,7 @@ static NSString *const CATEGORY_SEGUEID = @"homeViewSegueId";
 static NSString *const CATEGORY_REG_SEGUEID = @"homeFromRegisterSegueId";
 static NSString *const CATEGORY_NAV_SEGUEID = @"navigationCategorySegueId";
 
-
+static NSString *const STOREDETAIL_SEGUEID = @"storeDetailSegueId";
 //view IDs
 static NSString *const POPOVER_VIEWID = @"popoverVcId";
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
@@ -38,7 +38,7 @@ static NSString *const USER_DETAILS = @"userDetails";
 
 
 #pragma mark Others
-
+static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";
 #define KeyboardMoveHeightConstant -40.0
 #define LogoTopConstant 40.0
 

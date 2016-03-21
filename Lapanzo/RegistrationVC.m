@@ -8,6 +8,7 @@
 
 #import "RegistrationVC.h"
 #import "NSString+Validations.h"
+#import "MBProgressHUD.h"
 
 @interface RegistrationVC () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *userNameTxtFiled;
@@ -28,6 +29,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _client = [Lapanzo_Client sharedClient];
+//    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedDownAcion:)];
+//    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+//    [self.view addGestureRecognizer:swipeDown];
     [self registerNotifications:YES];
 }
 
@@ -38,9 +42,12 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self registerNotifications:NO];
+//    [self registerNotifications:NO];
 }
 
+- (void)viewDidUnload {
+    [self registerNotifications:NO];
+}
 #pragma mark Actions
 
 - (IBAction)registerButtonClicked:(id)sender {
@@ -68,10 +75,11 @@
 - (void)doRegistration {
     
     //TODO add ip address , host - (Lapnzo) , device ID
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *urlString = [NSString stringWithFormat:@"portal?a=register&em=%@&passphrase=%@&mobile=%@&username=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,[_passwordTxtFiled.text MD5String],_mobileNoTxtFiled.text,_userNameTxtFiled.text,[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
     //@"portal?a=register&em=ramkrishna@gmail.com&passphrase=123456&mobile=1234567890&username=ramki"
     [_client registrationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
         if ([responseObject.status isEqualToString:@"fail"]) {
             [self showAlert:@"Login" message:responseObject.message];
@@ -83,6 +91,7 @@
 //            NSLog(@"%@",responseObject.userId);
         }
     } failure:^(NSError *connectionError) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",connectionError.localizedDescription);
         [self showAlert:@"Error" message:connectionError.localizedDescription];
     }];

@@ -9,5 +9,19 @@
 #import "CategoryCollectionViewCell.h"
 
 @implementation CategoryCollectionViewCell
+{
+    //Store *_store;
+}
+- (void)awakeFromNib {
+    [self.contentView setBackgroundColor:[UIColor whiteColor]];
+}
+
+- (void)setCurrentStore:(Store *)currentStore {
+    if (currentStore) {
+        self.titleLbl.text = currentStore.storeName;
+        self.placeLbl.text = currentStore.storeSubTitle;
+//        self
+    }
+}
 
 @end

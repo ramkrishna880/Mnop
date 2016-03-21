@@ -12,6 +12,8 @@
 @property (nonatomic) NSNumber *subCategoryId;
 @property (nonatomic) NSString *subCategoryName;
 @property (nonatomic) NSArray *items;
+
+- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary;
 @end
 
 /*

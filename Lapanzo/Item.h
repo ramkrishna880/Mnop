@@ -27,4 +27,5 @@
 
 //
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)quantityval;
 @end

@@ -205,10 +205,10 @@
 		755931361C9026EB00D1946F /* Login&registration */ = {
 			isa = PBXGroup;
 			children = (
-				75FFE2A71C89B344006DCDD5 /* RegistrationVC.h */,
-				75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */,
 				758C8C601C86BE8000370262 /* ViewController.h */,
 				758C8C611C86BE8000370262 /* ViewController.m */,
+				75FFE2A71C89B344006DCDD5 /* RegistrationVC.h */,
+				75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */,
 			);
 			name = "Login&registration";
 			sourceTree = "<group>";

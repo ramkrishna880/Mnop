@@ -42,14 +42,27 @@
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(100, 100)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 10, 10, 10)];//top/left/bottem/right
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.minimumInteritemSpacing = 10.0f;
+    [_collectionView setCollectionViewLayout:flowLayout];
+    
     [self fetchCategories];
-    [self setallLableValues];
+    //    [self setallLableValues];
 }
 
-- (void)setallLableValues {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setAllLableValues];
+}
+
+- (void)setAllLableValues {
     NSDate *currrentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm"];
+    [dateFormatter setDateFormat:@"hh:mm"];
     self.timeLabel.text = [dateFormatter stringFromDate:currrentDate];
     [dateFormatter setDateFormat:@"a"];
     self.periodLabel.text = [dateFormatter stringFromDate:currrentDate];
@@ -63,14 +76,18 @@
     NSString *am_pm      = array[1];
     
     if([timeInHour integerValue] < 12 && [am_pm isEqualToString:@"AM"]) {
-        message = [NSString stringWithFormat:@"Good Morning \r %@",user.userName];
+        message = @"Good Morning";
+        [self.dayOrNightImg setImage:[UIImage imageNamed:@"day"]];
     } else if ([timeInHour integerValue] <= 4 && [am_pm isEqualToString:@"PM"]) {
-        message = [NSString stringWithFormat:@"Good Afternoon \r %@",user.userName];
+        message = @"Good Afternoon";
+        [self.dayOrNightImg setImage:[UIImage imageNamed:@"day"]];
     } else if ([timeInHour integerValue] > 4 && [am_pm isEqualToString:@"PM"]) {
-        message = [NSString stringWithFormat:@"Good Night \r %@",user.userName];
+        message = @"Good Night";
+        [self.dayOrNightImg setImage:[UIImage imageNamed:@"night"]];
     }
-    _nameLabel.text = message;
-    _quoteLabel.text = @"";
+    _wishLabel.text = message;
+    _nameLabel.text = user.userName;
+    _quoteLabel.text = @"Hello this is Random Quote";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,13 +108,15 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row]]; // Add sender In future
+    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]]; // Add sender In future
 }
 
 #pragma mark Webops
 
 - (void)fetchCategories {
+    [self showHUD];
     [_client performOperationWithUrl:@"portal?a=options" andCompletionHandler:^(NSDictionary *responseObject) {
+        [self hideHud];
         NSArray *vendors = responseObject[@"venderList"];
         if (vendors.count) {
             self.categories = [[NSMutableArray alloc] initWithArray:vendors];
@@ -107,6 +126,7 @@
             [self showAlert:nil message:@"No vendors Found"];
         }
     } failure:^(NSError *connectionError) {
+        [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
     }];
 }
@@ -116,6 +136,15 @@
     //_firstVendorImg.image = [UIImage imageNamed:@""];
     NSDictionary *venDic = _categories[0];
     _firstVendorName.text = venDic.vendor;
+}
+
+
+#pragma mark Actions
+
+- (IBAction)zeroCategorySelected:(id)sender {
+    if (_categories.count) {
+        [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[0]];
+    }
 }
 
 #pragma mark - Navigation

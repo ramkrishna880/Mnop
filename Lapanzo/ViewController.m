@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "NSString+Validations.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *emailTxtFiled;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTxtFiled;
 @property (nonatomic) Lapanzo_Client *client;
@@ -76,9 +76,10 @@
     
     NSString *urlString = [NSString stringWithFormat:@"portal?a=login&em=%@&passphrase=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,_passwordTxtFiled.text,[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
     NSLog(@"%@",urlString);
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [_client loginWithUrl:@"portal?a=login&em=mails2mrk@gmail.com&passphrase=12345" andCompletionHandler:^(NSDictionary *responseObject) {
         NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([responseObject.status isEqualToString:@"fail"]) {
             [self showAlert:@"Login" message:responseObject.message];
         } else {
@@ -88,6 +89,7 @@
             [self performSegueWithIdentifier:CATEGORY_SEGUEID sender:nil];
         }
     } failure:^(NSError *connectionError) {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [self showAlert:@"Error" message:connectionError.localizedDescription];
     }];
 }
@@ -146,6 +148,21 @@
     _viewVerticalCentrConstraint.constant = 0;
     _topLogotopConstraint.constant = LogoTopConstant;
     [self animateConstraintsForDuration:animationDuration];
+}
+
+#pragma mark TextFiled delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == _emailTxtFiled) {
+        [_emailTxtFiled resignFirstResponder];
+        [_passwordTxtFiled becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 #pragma mark Navigation

@@ -10,5 +10,6 @@
 #import "GenericViewController.h"
 
 @interface StoreDetailVC : GenericViewController
-
+@property (nonatomic) NSNumber *storeId;
+@property (nonatomic) NSNumber *maincategoryId;
 @end
