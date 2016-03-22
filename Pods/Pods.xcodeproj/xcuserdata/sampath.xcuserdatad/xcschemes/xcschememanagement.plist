@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Pods-Lapanzo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -33,6 +38,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0DCF5E260B53BEE76BB19402DE10ADE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1ED16501A869B75E08E9F0E7EF5FF3B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +63,16 @@
 			<true/>
 		</dict>
 		<key>CABDC99A67D86A3307A519996ECE0DE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAEBE72F7E5E73DB2BF1C1B6BC4C2D9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
