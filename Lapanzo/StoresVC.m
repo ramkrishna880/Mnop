@@ -75,16 +75,29 @@
 #pragma mark CollectionView delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _stores.count;
+    if (self.searchController.active && _searchController.searchBar.text.length) {
+        return _searchedStores.count;
+    } else {
+        return _stores.count;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath  {
     CategoryCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:STORE_COLLCCELLID forIndexPath:indexPath];
-    cell.currentStore = _stores[indexPath.row];
+    if (self.searchController.active && _searchController.searchBar.text.length) {
+        cell.currentStore = _searchedStores[indexPath.row];
+    } else {
+        cell.currentStore = _stores[indexPath.row];
+    }
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STOREDETAIL_SEGUEID sender:_stores[indexPath.row]];
+    if (self.searchController.active && _searchController.searchBar.text.length) {
+        [self performSegueWithIdentifier:STOREDETAIL_SEGUEID sender:_searchedStores[indexPath.row]];
+    } else {
+        [self performSegueWithIdentifier:STOREDETAIL_SEGUEID sender:_stores[indexPath.row]];
+    }
 }
 
 #pragma mark SearchController delegate
@@ -129,10 +142,10 @@
     }];
 }
 
- #pragma mark - Navigation
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Store *)sender {
- // Get the new view controller using [segue destinationViewController].
+    // Get the new view controller using [segue destinationViewController].
     if ([segue.identifier isEqualToString:STOREDETAIL_SEGUEID]) {
         StoreDetailVC *storeDetail = (StoreDetailVC *)segue.destinationViewController;
         storeDetail.storeId = _vendorId;

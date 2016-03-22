@@ -28,6 +28,16 @@
     return dic ? dic : nil;
 }
 
+- (NSMutableArray *)cartItems {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *cartItemsData = [currentDefaults objectForKey:CARTITEMS_KEY];
+    if (cartItemsData != nil) {
+        NSMutableArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:cartItemsData];
+        return oldSavedArray;
+    }
+    return nil;
+}
+
 #pragma mark set
 
 - (void)setIsLogged:(BOOL)isloggedIn {
@@ -54,6 +64,14 @@
         [standardUserDefaults removeObjectForKey:USER_DETAILS];
     }
     [standardUserDefaults synchronize];
+}
+
+- (void)setCartItems:(NSMutableArray *)cartItems {
+    if (cartItems) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:cartItems] forKey:CARTITEMS_KEY];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CARTITEMS_KEY];
+    }
 }
 
 @end
