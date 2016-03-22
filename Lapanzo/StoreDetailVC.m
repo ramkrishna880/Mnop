@@ -185,7 +185,7 @@
             [self.tabs reloadData];
             [self.tableView reloadData];
         } else {
-            [self showAlert:nil message:@"No Categories Found"];
+            [self showAlert:nil message:@"No Subcategories Found"];
         }
     } failure:^(NSError *connectionError) {
         [self hideHud];
