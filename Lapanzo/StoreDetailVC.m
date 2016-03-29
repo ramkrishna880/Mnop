@@ -14,7 +14,7 @@
 #import "Subcategory.h"
 #import "UIColor+Helpers.h"
 
-@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate> {
+@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, StoreTableCellDelegate> {
     //NSUInteger currentSubcategory;
 }
 @property (nonatomic) UISearchController *searchController;
@@ -27,7 +27,8 @@
 
 @property (nonatomic) HTHorizontalSelectionList *tabs;
 @property (nonatomic) NSArray *subCategories;
-
+@property (nonatomic) NSMutableArray *searchedItems;
+@property (nonatomic) NSMutableArray *cartItems;
 @property (nonatomic, assign) NSUInteger index;
 @end
 
@@ -51,6 +52,8 @@
     tableSwipeGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.tableView addGestureRecognizer:tableSwipeGesture];
     
+    self.cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
+    
     [self fetchStoreSubcategories];
 }
 
@@ -60,10 +63,11 @@
         self.tabs = [[HTHorizontalSelectionList alloc] initWithFrame:self.tabsPlaceHolder.bounds];
         _tabs.delegate = self;
         _tabs.dataSource = self;
-        //_selectionList.selectionIndicatorColor = [UIColor navBarTintColor];
+        _tabs.selectionIndicatorColor = [UIColor whiteColor];
+        _tabs.selectionIndicatorHeight = 8.0f;
         [_tabs setTitleColor:[UIColor colorFromRGBforRed:55.0 blue:57.0 green:80.0] forState:UIControlStateNormal];
-        //[_selectionList setTitleColor:[UIColor navBarTintColor] forState:UIControlStateHighlighted];
-        [_tabs setTitleFont:[UIFont boldSystemFontOfSize:18.0] forState:UIControlStateNormal];
+        [_tabs setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_tabs setTitleFont:[UIFont boldSystemFontOfSize:15.0] forState:UIControlStateNormal];
         [self.tabsPlaceHolder addSubview:_tabs];
     }
     
@@ -98,13 +102,18 @@
     StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
     if (!cell) {
         cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
+        cell.delegate = self;
     }
     Subcategory *sbCat = _subCategories [indexPath.section];
     Item *crntItem =  sbCat.items [indexPath.row];
-    cell.currentItem = crntItem;
-    
+    NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
+    NSLog(@"inside cell :%lu",checkedItems.count);
+    if (!checkedItems.count) {
+        cell.currentItem = crntItem;
+    } else {
+        cell.currentItem = checkedItems[0];
+    }
     //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
-    
     return cell;
 }
 
@@ -188,7 +197,7 @@
             [self.tabs reloadData];
             [self.tableView reloadData];
         } else {
-            [self showAlert:nil message:@"No Categories Found"];
+            [self showAlert:nil message:@"No Subcategories Found"];
         }
     } failure:^(NSError *connectionError) {
         [self hideHud];
@@ -199,17 +208,45 @@
 #pragma mark SearchController delegate
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
-//    [self.searchedStores removeAllObjects];
-//    //NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
-//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"storeName  contains [c] %@", searchText];//LIKE
-//    self.searchedStores = [NSMutableArray arrayWithArray: [self.stores filteredArrayUsingPredicate:resultPredicate]];
-//    [self.collectionView reloadData];
+    [self.searchedItems removeAllObjects];
+    //NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"storeName  contains [c] %@", searchText];//LIKE
+    self.searchedItems = [NSMutableArray arrayWithArray: [self.subCategories filteredArrayUsingPredicate:resultPredicate]]; // passed wrong array here change in future
+    [self.tableView reloadData];
 }
 
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     UISearchBar *searchBar = searchController.searchBar;
     [self filterContentForSearchText:searchBar.text scope:@"All"];
+}
+
+
+#pragma mark StorecellDelegate
+
+- (void)changedQuantityForCell:(StoresTableViewCell *)cell andValue:(NSUInteger)changedNumber {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Subcategory *sbCt = _subCategories[indexPath.section];
+    Item *item = sbCt.items[indexPath.row];
+    NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
+    NSLog(@"inside delegate Method :%lu",items.count);
+#warning ask what is item count in items
+    if (!items.count) {
+        item.itemCount = @(changedNumber).stringValue;
+        [_cartItems addObject:item];
+    } else {
+        Item *existedItem = items[0];
+        existedItem.itemCount = @(changedNumber).stringValue;
+    }
+}
+
+
+- (NSArray *)checkForSelectedFromCartOfItems:(NSNumber *)itemId {
+    if (!itemId && !_cartItems.count) {
+        return nil;
+    }
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId contains [c] %@",itemId];
+    return  [self.cartItems filteredArrayUsingPredicate:resultPredicate];  
 }
 
 #pragma mark - Navigation

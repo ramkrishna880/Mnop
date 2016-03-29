@@ -12,20 +12,13 @@
     Item *_currentItem;
 }
 
-/*
- IBOutlet UILabel *storeTitle;
- et UILabel *quantityLbl;
- et UILabel *amountLbl;
- et PAStepper *stepper;
- */
-
 - (void)awakeFromNib {
     // Initialization code
     
-    self.stepper.value = 0.0;
-    self.stepper.minimumValue = 0;
-    self.stepper.maximumValue = 100;
-    self.stepper.editableManually = NO;
+//    self.stepper.value = 0.0;
+//    self.stepper.minimumValue = 0;
+//    self.stepper.maximumValue = 100;
+//    self.stepper.editableManually = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -43,5 +36,37 @@
     self.quantityLbl.text = currentItem.quantityval;
     self.amountLbl.text = currentItem.price;
     self.stepper.value = 0.0;
+}
+
+- (IBAction)countButtonsPressed:(UIButton *)sender {
+    if (sender.tag >1) {
+        return;
+    }
+    CATransition* transition = [CATransition animation];
+    NSUInteger val = [self noOfUnitsValue];
+    if (sender.tag == 0) {
+        if (val>0) {
+            val--;
+        }
+        transition.subtype = kCATransitionFromTop;
+    } else {
+        if (val<=100) {
+            val++;
+        }
+        transition.subtype = kCATransitionFromBottom;
+    }
+    transition.duration = 0.2;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    
+    _counterLbl.text = @(val).stringValue;
+    [_counterLbl.layer addAnimation:transition forKey:nil];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(changedQuantityForCell:andValue:)]) {
+        [self.delegate changedQuantityForCell:self andValue:val];
+    }
+}
+
+- (NSUInteger)noOfUnitsValue {
+    return _counterLbl.text.integerValue;
 }
 @end

@@ -35,6 +35,7 @@ static NSString *const VENDOR_COLLECCELLID = @"VendorCollectionViewCellId";
 static NSString *const ISLOGGED_KEY = @"isLogged";
 static NSString *const USERID_KEY = @"userID";
 static NSString *const USER_DETAILS = @"userDetails";
+static NSString *const CARTITEMS_KEY = @"cartValueskey";
 
 
 #pragma mark Others
