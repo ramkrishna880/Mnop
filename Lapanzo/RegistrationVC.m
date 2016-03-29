@@ -10,6 +10,7 @@
 #import "NSString+Validations.h"
 #import "MBProgressHUD.h"
 
+
 @interface RegistrationVC () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *userNameTxtFiled;
 @property (nonatomic, weak) IBOutlet UITextField *emailTxtFiled;

@@ -39,6 +39,8 @@
     [super viewDidLoad];
     _index = 0;
     [self setUpInitialUIelements];
+    
+
 }
 
 
@@ -171,6 +173,7 @@
 
 - (void)fetchStoreSubcategories {
     //@"portal?a=maincatogory&storeId=1&maincatogoryid=4"
+#warning remove maincategoryid from api pass store id 
     [self showHUD];
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@&maincatogoryid=%@",_storeId,_maincategoryId];
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {

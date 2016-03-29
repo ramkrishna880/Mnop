@@ -38,6 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpinitialElements];
+    //Vendor Id
+    
 }
 
 - (void)setUpinitialElements {

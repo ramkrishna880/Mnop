@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpInitialUIElements];
+#warning hre change api pass vtype as vendor id
 }
 
 - (void)didReceiveMemoryWarning {
