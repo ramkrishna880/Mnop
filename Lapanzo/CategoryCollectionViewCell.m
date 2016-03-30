@@ -19,7 +19,7 @@
 - (void)setCurrentStore:(Store *)currentStore {
     if (currentStore) {
         self.titleLbl.text = currentStore.storeName;
-        self.placeLbl.text = currentStore.storeSubTitle;
+        //self.placeLbl.text = currentStore.storeSubTitle;
 //        self
     }
 }

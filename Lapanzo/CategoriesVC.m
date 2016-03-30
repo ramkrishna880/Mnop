@@ -46,8 +46,8 @@
     _client = [Lapanzo_Client sharedClient];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 100)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 10, 10, 10)];//top/left/bottem/right
+    [flowLayout setItemSize:CGSizeMake(120, 120)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 50, 50, 10)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 10.0f;
     [_collectionView setCollectionViewLayout:flowLayout];

@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpInitialUIElements];
-#warning hre change api pass vtype as vendor id
+//#warning here change api pass vtype as vendor id
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +53,8 @@
     flowLayout.minimumInteritemSpacing = 10.0f;
     [_collectionView setCollectionViewLayout:flowLayout];
     
-    [self fetchCategories];
+    [self fetchStoresforUrlString:nil];
+    //[self fetchCategories];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -120,13 +121,17 @@
 
 #pragma mark WebOperations
 
-- (void)fetchCategories {
-    //@"portal?a=maincatogory&storeId=1
+
+- (void)fetchStoresforUrlString:(NSString *)urlString {
     [self showHUD];
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=maincatogory&storeId=%@",_vendorId];
+    
+    //by latitude and logitude
+    //@//       @"portal?a=showNear&lat=17.438028799999998&lan=78.4330179"    //@//
+    
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Banjarahills&city=Hyderabad&vtype=1"];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
-        NSArray *vendors = responseObject[@"list"];
+        NSArray *vendors = responseObject[@"result"];
         if (vendors.count) {
             NSMutableArray *tempStores = [[NSMutableArray alloc] init];
             [vendors enumerateObjectsUsingBlock:^(NSDictionary  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -142,6 +147,29 @@
         [self showAlert:nil message:connectionError.localizedDescription];
     }];
 }
+
+//- (void)fetchCategories {
+//    //@"portal?a=maincatogory&storeId=1
+//    [self showHUD];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=maincatogory&storeId=%@",_vendorId];
+//    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+//        [self hideHud];
+//        NSArray *vendors = responseObject[@"list"];
+//        if (vendors.count) {
+//            NSMutableArray *tempStores = [[NSMutableArray alloc] init];
+//            [vendors enumerateObjectsUsingBlock:^(NSDictionary  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                [tempStores addObject:[[Store alloc] initStorewithDictionary:obj]];
+//            }];
+//            _stores = [[NSMutableArray alloc] initWithArray:tempStores copyItems:NO];
+//            [self.collectionView reloadData];
+//        } else {
+//            [self showAlert:nil message:@"No Stores Found"];
+//        }
+//    } failure:^(NSError *connectionError) {
+//        [self hideHud];
+//        [self showAlert:nil message:connectionError.localizedDescription];
+//    }];
+//}
 
 #pragma mark - Navigation
 
