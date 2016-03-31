@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "StoresVC.h"
 #import "StoreDetailVC.h"
+#import "INTULocationManager.h"
 
 @interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -47,14 +48,34 @@
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(120, 120)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 50, 50, 10)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 20, 20, 10)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 10.0f;
     [_collectionView setCollectionViewLayout:flowLayout];
     
+    //INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    //[locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+   //                                    timeout:10.0
+   //                       delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
+     //                                    block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+       //                                      if (status == INTULocationStatusSuccess) {
+                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
+                                                 // currentLocation contains the device's current location.
+         //                                    }
+           //                                  else if (status == INTULocationStatusTimedOut) {
+                                                 // Wasn't able to locate the user with the requested accuracy within the timeout interval.
+                                                 // However, currentLocation contains the best location available (if any) as of right now,
+                                                 // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
+             //                                }
+               //                              else {
+                                                 // An error occurred, more info is available by looking at the specific status returned.
+                 //                            }
+                   //                      }];
+    
+    
     [self fetchCategories];
-    //    [self setallLableValues];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

@@ -181,10 +181,8 @@
 #pragma mark Web
 
 - (void)fetchStoreSubcategories {
-    //@"portal?a=maincatogory&storeId=1&maincatogoryid=4"
-#warning remove maincategoryid from api pass store id  and what is store id
     [self showHUD];
-//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@&maincatogoryid=%@",_storeId,_maincategoryId];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
     
     NSString *urlStr = @"portal?a=subcatogory&storeId=1";
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {

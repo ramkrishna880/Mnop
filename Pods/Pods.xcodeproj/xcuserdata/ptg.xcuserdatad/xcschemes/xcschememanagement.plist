@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>INTULocationManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>M13BadgeView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,11 +47,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1ED16501A869B75E08E9F0E7EF5FF3B3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>29B86DC20390F07D8D6D65FCE57AFCDE</key>
 		<dict>
 			<key>primary</key>
@@ -57,7 +57,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAEBE72F7E5E73DB2BF1C1B6BC4C2D9B</key>
+		<key>9B3A7A183597AAC4CC676C047365F66E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5FB299B671963C0A40111AF740385BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E07A1B93D0B5E99C6E979FACDA81D9B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

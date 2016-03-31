@@ -12,7 +12,7 @@
 
 - (BOOL)isValidEmail;
 - (BOOL)isValidPhoneNumber;
-
+- (NSString *)urlencode;
 @end
 
 

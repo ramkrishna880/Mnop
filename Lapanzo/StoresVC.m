@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpInitialUIElements];
-//#warning here change api pass vtype as vendor id
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +71,10 @@
         _searchController.searchBar.frame = _searchHolder.bounds;
         [self.searchHolder addSubview:_searchController.searchBar];
     }
+}
+
+- (void)dealloc {
+    [_searchController.view removeFromSuperview];
 }
 
 #pragma mark CollectionView delegate
@@ -177,8 +180,9 @@
     // Get the new view controller using [segue destinationViewController].
     if ([segue.identifier isEqualToString:STOREDETAIL_SEGUEID]) {
         StoreDetailVC *storeDetail = (StoreDetailVC *)segue.destinationViewController;
-        storeDetail.storeId = _vendorId;
-        storeDetail.maincategoryId = sender.storeId;
+        storeDetail.storeId = sender.storeId;
+//        storeDetail.storeId = _vendorId;
+//        storeDetail.maincategoryId = sender.storeId;
     }
 }
 
