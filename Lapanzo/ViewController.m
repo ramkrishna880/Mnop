@@ -74,7 +74,7 @@
 - (void)performLogin {
     //TODO add ip address , host - (Lapnzo) , device ID
     
-    NSString *urlString = [NSString stringWithFormat:@"portal?a=login&em=%@&passphrase=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,_passwordTxtFiled.text,[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
+    NSString *urlString = [NSString stringWithFormat:@"portal?a=login&em=%@&passphrase=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,[_passwordTxtFiled.text MD5String],[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
     NSLog(@"%@",urlString);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [_client loginWithUrl:@"portal?a=login&em=mails2mrk@gmail.com&passphrase=12345" andCompletionHandler:^(NSDictionary *responseObject) {

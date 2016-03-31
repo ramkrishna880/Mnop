@@ -40,6 +40,8 @@
     [super viewDidLoad];
     _index = 0;
     [self setUpInitialUIelements];
+    
+
 }
 
 
@@ -180,8 +182,11 @@
 
 - (void)fetchStoreSubcategories {
     //@"portal?a=maincatogory&storeId=1&maincatogoryid=4"
+#warning remove maincategoryid from api pass store id  and what is store id
     [self showHUD];
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@&maincatogoryid=%@",_storeId,_maincategoryId];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@&maincatogoryid=%@",_storeId,_maincategoryId];
+    
+    NSString *urlStr = @"portal?a=subcatogory&storeId=1";
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *subCategories = responseObject[@"list"];
@@ -227,7 +232,9 @@
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
     NSLog(@"inside delegate Method :%lu",items.count);
+
 #warning ask what is item count in items
+
     if (!items.count) {
         item.itemCount = @(changedNumber).stringValue;
         [_cartItems addObject:item];

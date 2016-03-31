@@ -9,9 +9,11 @@
 #import "CartVC.h"
 #import "Constants.h"
 #import "StoresTableViewCell.h"
+#import "Lapanzo_Client+DataAccess.h"
 
 @interface CartVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) Lapanzo_Client *client;
 @end
 
 @implementation CartVC
