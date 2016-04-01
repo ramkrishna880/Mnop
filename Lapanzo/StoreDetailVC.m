@@ -14,7 +14,7 @@
 #import "Subcategory.h"
 #import "UIColor+Helpers.h"
 
-@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, StoreTableCellDelegate> {
+@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate> {
     //NSUInteger currentSubcategory;
 }
 @property (nonatomic) UISearchController *searchController;
@@ -40,8 +40,6 @@
     [super viewDidLoad];
     _index = 0;
     [self setUpInitialUIelements];
-    
-
 }
 
 
@@ -75,20 +73,16 @@
         _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
         _searchController.searchResultsUpdater = self;
         _searchController.searchBar.delegate = self;
+        _searchController.delegate = self;
         self.definesPresentationContext = true;
         _searchController.dimsBackgroundDuringPresentation = false;
         [self.searchController.searchBar setPlaceholder:@"Are you looking for any product ?"];
-        //[self.searchController.searchBar setBarTintColor:[UIColor cellSelectColor]];
         [self.searchController.searchBar sizeToFit];
         _searchController.searchBar.frame = _searchPlaceHolder.bounds;
         [self.searchPlaceHolder addSubview:_searchController.searchBar];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 #pragma mark tableViewDatasource
@@ -102,9 +96,9 @@
     StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
     if (!cell) {
         cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
-        cell.delegate = self;
+        //        cell.delegate = self;
     }
-    Subcategory *sbCat = _subCategories [indexPath.section];
+    Subcategory *sbCat = _subCategories [_index];
     Item *crntItem =  sbCat.items [indexPath.row];
     NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
     NSLog(@"inside cell :%lu",checkedItems.count);
@@ -114,12 +108,12 @@
         cell.currentItem = checkedItems[0];
     }
     //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
+    
+    cell.delegate = self;
     return cell;
 }
 
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    return UITableViewCellEditingStyleNone;
-//}
+
 
 #pragma mark - HTHorizontalSelectionListDataSource Protocol Methods
 
@@ -142,20 +136,23 @@
 
 
 #pragma mark Actions
+
 - (IBAction)mainCatogoryAction:(id)sender {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 - (IBAction)storesButtonTapped:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 - (IBAction)goToCartClicked:(id)sender {
-    
+    [self performSegueWithIdentifier:CART_SEGUEID sender:nil];  // future sender can not be nil
 }
 
+
 - (void)swipedOntableView:(UISwipeGestureRecognizer *)gesture {
-    
     CATransition* transition = [CATransition animation];
     transition.duration = 0.2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -182,8 +179,7 @@
 
 - (void)fetchStoreSubcategories {
     [self showHUD];
-//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
-    
+    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
     NSString *urlStr = @"portal?a=subcatogory&storeId=1";
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
@@ -221,6 +217,22 @@
     [self filterContentForSearchText:searchBar.text scope:@"All"];
 }
 
+# warning implement proper search implementation
+
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"search activated");
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"search dismissed");
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"searchText");
+    if (searchText.length == 0) {
+        NSLog(@"No searchText");
+    }
+}
 
 #pragma mark StorecellDelegate
 
@@ -229,32 +241,33 @@
     Subcategory *sbCt = _subCategories[indexPath.section];
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
-    NSLog(@"inside delegate Method :%lu",items.count);
-
-#warning ask what is item count in items
-
+//    NSLog(@"inside delegate Method :%lu",items.count);
     if (!items.count) {
-        item.itemCount = @(changedNumber).stringValue;
+        item.noOfItems = @(changedNumber).stringValue;
         [_cartItems addObject:item];
     } else {
         Item *existedItem = items[0];
-        existedItem.itemCount = @(changedNumber).stringValue;
+        existedItem.noOfItems = @(changedNumber).stringValue;
     }
+#warning think better way to save cart items instaed of saving everyTime when we click buttons
+    [self.client setCartItems:_cartItems];
 }
 
 
 - (NSArray *)checkForSelectedFromCartOfItems:(NSNumber *)itemId {
-    if (!itemId && !_cartItems.count) {
+    if (!itemId || !_cartItems.count) {
         return nil;
     }
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId contains [c] %@",itemId];
-    return  [self.cartItems filteredArrayUsingPredicate:resultPredicate];  
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId == %@",itemId];  //itemId contains [c] %@
+    return  [self.cartItems filteredArrayUsingPredicate:resultPredicate];
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    if ([segue.identifier isEqualToString:CART_SEGUEID]) {
+        
+    }
 }
 
 

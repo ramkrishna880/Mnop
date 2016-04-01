@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CartVC : UIViewController
-
+@property (nonatomic) NSMutableArray *cartItems;
 @end

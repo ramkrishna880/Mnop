@@ -29,4 +29,5 @@
 @protocol StoreTableCellDelegate <NSObject>
 @optional
 - (void)changedQuantityForCell:(StoresTableViewCell *)cell andValue:(NSUInteger)changedNumber;
+- (void)didDeleteClickedForCell:(StoresTableViewCell *)cell;
 @end

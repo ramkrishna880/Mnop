@@ -11,21 +11,26 @@
 #import "StoresTableViewCell.h"
 #import "Lapanzo_Client+DataAccess.h"
 
-@interface CartVC () <UITableViewDelegate, UITableViewDataSource>
+@interface CartVC () <UITableViewDelegate, UITableViewDataSource, StoreTableCellDelegate>
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) Lapanzo_Client *client;
+
+//@property (nonatomic) NSMutableArray *cartItems;
 @end
 
 @implementation CartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupInitialUiElements];
+}
+
+- (void)setupInitialUiElements {
+    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark tableViewDatasource
@@ -39,27 +44,55 @@
     if (!cell) {
         cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
     }
+    cell.currentItem = _cartItems[indexPath.row];
     
-    cell.storeTitle.text = [NSString stringWithFormat:@"Store %lu",indexPath.row];
-    cell.quantityLbl.text = @"500 gms";
-    cell.amountLbl.text = @"50 rs";
+    cell.delegate = self;
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90.0;
 }
 
 
 #pragma mark Actions
 
-- (IBAction)checkOutTapped:(id)sender {
-    
+- (IBAction)mainCatogoryAction:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-/*
+
+- (IBAction)storesButtonTapped:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)checkOutTapped:(id)sender {
+    [self performSegueWithIdentifier:PAYMENT_SEGUEID sender:nil];
+}
+
+#pragma mark storecell Delegate
+
+- (void)changedQuantityForCell:(StoresTableViewCell *)cell andValue:(NSUInteger)changedNumber {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Item *item = _cartItems[indexPath.row];
+    item.noOfItems = @(changedNumber).stringValue;
+    [_client setCartItems:_cartItems];
+}
+
+
+- (void)didDeleteClickedForCell:(StoresTableViewCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [_cartItems removeObjectAtIndex:indexPath.row];
+    [_client setCartItems:_cartItems];
+    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+}
+
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
-*/
+
 
 @end

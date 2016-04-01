@@ -38,6 +38,9 @@
     self.stepper.value = 0.0;
 }
 
+
+#pragma mark UIActions
+
 - (IBAction)countButtonsPressed:(UIButton *)sender {
     if (sender.tag >1) {
         return;
@@ -45,13 +48,18 @@
     CATransition* transition = [CATransition animation];
     NSUInteger val = [self noOfUnitsValue];
     if (sender.tag == 0) {
+        if (val == 0) {
+            return;
+        }
         if (val>0) {
             val--;
         }
         transition.subtype = kCATransitionFromTop;
     } else {
-        if (val<=100) {
+        if (val<100) {
             val++;
+        } else {
+            return;
         }
         transition.subtype = kCATransitionFromBottom;
     }
@@ -66,7 +74,17 @@
     }
 }
 
+
+- (IBAction)deleteButtonClicked:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didDeleteClickedForCell:)]) {
+        [self.delegate didDeleteClickedForCell:self];
+    }
+}
+
+#pragma mark Others
+
 - (NSUInteger)noOfUnitsValue {
     return _counterLbl.text.integerValue;
 }
+
 @end

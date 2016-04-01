@@ -27,6 +27,9 @@
         self.itemCount = [NSString stringWithFormat:@"%@",dictionary [@"itemcount"]];
         self.itemDescription = dictionary [@"desc"];
         self.image = dictionary[@"img"];
+        
+        self.noOfItems = @(0).stringValue;
+        
         //add subcategory info if needed in future
     }
     return self;

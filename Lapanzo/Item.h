@@ -21,7 +21,10 @@
 @property (nonatomic) NSString *itemCount;
 @property (nonatomic) NSString *itemDescription;
 @property (nonatomic) NSString *image;
-//Optional depends
+
+@property (nonatomic) NSString *noOfItems;
+
+//Optional depends May be in future
 @property (nonatomic) NSNumber *subcategoryId;
 @property (nonatomic) NSString *subcategaryName;
 
