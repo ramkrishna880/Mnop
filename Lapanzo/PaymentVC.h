@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericViewController.h"
 
-@interface PaymentVC : UIViewController
+@interface PaymentVC : GenericViewController
 
+@property (nonatomic) NSNumber *storeId;
+//@property (nonatomic) NSNumber *userId;
+@property (nonatomic) NSArray *cartItems;
 @end

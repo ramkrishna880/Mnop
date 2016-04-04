@@ -87,12 +87,98 @@
     [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 }
 
+#pragma mark Webopereations
+- (void)proceedWebOp {
+    
+    //    NSString *url = [NSString stringWithFormat:@"portal?a=proceed&storeId=%@&userId=%@&deviceId=%@",_storeId,_client.userId,[self uniqueDeviceId]];
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=proceed&storeId=1&userId=1&deviceId=APadfasdjfhkasf-dskfjasdfjsadf-askfjklasfjasf"];
+    [self showHUD];
+    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+        [self hideHud];
+        if ([responseObject.status isEqualToString:@"fail"]) {
+            [self showAlert:@"Proceed" message:responseObject.message];
+        } else {
+            
+        }
+        
+    } failure:^(NSError *connectionError) {
+        [self hideHud];
+        [self showAlert:nil message:connectionError.localizedDescription];
+    }];
+}
+
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    if ([segue.identifier isEqualToString:PAYMENT_SEGUEID]) {
+        
+    }
 }
 
+
+/* @@@@  sample Response *********
+ 
+ {
+ "a": "proceed"
+ "status": "success"
+ "servicetax": 0
+ "vat": 0
+ "deliverycharge": 50
+ "servicefee": 0
+ "onlinepayment": 1
+ "cod": 1
+ "takeaway": 1
+ "homedelivery": 1
+ "walletbalance": 123
+ "minorder": 200
+ "homedeliveryslots": [7]
+ 0:  {
+ "id": 6
+ "start": "16:00"
+ "end": "18:00"
+ "act": 1
+ }-
+ 1:  {
+ "id": 5
+ "start": "14:00"
+ "end": "16:00"
+ "act": 1
+ }-
+ 2:  {
+ "id": 7
+ "start": "18:00"
+ "end": "20:00"
+ "act": 1
+ }-
+ 3:  {
+ "id": 2
+ "start": "08:00"
+ "end": "10:00"
+ "act": 1
+ }-
+ 4:  {
+ "id": 1
+ "start": "06:00"
+ "end": "08:00"
+ "act": 0
+ }-
+ 5:  {
+ "id": 3
+ "start": "10:00"
+ "end": "12:00"
+ "act": 1
+ }-
+ 6:  {
+ "id": 4
+ "start": "12:00"
+ "end": "14:00"
+ "act": 1
+ }-
+ -
+ "storeStatus": "open"
+ }
+ 
+ */
 
 @end

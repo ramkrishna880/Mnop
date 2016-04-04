@@ -32,7 +32,8 @@ static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
 static NSString *const STORE_COLLCCELLID = @"CategoryCollectionViewCellId";
 static NSString *const STORES_TABLECELLID = @"StoresTableViewCellId";
 static NSString *const VENDOR_COLLECCELLID = @"VendorCollectionViewCellId";
-
+static NSString *const PAYMENTHIS_TABLECELLID = @"paymentAddressHistory";
+static NSString *const HISTORY_TABLECELLID = @"paymentAddressHistory";
 
 #pragma mark dataAccess
 static NSString *const ISLOGGED_KEY = @"isLogged";

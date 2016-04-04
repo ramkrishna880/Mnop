@@ -17,6 +17,12 @@
 		7559313C1C902D3400D1946F /* Lapanzo_Client+DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7559313B1C902D3400D1946F /* Lapanzo_Client+DataAccess.m */; };
 		75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75783EF71CA1804500B24F90 /* ORNavigationBar.m */; };
 		757C21111C99787D001C6BC9 /* Vendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 757C21101C99787D001C6BC9 /* Vendor.m */; };
+		758982B11CB26E9400B9C542 /* UIApplication+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = 758982B01CB26E9400B9C542 /* UIApplication+Paths.m */; };
+		758982CB1CB28C7600B9C542 /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758982C81CB28C7600B9C542 /* PopDatePicker.swift */; };
+		758982CC1CB28C7600B9C542 /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758982C91CB28C7600B9C542 /* PopDateViewController.swift */; };
+		758982CD1CB28C7600B9C542 /* PopDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 758982CA1CB28C7600B9C542 /* PopDateViewController.xib */; };
+		758982D01CB2A66400B9C542 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 758982CF1CB2A66400B9C542 /* HistoryTableViewCell.m */; };
+		758982D31CB2A87200B9C542 /* PastOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758982D21CB2A87200B9C542 /* PastOrder.m */; };
 		758C8C5C1C86BE8000370262 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C5B1C86BE8000370262 /* main.m */; };
 		758C8C5F1C86BE8000370262 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C5E1C86BE8000370262 /* AppDelegate.m */; };
 		758C8C621C86BE8000370262 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C611C86BE8000370262 /* ViewController.m */; };
@@ -91,6 +97,16 @@
 		75783EF71CA1804500B24F90 /* ORNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORNavigationBar.m; sourceTree = "<group>"; };
 		757C210F1C99787D001C6BC9 /* Vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vendor.h; sourceTree = "<group>"; };
 		757C21101C99787D001C6BC9 /* Vendor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vendor.m; sourceTree = "<group>"; };
+		758982AF1CB26E9400B9C542 /* UIApplication+Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Paths.h"; sourceTree = "<group>"; };
+		758982B01CB26E9400B9C542 /* UIApplication+Paths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Paths.m"; sourceTree = "<group>"; };
+		758982C71CB28C7500B9C542 /* Lapanzo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lapanzo-Bridging-Header.h"; sourceTree = "<group>"; };
+		758982C81CB28C7600B9C542 /* PopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDatePicker.swift; sourceTree = "<group>"; };
+		758982C91CB28C7600B9C542 /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
+		758982CA1CB28C7600B9C542 /* PopDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateViewController.xib; sourceTree = "<group>"; };
+		758982CE1CB2A66400B9C542 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
+		758982CF1CB2A66400B9C542 /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
+		758982D11CB2A87200B9C542 /* PastOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastOrder.h; sourceTree = "<group>"; };
+		758982D21CB2A87200B9C542 /* PastOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastOrder.m; sourceTree = "<group>"; };
 		758C8C571C86BE8000370262 /* Lapanzo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lapanzo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		758C8C5B1C86BE8000370262 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		758C8C5D1C86BE8000370262 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -208,6 +224,8 @@
 				75A79C6D1C87FC0B0096241C /* StoresTableViewCell.m */,
 				75C70FCB1C9C086500C6D9CF /* VendorCollectionViewCell.h */,
 				75C70FCC1C9C086500C6D9CF /* VendorCollectionViewCell.m */,
+				758982CE1CB2A66400B9C542 /* HistoryTableViewCell.h */,
+				758982CF1CB2A66400B9C542 /* HistoryTableViewCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -221,6 +239,16 @@
 				75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */,
 			);
 			name = "Login&registration";
+			sourceTree = "<group>";
+		};
+		758982B21CB2880A00B9C542 /* popover */ = {
+			isa = PBXGroup;
+			children = (
+				758982C81CB28C7600B9C542 /* PopDatePicker.swift */,
+				758982C91CB28C7600B9C542 /* PopDateViewController.swift */,
+				758982CA1CB28C7600B9C542 /* PopDateViewController.xib */,
+			);
+			name = popover;
 			sourceTree = "<group>";
 		};
 		758C8C4E1C86BE8000370262 = {
@@ -261,6 +289,7 @@
 				758C8C681C86BE8000370262 /* LaunchScreen.storyboard */,
 				758C8C6B1C86BE8000370262 /* Info.plist */,
 				758C8C5A1C86BE8000370262 /* Supporting Files */,
+				758982C71CB28C7500B9C542 /* Lapanzo-Bridging-Header.h */,
 			);
 			path = Lapanzo;
 			sourceTree = "<group>";
@@ -305,10 +334,10 @@
 				75A79C781C880CEF0096241C /* StoreDetailVC.m */,
 				75A79C7A1C881F120096241C /* CartVC.h */,
 				75A79C7B1C881F120096241C /* CartVC.m */,
-				75A79C7D1C881F250096241C /* HistoryVC.h */,
-				75A79C7E1C881F250096241C /* HistoryVC.m */,
 				75A79C801C881F7C0096241C /* PaymentVC.h */,
 				75A79C811C881F7C0096241C /* PaymentVC.m */,
+				75A79C7D1C881F250096241C /* HistoryVC.h */,
+				75A79C7E1C881F250096241C /* HistoryVC.m */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -322,6 +351,8 @@
 				75504AFE1C96D14400CDA023 /* NSDictionary+Response.m */,
 				75504B001C97F13900CDA023 /* UIColor+Helpers.h */,
 				75504B011C97F13900CDA023 /* UIColor+Helpers.m */,
+				758982AF1CB26E9400B9C542 /* UIApplication+Paths.h */,
+				758982B01CB26E9400B9C542 /* UIApplication+Paths.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -376,6 +407,8 @@
 				75C70FC51C9AAB5B00C6D9CF /* Subcategory.m */,
 				75C70FC11C9A8D8700C6D9CF /* Item.h */,
 				75C70FC21C9A8D8700C6D9CF /* Item.m */,
+				758982D11CB2A87200B9C542 /* PastOrder.h */,
+				758982D21CB2A87200B9C542 /* PastOrder.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -383,6 +416,7 @@
 		75A79C841C8838590096241C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				758982B21CB2880A00B9C542 /* popover */,
 				42258B411CAC17A800DCFCCF /* sskeychain */,
 				75A79C851C8838630096241C /* Stepper */,
 			);
@@ -487,6 +521,7 @@
 		758C8C4F1C86BE8000370262 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "People Tech Group";
 				TargetAttributes = {
@@ -530,6 +565,7 @@
 			files = (
 				75429C8C1C91A5690071D352 /* CategoryCollectionViewCell.xib in Resources */,
 				758C8C8E1C86BEC500370262 /* Main.storyboard in Resources */,
+				758982CD1CB28C7600B9C542 /* PopDateViewController.xib in Resources */,
 				758C8C6A1C86BE8000370262 /* LaunchScreen.storyboard in Resources */,
 				75A79C931C8838740096241C /* stepper_white_bckg.png in Resources */,
 				75A79C921C8838740096241C /* plus_bckg@2x.png in Resources */,
@@ -613,8 +649,11 @@
 			files = (
 				75C70FC61C9AAB5B00C6D9CF /* Subcategory.m in Sources */,
 				758C8C621C86BE8000370262 /* ViewController.m in Sources */,
+				758982CC1CB28C7600B9C542 /* PopDateViewController.swift in Sources */,
 				758C8CA21C87217B00370262 /* CategoriesVC.m in Sources */,
+				758982B11CB26E9400B9C542 /* UIApplication+Paths.m in Sources */,
 				758C8C5F1C86BE8000370262 /* AppDelegate.m in Sources */,
+				758982D31CB2A87200B9C542 /* PastOrder.m in Sources */,
 				758C8C9C1C8716C000370262 /* Lapanzo-Client.m in Sources */,
 				75FFE2A91C89B344006DCDD5 /* RegistrationVC.m in Sources */,
 				75C70FCD1C9C086500C6D9CF /* VendorCollectionViewCell.m in Sources */,
@@ -623,6 +662,7 @@
 				758C8CA61C8721E100370262 /* CategoryCollectionViewCell.m in Sources */,
 				7559313C1C902D3400D1946F /* Lapanzo_Client+DataAccess.m in Sources */,
 				75504B021C97F13900CDA023 /* UIColor+Helpers.m in Sources */,
+				758982D01CB2A66400B9C542 /* HistoryTableViewCell.m in Sources */,
 				75A79C6E1C87FC0B0096241C /* StoresTableViewCell.m in Sources */,
 				758C8C941C87119B00370262 /* GenericViewController.m in Sources */,
 				75A79C7F1C881F250096241C /* HistoryVC.m in Sources */,
@@ -638,6 +678,7 @@
 				75A79C691C87FB580096241C /* StoresVC.m in Sources */,
 				755931351C8EDB5200D1946F /* LButton.m in Sources */,
 				758C8C5C1C86BE8000370262 /* main.m in Sources */,
+				758982CB1CB28C7600B9C542 /* PopDatePicker.swift in Sources */,
 				75504AFF1C96D14400CDA023 /* NSDictionary+Response.m in Sources */,
 				75C70FC91C9BD6FE00C6D9CF /* LnavigationBar.m in Sources */,
 			);
@@ -772,12 +813,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = Lapanzo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Ptg.Lapanzo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lapanzo/Lapanzo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -787,12 +833,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = Lapanzo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Ptg.Lapanzo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lapanzo/Lapanzo-Bridging-Header.h";
 			};
 			name = Release;
 		};

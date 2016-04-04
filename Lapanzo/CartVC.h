@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericViewController.h"
 
-@interface CartVC : UIViewController
+@interface CartVC : GenericViewController
 @property (nonatomic) NSMutableArray *cartItems;
 @end

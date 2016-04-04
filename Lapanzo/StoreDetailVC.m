@@ -14,8 +14,10 @@
 #import "Subcategory.h"
 #import "UIColor+Helpers.h"
 
-@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate> {
+@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate> {
     //NSUInteger currentSubcategory;
+    UIDatePicker *datepicker;
+    UIPopoverController *popOverForDatePicker;
 }
 @property (nonatomic) UISearchController *searchController;
 @property (nonatomic) IBOutlet UIImageView *storeImage;
