@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "StoresTableViewCell.h"
 #import "Lapanzo_Client+DataAccess.h"
+#import "UIViewController+Helpers.h"
 
 @interface CartVC () <UITableViewDelegate, UITableViewDataSource, StoreTableCellDelegate>
 @property (nonatomic) IBOutlet UITableView *tableView;
@@ -26,6 +27,7 @@
 }
 
 - (void)setupInitialUiElements {
+    [self homeButton];
     _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
 }
 

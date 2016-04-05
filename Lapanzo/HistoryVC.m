@@ -9,6 +9,7 @@
 #import "HistoryVC.h"
 #import "HistoryTableViewCell.h"
 #import "Constants.h"
+#import "UIViewController+Helpers.h"
 
 @interface HistoryVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic) Lapanzo_Client *client;
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self homeButton];
 }
 
 

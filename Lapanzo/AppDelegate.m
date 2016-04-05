@@ -11,8 +11,10 @@
 #import "CategoriesVC.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "Constants.h"
+#import "SWRevealViewController.h"
+#import "RearVC.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <SWRevealViewControllerDelegate>
 
 @end
 
@@ -23,19 +25,33 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     
+    [self performLoginIfNeeded];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
+
+- (void)performLoginIfNeeded {
     Lapanzo_Client *dataAcess = [Lapanzo_Client sharedClient];
     UIStoryboard *mainstoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     if (!dataAcess.isLogged) {
-      ViewController *rootViewController = (ViewController *) [mainstoryBoard instantiateViewControllerWithIdentifier:LOGIN_SEGUE];
+        ViewController *rootViewController = (ViewController *) [mainstoryBoard instantiateViewControllerWithIdentifier:LOGIN_SEGUE];
         self.window.rootViewController = rootViewController;
-    } else{
+    } else {
+        RearVC *rearViewController = [mainstoryBoard instantiateViewControllerWithIdentifier:@"rearViewId"];
+        UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
         UINavigationController *rootViewController = [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_NAV_SEGUEID];
-//      CategoriesVC *rootViewController = (CategoriesVC *) [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_SEGUE];
-        self.window.rootViewController = rootViewController;
+        //      CategoriesVC *rootViewController = (CategoriesVC *) [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_SEGUE];
+        
+        SWRevealViewController *mainRevealController = [[SWRevealViewController alloc]
+                                                        initWithRearViewController:rearNavigationController frontViewController:rootViewController];
+        
+        mainRevealController.delegate = self;
+        self.viewController = mainRevealController;
+        self.window.rootViewController = self.viewController;
+//        self.window.rootViewController = rootViewController;
     }
     
-    [self.window makeKeyAndVisible];
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

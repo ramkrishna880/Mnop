@@ -13,6 +13,7 @@
 #import "Lapanzo_Client+DataAccess.h"
 #import "Subcategory.h"
 #import "UIColor+Helpers.h"
+#import "UIViewController+Helpers.h"
 
 @interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate> {
     //NSUInteger currentSubcategory;
@@ -47,7 +48,7 @@
 
 - (void)setUpInitialUIelements {
     _client = [Lapanzo_Client sharedClient];
-    
+    [self homeButton];
     UISwipeGestureRecognizer *tableSwipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedOntableView:)];
     tableSwipeGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.tableView addGestureRecognizer:tableSwipeGesture];
@@ -150,7 +151,12 @@
 
 
 - (IBAction)goToCartClicked:(id)sender {
-    [self performSegueWithIdentifier:CART_SEGUEID sender:nil];  // future sender can not be nil
+    if (!_cartItems.count) {
+        [self showAlert:@"Cart" message:@"Please add few items to cart before you proceed"];
+        return;
+    }
+    
+    [self performSegueWithIdentifier:CART_SEGUEID sender:nil];  // future sender may not be nil
 }
 
 

@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "GenericViewController.h"
 
+
+typedef enum : NSUInteger {
+    kVendorTypeGeneral,
+    kVendorTypeFlower,
+    kVendorTypeWater,
+    kVendorTypeHOmeServices,
+} kVendorType;
+
+
 @interface StoreDetailVC : GenericViewController
 @property (nonatomic) NSNumber *storeId;
-@property (nonatomic) NSNumber *maincategoryId;
+//@property (nonatomic) NSNumber *maincategoryId;
 @end

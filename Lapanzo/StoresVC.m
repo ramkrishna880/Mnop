@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "NSDictionary+Response.h"
+#import "UIViewController+Helpers.h"
 #import "Store.h"
 #import "StoreDetailVC.h"
 
@@ -43,6 +44,7 @@
 }
 
 - (void)setUpInitialUIElements {
+//    [self homeButton];
     _client = [Lapanzo_Client sharedClient];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CategoryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:STORE_COLLCCELLID];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -151,6 +153,7 @@
     }];
 }
 
+//@@// old one
 //- (void)fetchCategories {
 //    //@"portal?a=maincatogory&storeId=1
 //    [self showHUD];
@@ -173,6 +176,7 @@
 //        [self showAlert:nil message:connectionError.localizedDescription];
 //    }];
 //}
+//@@//
 
 #pragma mark - Navigation
 
