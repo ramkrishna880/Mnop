@@ -49,10 +49,12 @@
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
+    //[_client setCartItems:nil];
     [self homeButton];
     [self setNavigationBarTintColor:[UIColor navigationBarTintColor]];
     [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
 //    [self.firstVendor centerImageAndTitle];
     
@@ -66,6 +68,11 @@
     
 //    [self fetchCurrentLOcation];
     [self fetchCategories];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.cartLabel.text = @(_client.cartItemsCount).stringValue;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,17 +115,17 @@
 #pragma mark CollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _categories.count-1;
+    return _categories.count;  //previously _categories.count-1
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VendorCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:VENDOR_COLLECCELLID forIndexPath:indexPath];
-    cell.vendor = _categories [indexPath.row+1];
+    cell.vendor = _categories [indexPath.row];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]];
+    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row]]; //prev indexpath.row+1
 }
 
 #pragma mark Webops
@@ -130,7 +137,7 @@
         NSArray *vendors = responseObject[@"venderList"];
         if (vendors.count) {
             self.categories = [[NSMutableArray alloc] initWithArray:vendors];
-            [self setFirstVendor];
+            //[self setFirstVendor];
             [self.collectionView reloadData];
         } else {
             [self showAlert:nil message:@"No vendors Found"];

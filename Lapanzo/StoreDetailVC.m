@@ -54,7 +54,7 @@
     tableSwipeGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.tableView addGestureRecognizer:tableSwipeGesture];
     
-    self.cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
+    self.cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
     
     [self fetchStoreSubcategories];
 }
@@ -250,14 +250,15 @@
     Subcategory *sbCt = _subCategories[indexPath.section];
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
-//    NSLog(@"inside delegate Method :%lu",items.count);
     if (!items.count) {
         item.noOfItems = @(changedNumber).stringValue;
         [_cartItems addObject:item];
     } else {
         Item *existedItem = items[0];
-        existedItem.noOfItems = @(changedNumber).stringValue;
+        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId.stringValue]];
+        itemFrmCart.noOfItems = @(changedNumber).stringValue;
     }
+
 #warning think better way to save cart items instaed of saving everyTime when we click buttons
     [self.client setCartItems:_cartItems];
 }
@@ -269,6 +270,14 @@
     }
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId == %@",itemId];  //itemId contains [c] %@
     return  [self.cartItems filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (NSUInteger)indexOfItemFromArray:(NSArray *)array foIitemId:(NSString *)itemId {
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId == %@",itemId];
+    NSUInteger index = [array  indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+        return [resultPredicate evaluateWithObject:obj];
+    }];
+    return index;
 }
 
 #pragma mark - Navigation

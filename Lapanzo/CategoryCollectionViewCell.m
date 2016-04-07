@@ -19,6 +19,7 @@
 - (void)setCurrentStore:(Store *)currentStore {
     if (currentStore) {
         self.titleLbl.text = currentStore.storeName;
+        self.placeLbl.text = currentStore.area;
         //self.placeLbl.text = currentStore.storeSubTitle;
 //        self
     }

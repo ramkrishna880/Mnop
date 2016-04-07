@@ -35,7 +35,8 @@
     self.storeTitle.text = currentItem.name;
     self.quantityLbl.text = currentItem.quantityval;
     self.amountLbl.text = currentItem.price;
-    self.stepper.value = 0.0;
+    self.counterLbl.text = _currentItem.noOfItems;
+    //self.stepper.value = 0.0;
 }
 
 

@@ -38,6 +38,11 @@
     return nil;
 }
 
+
+- (NSUInteger)cartItemsCount {
+    return self.cartItems.count;
+}
+
 #pragma mark set
 
 - (void)setIsLogged:(BOOL)isloggedIn {
