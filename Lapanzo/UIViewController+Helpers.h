@@ -10,4 +10,5 @@
 
 @interface UIViewController (Helpers)
 - (void)homeButton;
+- (void)setNavigationBarTintColor:(UIColor *)tintColor;
 @end

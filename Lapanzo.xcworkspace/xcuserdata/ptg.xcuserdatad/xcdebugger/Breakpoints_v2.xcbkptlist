@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/RegistrationVC.m"
-            timestampString = "480243200.673362"
+            timestampString = "481612777.596107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-doRegistration"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/RegistrationVC.m"
-            timestampString = "480243200.673362"
+            timestampString = "481612777.596107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-doRegistration"
             landmarkType = "5">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481551442.412634"
+                  timestampString = "481712521.283461"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "956">
                </Location>
                <Location
@@ -57,11 +57,11 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481551442.412912"
+                  timestampString = "481712521.284088"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "51">
                </Location>
                <Location
@@ -72,26 +72,26 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481551442.413057"
+                  timestampString = "481712521.284315"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "29">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__32-[RegistrationVC doRegistration]_block_invoke.125"
+                  symbolName = "__32-[RegistrationVC doRegistration]_block_invoke.130"
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481551442.413181"
+                  timestampString = "481712521.28453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/RegistrationVC.m"
-            timestampString = "480243200.673362"
+            timestampString = "481612777.596107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "-doRegistration"
             landmarkType = "5">
          </BreakpointContent>
@@ -226,11 +226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "481544892.436477"
+            timestampString = "481629882.067407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-setAllLableValues"
             landmarkType = "5">
          </BreakpointContent>
@@ -242,11 +242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoresVC.m"
-            timestampString = "481545901.411797"
+            timestampString = "481619354.120317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -258,11 +258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481551427.108749"
+            timestampString = "481615554.180837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -290,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481551427.108749"
+            timestampString = "481615554.180837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -306,11 +306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481551427.108749"
+            timestampString = "481615554.180837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292">
+            startingLineNumber = "293"
+            endingLineNumber = "293">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -320,11 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481551427.108749"
+            timestampString = "481615554.180837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285">
+            startingLineNumber = "286"
+            endingLineNumber = "286">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

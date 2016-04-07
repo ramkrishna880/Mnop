@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSString+Validations.h"
+#import "AppDelegate.h"
 
 @interface ViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *emailTxtFiled;
@@ -29,11 +30,8 @@
     [self registerNotifications:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewDidUnload {
+    [super viewDidUnload];
     [self registerNotifications:NO];
 }
 - (void)viewDidDisappear:(BOOL)animated {
@@ -85,7 +83,8 @@
             [_client setIsLogged:YES];
             [_client setUserId:responseObject.userId];
             [self fetchUserDetails];
-            [self performSegueWithIdentifier:CATEGORY_SEGUEID sender:nil];
+            [appDelegate performLoginIfNeeded];
+            //[self performSegueWithIdentifier:CATEGORY_SEGUEID sender:nil];
         }
     } failure:^(NSError *connectionError) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -130,6 +129,7 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
 }
+
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];

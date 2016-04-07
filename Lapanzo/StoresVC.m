@@ -13,7 +13,8 @@
 #import "Constants.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "NSDictionary+Response.h"
-#import "UIViewController+Helpers.h"
+//#import "UIViewController+Helpers.h"
+#import "SWRevealViewController.h"
 #import "Store.h"
 #import "StoreDetailVC.h"
 
@@ -44,11 +45,14 @@
 }
 
 - (void)setUpInitialUIElements {
-//    [self homeButton];
+    //    [self homeButton];
     _client = [Lapanzo_Client sharedClient];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self leftBarbuttonView]];
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CategoryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:STORE_COLLCCELLID];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(150, 150)];
+    [flowLayout setItemSize:CGSizeMake(150, 100)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];//top/left/bottem/right
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 10.0f;
@@ -58,6 +62,28 @@
     //[self fetchCategories];
 }
 
+
+- (UIView *)leftBarbuttonView {
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [homeButton setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
+    [homeButton setFrame:CGRectMake(5, 5, 30, 30)];
+    SWRevealViewController *revealController = [self revealViewController];
+    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+    [homeButton addTarget:revealController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
+    [v addSubview:homeButton];
+    
+    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
+    [back setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [back setFrame:CGRectMake(45, 5, 30, 30)];
+    [back addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+    [v addSubview:back];
+    return v;
+}
+
+- (void)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -133,6 +159,7 @@
     //by latitude and logitude
     //@//       @"portal?a=showNear&lat=17.438028799999998&lan=78.4330179"    //@//
     
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=%@&city=%@&vtype=%@",@"",@"",_vendorId];
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Banjarahills&city=Hyderabad&vtype=1"];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
@@ -185,8 +212,8 @@
     if ([segue.identifier isEqualToString:STOREDETAIL_SEGUEID]) {
         StoreDetailVC *storeDetail = (StoreDetailVC *)segue.destinationViewController;
         storeDetail.storeId = sender.storeId;
-//        storeDetail.storeId = _vendorId;
-//        storeDetail.maincategoryId = sender.storeId;
+        //        storeDetail.storeId = _vendorId;
+        //        storeDetail.maincategoryId = sender.storeId;
     }
 }
 

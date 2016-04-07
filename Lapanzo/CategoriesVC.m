@@ -12,7 +12,11 @@
 #import "StoresVC.h"
 #import "StoreDetailVC.h"
 #import "INTULocationManager.h"
+#import "UIColor+Helpers.h"
 #import "UIViewController+Helpers.h"
+//#import "UIButton+UIButtonExt.h"
+#import "LCollectionViewFlowLayout.h"
+#import "ORNavigationBar.h"
 
 @interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -28,6 +32,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *quoteLabel;
 
+//@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
 @property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
 @property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
 @end
@@ -40,24 +45,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpinitialElements];
-    //Vendor Id
-    
 }
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
     [self homeButton];
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(120, 120)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 20, 20, 10)];
+    [self setNavigationBarTintColor:[UIColor navigationBarTintColor]];
+    [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    
+//    [self.firstVendor centerImageAndTitle];
+    
+    LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.minimumInteritemSpacing = 10.0f;
+    flowLayout.minimumInteritemSpacing = 5.0f;
+    flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
 //    [self fetchCurrentLOcation];
     [self fetchCategories];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -95,10 +104,6 @@
     _quoteLabel.text = @"Hello this is Random Quote";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark CollectionViewDelegate
 
@@ -113,7 +118,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]]; // Add sender In future
+    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]];
 }
 
 #pragma mark Webops
@@ -135,8 +140,6 @@
         [self showAlert:nil message:connectionError.localizedDescription];
     }];
 }
-
-
 
 
 
@@ -170,8 +173,9 @@
 }
 
 - (void)setFirstVendor {
-    //_firstVendorImg.image = [UIImage imageNamed:@""];
     NSDictionary *venDic = _categories[0];
+//    [_firstVendor setImage:[UIImage imageNamed:@"placeholder"] forState:UIControlStateNormal];
+//    [_firstVendor setTitle:venDic.vendor forState:UIControlStateNormal];
     _firstVendorName.text = venDic.vendor;
 }
 

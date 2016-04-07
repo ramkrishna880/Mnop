@@ -47,4 +47,5 @@ static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";
 #define KeyboardMoveHeightConstant -40.0
 #define LogoTopConstant 40.0
 
+#define appDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #endif /* Constants_h */

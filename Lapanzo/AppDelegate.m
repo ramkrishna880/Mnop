@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "CategoriesVC.h"
 #import "Lapanzo_Client+DataAccess.h"
+#import "UIColor+Helpers.h"
 #import "Constants.h"
 #import "SWRevealViewController.h"
 #import "RearVC.h"
@@ -24,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [self performLoginIfNeeded];
     [self.window makeKeyAndVisible];
     return YES;
@@ -40,6 +41,7 @@
     } else {
         RearVC *rearViewController = [mainstoryBoard instantiateViewControllerWithIdentifier:@"rearViewId"];
         UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
+        rearNavigationController.navigationBar.barTintColor = [UIColor navigationBarTintColor];
         UINavigationController *rootViewController = [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_NAV_SEGUEID];
         //      CategoriesVC *rootViewController = (CategoriesVC *) [mainstoryBoard instantiateViewControllerWithIdentifier:CATEGORY_SEGUE];
         

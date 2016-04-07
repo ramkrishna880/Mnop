@@ -18,4 +18,8 @@
     self.navigationItem.leftBarButtonItem = revealButtonItem;
 }
 
+- (void)setNavigationBarTintColor:(UIColor *)tintColor {
+    self.navigationController.navigationBar.barTintColor = tintColor;
+}
+
 @end

@@ -18,4 +18,17 @@
     return [self colorFromRGBforRed:0 blue:199 green:71];
 }
 
++ (UIColor *)navigationBarTintColor {
+    return [self colorFromRGBforRed:34.0 blue:165.0 green:134.0];
+}
+
++ (UIColor *)collectionCellGreen {
+    return [self colorFromRGBforRed:34.0 blue:153.0 green:126.0];
+}
+
+
++ (UIColor *)collectionCellGray {
+    return [self colorFromRGBforRed:96.0 blue:90.0 green:89.0];
+}
+
 @end

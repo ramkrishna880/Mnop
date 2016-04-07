@@ -13,7 +13,7 @@
 #import "MBProgressHUD.h"
 
 @interface GenericViewController : UIViewController
-
+@property (nonatomic) UILabel *cartLabel;
 
 //Methods
 - (void)showAlert:(NSString *)title message:(NSString *)message;
@@ -25,4 +25,6 @@
 
 - (void)showHUD;
 - (void)hideHud;
+
+- (UIView *)rightBarButtonView;
 @end

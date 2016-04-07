@@ -46,6 +46,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)setupInitialAllElements {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.adderssTableView.estimatedRowHeight = 70;
     self.adderssTableView.rowHeight = UITableViewAutomaticDimension;
     _addresses = [[NSMutableArray alloc] init];

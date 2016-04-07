@@ -28,6 +28,7 @@
 
 - (void)setupInitialUiElements {
     [self homeButton];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
 }
 

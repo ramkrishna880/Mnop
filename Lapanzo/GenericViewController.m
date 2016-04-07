@@ -8,12 +8,13 @@
 
 #import "GenericViewController.h"
 #import "SSKeychain.h"
+#import "UIColor+Helpers.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
 
 @interface GenericViewController ()
-
+@property (nonatomic) IBOutlet UIView *cartView;
 @end
 
 @implementation GenericViewController
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    [self.view addSubview:_cartView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +30,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIView *)rightBarButtonView {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.navigationController.navigationBar.frame.size.width-100, 0, 100, self.navigationController.navigationBar.frame.size.height)];
+    [view setBackgroundColor:[UIColor grayColor]];
+    [_cartView setFrame:CGRectMake(15, 4, 60, 40)];
+    UIImageView *cartImg = [[UIImageView alloc] initWithFrame:CGRectMake(25, 8, 35, 35)];
+    [cartImg setImage:[UIImage imageNamed:@"cart"]];
+    [view addSubview:cartImg];
+    
+    _cartLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 2, 25, 25)];
+    [_cartLabel setBackgroundColor:[UIColor colorFromRGBforRed:28.0 blue:153.0 green:126.0]];
+    [_cartLabel setTextColor:[UIColor whiteColor]];
+    [_cartLabel.layer setCornerRadius:12.5f];
+    [_cartLabel setTextAlignment:NSTextAlignmentCenter];
+    [_cartLabel setText:@"0"];
+    [_cartLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    _cartLabel.clipsToBounds =  YES;
+    [view addSubview:_cartLabel];
+    return view;
+}
 
 #pragma mark Others
 

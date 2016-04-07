@@ -14,6 +14,11 @@
 		75429C8F1C929F430071D352 /* LZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75429C8E1C929F430071D352 /* LZLabel.m */; };
 		75429C931C92C76F0071D352 /* LZStepProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75429C921C92C76F0071D352 /* LZStepProgressView.m */; };
 		75429C951C92C7AB0071D352 /* LZStepProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75429C941C92C7AB0071D352 /* LZStepProgressView.xib */; };
+		754D7E1C1CB4E015002080C3 /* UIButton+UIButtonExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7E1B1CB4E015002080C3 /* UIButton+UIButtonExt.m */; };
+		754D7E261CB4F497002080C3 /* LCollectionLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7E251CB4F497002080C3 /* LCollectionLayoutAttributes.m */; };
+		754D7E291CB51306002080C3 /* LCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7E281CB51306002080C3 /* LCollectionViewFlowLayout.m */; };
+		754D7E301CB65356002080C3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7E2F1CB65356002080C3 /* SearchViewController.m */; };
+		754D7E341CB667B2002080C3 /* VSDropdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 754D7E331CB667B2002080C3 /* VSDropdown.m */; };
 		75504AFF1C96D14400CDA023 /* NSDictionary+Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 75504AFE1C96D14400CDA023 /* NSDictionary+Response.m */; };
 		75504B021C97F13900CDA023 /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 75504B011C97F13900CDA023 /* UIColor+Helpers.m */; };
 		755931351C8EDB5200D1946F /* LButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 755931341C8EDB5200D1946F /* LButton.m */; };
@@ -56,7 +61,6 @@
 		75A79C941C8838740096241C /* stepper_white_bckg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A79C8D1C8838740096241C /* stepper_white_bckg@2x.png */; };
 		75C70FC31C9A8D8700C6D9CF /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C70FC21C9A8D8700C6D9CF /* Item.m */; };
 		75C70FC61C9AAB5B00C6D9CF /* Subcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C70FC51C9AAB5B00C6D9CF /* Subcategory.m */; };
-		75C70FC91C9BD6FE00C6D9CF /* LnavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C70FC81C9BD6FE00C6D9CF /* LnavigationBar.m */; };
 		75C70FCD1C9C086500C6D9CF /* VendorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C70FCC1C9C086500C6D9CF /* VendorCollectionViewCell.m */; };
 		75FFE2A91C89B344006DCDD5 /* RegistrationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */; };
 		C4BCDB04994E0167B1B3AEAF /* libPods-Lapanzo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E2E60D7AB81C09EFECA9ED /* libPods-Lapanzo.a */; };
@@ -94,6 +98,16 @@
 		75429C911C92C76F0071D352 /* LZStepProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZStepProgressView.h; sourceTree = "<group>"; };
 		75429C921C92C76F0071D352 /* LZStepProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZStepProgressView.m; sourceTree = "<group>"; };
 		75429C941C92C7AB0071D352 /* LZStepProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LZStepProgressView.xib; sourceTree = "<group>"; };
+		754D7E1A1CB4E015002080C3 /* UIButton+UIButtonExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonExt.h"; sourceTree = "<group>"; };
+		754D7E1B1CB4E015002080C3 /* UIButton+UIButtonExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonExt.m"; sourceTree = "<group>"; };
+		754D7E241CB4F497002080C3 /* LCollectionLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCollectionLayoutAttributes.h; sourceTree = "<group>"; };
+		754D7E251CB4F497002080C3 /* LCollectionLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCollectionLayoutAttributes.m; sourceTree = "<group>"; };
+		754D7E271CB51306002080C3 /* LCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		754D7E281CB51306002080C3 /* LCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		754D7E2E1CB65356002080C3 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		754D7E2F1CB65356002080C3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		754D7E321CB667B2002080C3 /* VSDropdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDropdown.h; sourceTree = "<group>"; };
+		754D7E331CB667B2002080C3 /* VSDropdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDropdown.m; sourceTree = "<group>"; };
 		75504AFD1C96D14400CDA023 /* NSDictionary+Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Response.h"; sourceTree = "<group>"; };
 		75504AFE1C96D14400CDA023 /* NSDictionary+Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Response.m"; sourceTree = "<group>"; };
 		75504B001C97F13900CDA023 /* UIColor+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helpers.h"; sourceTree = "<group>"; };
@@ -171,8 +185,6 @@
 		75C70FC21C9A8D8700C6D9CF /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		75C70FC41C9AAB5B00C6D9CF /* Subcategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subcategory.h; sourceTree = "<group>"; };
 		75C70FC51C9AAB5B00C6D9CF /* Subcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subcategory.m; sourceTree = "<group>"; };
-		75C70FC71C9BD6FE00C6D9CF /* LnavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LnavigationBar.h; sourceTree = "<group>"; };
-		75C70FC81C9BD6FE00C6D9CF /* LnavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LnavigationBar.m; sourceTree = "<group>"; };
 		75C70FCB1C9C086500C6D9CF /* VendorCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorCollectionViewCell.h; sourceTree = "<group>"; };
 		75C70FCC1C9C086500C6D9CF /* VendorCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendorCollectionViewCell.m; sourceTree = "<group>"; };
 		75FFE2A71C89B344006DCDD5 /* RegistrationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationVC.h; sourceTree = "<group>"; };
@@ -246,6 +258,26 @@
 				758982CF1CB2A66400B9C542 /* HistoryTableViewCell.m */,
 			);
 			name = cells;
+			sourceTree = "<group>";
+		};
+		754D7E1D1CB4F3CC002080C3 /* others */ = {
+			isa = PBXGroup;
+			children = (
+				754D7E241CB4F497002080C3 /* LCollectionLayoutAttributes.h */,
+				754D7E251CB4F497002080C3 /* LCollectionLayoutAttributes.m */,
+				754D7E271CB51306002080C3 /* LCollectionViewFlowLayout.h */,
+				754D7E281CB51306002080C3 /* LCollectionViewFlowLayout.m */,
+			);
+			name = others;
+			sourceTree = "<group>";
+		};
+		754D7E311CB6679E002080C3 /* dropDown */ = {
+			isa = PBXGroup;
+			children = (
+				754D7E321CB667B2002080C3 /* VSDropdown.h */,
+				754D7E331CB667B2002080C3 /* VSDropdown.m */,
+			);
+			name = dropDown;
 			sourceTree = "<group>";
 		};
 		755931361C9026EB00D1946F /* Login&registration */ = {
@@ -358,6 +390,8 @@
 				75A79C7E1C881F250096241C /* HistoryVC.m */,
 				753D34EF1CB3BC80004BCCB8 /* RearVC.h */,
 				753D34F01CB3BC80004BCCB8 /* RearVC.m */,
+				754D7E2E1CB65356002080C3 /* SearchViewController.h */,
+				754D7E2F1CB65356002080C3 /* SearchViewController.m */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -375,6 +409,8 @@
 				758982B01CB26E9400B9C542 /* UIApplication+Paths.m */,
 				753D34F21CB3C7FE004BCCB8 /* UIViewController+Helpers.h */,
 				753D34F31CB3C7FE004BCCB8 /* UIViewController+Helpers.m */,
+				754D7E1A1CB4E015002080C3 /* UIButton+UIButtonExt.h */,
+				754D7E1B1CB4E015002080C3 /* UIButton+UIButtonExt.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -411,9 +447,8 @@
 				75429C911C92C76F0071D352 /* LZStepProgressView.h */,
 				75429C921C92C76F0071D352 /* LZStepProgressView.m */,
 				75429C941C92C7AB0071D352 /* LZStepProgressView.xib */,
-				75783EF61CA1804500B24F90 /* ORNavigationBar.h */,
-				75783EF71CA1804500B24F90 /* ORNavigationBar.m */,
 				75C70FCA1C9BD70C00C6D9CF /* Navigation */,
+				754D7E1D1CB4F3CC002080C3 /* others */,
 			);
 			name = "Views&cells";
 			sourceTree = "<group>";
@@ -438,6 +473,7 @@
 		75A79C841C8838590096241C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				754D7E311CB6679E002080C3 /* dropDown */,
 				753D34E81CB3B9BC004BCCB8 /* SwReveal */,
 				758982B21CB2880A00B9C542 /* popover */,
 				42258B411CAC17A800DCFCCF /* sskeychain */,
@@ -464,8 +500,8 @@
 		75C70FCA1C9BD70C00C6D9CF /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				75C70FC71C9BD6FE00C6D9CF /* LnavigationBar.h */,
-				75C70FC81C9BD6FE00C6D9CF /* LnavigationBar.m */,
+				75783EF61CA1804500B24F90 /* ORNavigationBar.h */,
+				75783EF71CA1804500B24F90 /* ORNavigationBar.m */,
 			);
 			name = Navigation;
 			sourceTree = "<group>";
@@ -682,19 +718,24 @@
 				75FFE2A91C89B344006DCDD5 /* RegistrationVC.m in Sources */,
 				75C70FCD1C9C086500C6D9CF /* VendorCollectionViewCell.m in Sources */,
 				75C70FC31C9A8D8700C6D9CF /* Item.m in Sources */,
+				754D7E341CB667B2002080C3 /* VSDropdown.m in Sources */,
 				75A79C821C881F7C0096241C /* PaymentVC.m in Sources */,
+				754D7E261CB4F497002080C3 /* LCollectionLayoutAttributes.m in Sources */,
 				758C8CA61C8721E100370262 /* CategoryCollectionViewCell.m in Sources */,
 				7559313C1C902D3400D1946F /* Lapanzo_Client+DataAccess.m in Sources */,
 				75504B021C97F13900CDA023 /* UIColor+Helpers.m in Sources */,
 				758982D01CB2A66400B9C542 /* HistoryTableViewCell.m in Sources */,
 				75A79C6E1C87FC0B0096241C /* StoresTableViewCell.m in Sources */,
+				754D7E291CB51306002080C3 /* LCollectionViewFlowLayout.m in Sources */,
 				758C8C941C87119B00370262 /* GenericViewController.m in Sources */,
 				75A79C7F1C881F250096241C /* HistoryVC.m in Sources */,
+				754D7E301CB65356002080C3 /* SearchViewController.m in Sources */,
 				75A79C791C880CEF0096241C /* StoreDetailVC.m in Sources */,
 				75429C931C92C76F0071D352 /* LZStepProgressView.m in Sources */,
 				75A79C901C8838740096241C /* PAStepper.m in Sources */,
 				75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */,
 				758C8C911C86C67E00370262 /* NSString+Validations.m in Sources */,
+				754D7E1C1CB4E015002080C3 /* UIButton+UIButtonExt.m in Sources */,
 				75429C8F1C929F430071D352 /* LZLabel.m in Sources */,
 				757C21111C99787D001C6BC9 /* Vendor.m in Sources */,
 				75A79C731C8808F20096241C /* Store.m in Sources */,
@@ -706,7 +747,6 @@
 				758C8C5C1C86BE8000370262 /* main.m in Sources */,
 				758982CB1CB28C7600B9C542 /* PopDatePicker.swift in Sources */,
 				75504AFF1C96D14400CDA023 /* NSDictionary+Response.m in Sources */,
-				75C70FC91C9BD6FE00C6D9CF /* LnavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
