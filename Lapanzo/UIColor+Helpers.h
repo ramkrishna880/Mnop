@@ -10,4 +10,9 @@
 
 @interface UIColor (Helpers)
 + (UIColor *)colorFromRGBforRed:(CGFloat)red blue:(CGFloat)blue green:(CGFloat)green;
++ (UIColor *)progressGreenColor;
++ (UIColor *)navigationBarTintColor;
+
++ (UIColor *)collectionCellGreen;
++ (UIColor *)collectionCellGray;
 @end

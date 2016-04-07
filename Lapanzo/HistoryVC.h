@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericViewController.h"
 
-@interface HistoryVC : UIViewController
+@interface HistoryVC : GenericViewController
 
 @end

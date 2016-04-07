@@ -8,6 +8,7 @@ pod 'AFNetworking', '~> 3.0'
 pod 'SSKeychain'
 pod 'HTHorizontalSelectionList'
 pod 'MBProgressHUD', '~> 0.9.2'
+pod 'INTULocationManager'
 end
 
 target 'LapanzoTests' do

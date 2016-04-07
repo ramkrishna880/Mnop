@@ -7,6 +7,7 @@
 //
 
 #import "ORNavigationBar.h"
+#import "UIColor+Helpers.h"
 
 const CGFloat VFSNavigationBarHeightIncrease = 38.f;
 #define NAVIGATION_BTN_MARGIN 5
@@ -14,18 +15,18 @@ const CGFloat VFSNavigationBarHeightIncrease = 38.f;
 @implementation ORNavigationBar
 
 
-- (CGSize)sizeThatFits:(CGSize)size {
-    
-    CGSize amendedSize = [super sizeThatFits:size];
-    amendedSize.height += VFSNavigationBarHeightIncrease;
-    return amendedSize;
-}
+//- (CGSize)sizeThatFits:(CGSize)size {
+//    
+//    CGSize amendedSize = [super sizeThatFits:size];
+//    amendedSize.height += VFSNavigationBarHeightIncrease;
+//    return amendedSize;
+//}
 
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    NSArray *classNamesToReposition = @[@"_UINavigationBarBackground"];
+    //NSArray *classNamesToReposition = @[@"_UINavigationBarBackground"];
     
     
     UINavigationItem *navigationItem = [self topItem];
@@ -40,18 +41,18 @@ const CGFloat VFSNavigationBarHeightIncrease = 38.f;
     }
     
     
-    for (UIView *view in [self subviews]) {
-        
-        if ([classNamesToReposition containsObject:NSStringFromClass([view class])]) {
-            
-            CGRect bounds = [self bounds];
-            CGRect frame = [view frame];
-            frame.origin.y = bounds.origin.y + VFSNavigationBarHeightIncrease - 20.f;
-            frame.size.height = bounds.size.height + 20.f;
-            
-            [view setFrame:frame];
-        }
-    }
+//    for (UIView *view in [self subviews]) {
+//        
+//        if ([classNamesToReposition containsObject:NSStringFromClass([view class])]) {
+//            
+//            CGRect bounds = [self bounds];
+//            CGRect frame = [view frame];
+//            frame.origin.y = bounds.origin.y + VFSNavigationBarHeightIncrease - 20.f;
+//            frame.size.height = bounds.size.height + 20.f;
+//            
+//            [view setFrame:frame];
+//        }
+//    }
 }
 
 
@@ -77,9 +78,18 @@ const CGFloat VFSNavigationBarHeightIncrease = 38.f;
     return self;
 }
 
-- (void)initialize {
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        [self initialize];
+    }
     
-    [self setTransform:CGAffineTransformMakeTranslation(0, -(VFSNavigationBarHeightIncrease))];
+    return self;
+}
+
+- (void)initialize {
+    self.barTintColor = [UIColor navigationBarTintColor];
+    //[self setTransform:CGAffineTransformMakeTranslation(0, -(VFSNavigationBarHeightIncrease))];
 }
 
 

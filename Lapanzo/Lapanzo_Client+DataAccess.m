@@ -74,4 +74,10 @@
     }
 }
 
+//clarification needed
+
+- (void)setLastLocation:(NSString *)address {
+    
+}
+
 @end

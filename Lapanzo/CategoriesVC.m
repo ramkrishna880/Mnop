@@ -11,6 +11,12 @@
 #import "Constants.h"
 #import "StoresVC.h"
 #import "StoreDetailVC.h"
+#import "INTULocationManager.h"
+#import "UIColor+Helpers.h"
+#import "UIViewController+Helpers.h"
+//#import "UIButton+UIButtonExt.h"
+#import "LCollectionViewFlowLayout.h"
+#import "ORNavigationBar.h"
 
 @interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -26,6 +32,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *quoteLabel;
 
+//@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
 @property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
 @property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
 @end
@@ -38,22 +45,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpinitialElements];
-    //Vendor Id
-    
 }
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
+    [self homeButton];
+    [self setNavigationBarTintColor:[UIColor navigationBarTintColor]];
+    [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(120, 120)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 50, 50, 10)];
+//    [self.firstVendor centerImageAndTitle];
+    
+    LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
+    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.minimumInteritemSpacing = 10.0f;
+    flowLayout.minimumInteritemSpacing = 5.0f;
+    flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
+//    [self fetchCurrentLOcation];
     [self fetchCategories];
-    //    [self setallLableValues];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -92,10 +104,6 @@
     _quoteLabel.text = @"Hello this is Random Quote";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark CollectionViewDelegate
 
@@ -110,7 +118,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]]; // Add sender In future
+    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]];
 }
 
 #pragma mark Webops
@@ -134,12 +142,6 @@
 }
 
 
-- (void)setFirstVendor {
-    //_firstVendorImg.image = [UIImage imageNamed:@""];
-    NSDictionary *venDic = _categories[0];
-    _firstVendorName.text = venDic.vendor;
-}
-
 
 #pragma mark Actions
 
@@ -147,6 +149,34 @@
     if (_categories.count) {
         [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[0]];
     }
+}
+
+
+#pragma mark Others
+
+- (void)fetchCurrentLOcation {
+    
+    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+                                       timeout:10.0
+                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
+                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                                             if (status == INTULocationStatusSuccess) {
+                                                 
+                                             }
+                                             else if (status == INTULocationStatusTimedOut) {
+                                                 
+                                             }
+                                             else {
+                                             }
+                                         }];
+}
+
+- (void)setFirstVendor {
+    NSDictionary *venDic = _categories[0];
+//    [_firstVendor setImage:[UIImage imageNamed:@"placeholder"] forState:UIControlStateNormal];
+//    [_firstVendor setTitle:venDic.vendor forState:UIControlStateNormal];
+    _firstVendorName.text = venDic.vendor;
 }
 
 #pragma mark - Navigation

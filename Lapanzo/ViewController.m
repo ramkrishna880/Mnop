@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSString+Validations.h"
+#import "AppDelegate.h"
 
 @interface ViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *emailTxtFiled;
@@ -29,11 +30,8 @@
     [self registerNotifications:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewDidUnload {
+    [super viewDidUnload];
     [self registerNotifications:NO];
 }
 - (void)viewDidDisappear:(BOOL)animated {
@@ -72,12 +70,11 @@
 #pragma mark web operations
 
 - (void)performLogin {
-    //TODO add ip address , host - (Lapnzo) , device ID
-    
     NSString *urlString = [NSString stringWithFormat:@"portal?a=login&em=%@&passphrase=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,[_passwordTxtFiled.text MD5String],[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
     NSLog(@"%@",urlString);
+    //@"portal?a=login&em=mails2mrk@gmail.com&passphrase=12345"
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [_client loginWithUrl:@"portal?a=login&em=mails2mrk@gmail.com&passphrase=12345" andCompletionHandler:^(NSDictionary *responseObject) {
+    [_client loginWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
         NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         if ([responseObject.status isEqualToString:@"fail"]) {
@@ -86,7 +83,8 @@
             [_client setIsLogged:YES];
             [_client setUserId:responseObject.userId];
             [self fetchUserDetails];
-            [self performSegueWithIdentifier:CATEGORY_SEGUEID sender:nil];
+            [appDelegate performLoginIfNeeded];
+            //[self performSegueWithIdentifier:CATEGORY_SEGUEID sender:nil];
         }
     } failure:^(NSError *connectionError) {
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -97,7 +95,8 @@
 - (void)forGotPasswordForEmail:(NSString *)email {
     NSString *urlString = [NSString stringWithFormat:@"portal?a=resetpwd&em=%@",email];
     NSLog(@"%@",urlString);
-    [_client performOperationWithUrl:@"portal?a=resetpwd&em=mails2mrk@gmail.com" andCompletionHandler:^(NSDictionary *responseObject) {
+    //@"portal?a=resetpwd&em=mails2mrk@gmail.com"
+    [_client performOperationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
         NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
         if ([responseObject.status isEqualToString:@"fail"]) {
             [self showAlert:@"Login" message:responseObject.message];
@@ -130,6 +129,7 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
 }
+
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
@@ -151,6 +151,7 @@
 }
 
 #pragma mark TextFiled delegate
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _emailTxtFiled) {
         [_emailTxtFiled resignFirstResponder];

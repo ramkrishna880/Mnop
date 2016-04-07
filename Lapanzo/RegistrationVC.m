@@ -9,7 +9,7 @@
 #import "RegistrationVC.h"
 #import "NSString+Validations.h"
 #import "MBProgressHUD.h"
-
+#import "AppDelegate.h"
 
 @interface RegistrationVC () <UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *userNameTxtFiled;
@@ -78,6 +78,7 @@
     //TODO add ip address , host - (Lapnzo) , device ID
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *urlString = [NSString stringWithFormat:@"portal?a=register&em=%@&passphrase=%@&mobile=%@&username=%@&ip=%@&useragent=%@&host=%@&deviceid=%@",_emailTxtFiled.text,[_passwordTxtFiled.text MD5String],_mobileNoTxtFiled.text,_userNameTxtFiled.text,[self iPAddress],@"ios",@"Lapanzo",[self uniqueDeviceId]];
+    
     //@"portal?a=register&em=ramkrishna@gmail.com&passphrase=123456&mobile=1234567890&username=ramki"
     [_client registrationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -88,8 +89,8 @@
             [_client setUserId:responseObject.userId];
             [_client setIsLogged:YES];
             [self fetchUserDetails];
-            [self performSegueWithIdentifier:CATEGORY_REG_SEGUEID sender:nil];
-//            NSLog(@"%@",responseObject.userId);
+            [appDelegate performLoginIfNeeded];
+            //[self performSegueWithIdentifier:CATEGORY_REG_SEGUEID sender:nil];
         }
     } failure:^(NSError *connectionError) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
