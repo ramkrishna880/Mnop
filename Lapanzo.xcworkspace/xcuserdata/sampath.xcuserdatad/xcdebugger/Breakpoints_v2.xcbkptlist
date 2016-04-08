@@ -70,16 +70,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481730665.150769"
+            filePath = "Lapanzo/CartVC.m"
+            timestampString = "481808762.915561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-viewDidAppear:"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-setupInitialUiElements"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,29 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481730759.600311"
+            filePath = "Lapanzo/CartVC.m"
+            timestampString = "481808762.915561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "481730831.504932"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "-changedQuantityForCell:andValue:"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-checkOutTapped:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +105,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoresTableViewCell.m"
-            timestampString = "481734073.869329"
+            filePath = "Lapanzo/PaymentVC.m"
+            timestampString = "481812315.751495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-setCurrentItem:"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-segmentAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

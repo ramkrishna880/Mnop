@@ -49,11 +49,13 @@
 - (void)setUpInitialUIelements {
     _client = [Lapanzo_Client sharedClient];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     [self homeButton];
     UISwipeGestureRecognizer *tableSwipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedOntableView:)];
     tableSwipeGesture.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.tableView addGestureRecognizer:tableSwipeGesture];
     
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
     
     [self fetchStoreSubcategories];
@@ -87,7 +89,11 @@
     }
 }
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.cartLabel.text = @(_client.cartItemsCount).stringValue;
+    [_tableView reloadData];
+}
 
 #pragma mark tableViewDatasource
 
@@ -111,8 +117,8 @@
     } else {
         cell.currentItem = checkedItems[0];
     }
-    //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
     
+    //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
     cell.delegate = self;
     return cell;
 }
@@ -188,8 +194,12 @@
 
 - (void)fetchStoreSubcategories {
     [self showHUD];
-    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
-    NSString *urlStr = @"portal?a=subcatogory&storeId=1";
+#warning differnt cell types for flowers , water , home services
+
+#warning sort out for water services
+    
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
+    //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *subCategories = responseObject[@"list"];
@@ -255,10 +265,10 @@
         [_cartItems addObject:item];
     } else {
         Item *existedItem = items[0];
-        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId.stringValue]];
+        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
         itemFrmCart.noOfItems = @(changedNumber).stringValue;
     }
-
+    
 #warning think better way to save cart items instaed of saving everyTime when we click buttons
     [self.client setCartItems:_cartItems];
 }
@@ -272,9 +282,9 @@
     return  [self.cartItems filteredArrayUsingPredicate:resultPredicate];
 }
 
-- (NSUInteger)indexOfItemFromArray:(NSArray *)array foIitemId:(NSString *)itemId {
+- (NSUInteger)indexOfItemFromArray:(NSArray *)array foIitemId:(NSNumber *)itemId {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"itemId == %@",itemId];
-    NSUInteger index = [array  indexOfObjectPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSUInteger index = [array  indexOfObjectPassingTest:^(Item *obj, NSUInteger idx, BOOL *stop) {
         return [resultPredicate evaluateWithObject:obj];
     }];
     return index;

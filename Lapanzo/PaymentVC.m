@@ -11,6 +11,7 @@
 #import "UIApplication+Paths.h"
 #import <INTULocationManager.h>
 #import "Lapanzo-Swift.h"
+#import "UIViewController+Helpers.h"
 
 
 @interface PaymentVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>\
@@ -46,11 +47,13 @@ typedef enum : NSUInteger {
 }
 
 - (void)setupInitialAllElements {
+    [self homeButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     self.adderssTableView.estimatedRowHeight = 70;
     self.adderssTableView.rowHeight = UITableViewAutomaticDimension;
     _addresses = [[NSMutableArray alloc] init];
- 
+    
     _popDatePicker = [[PopDatePicker alloc] initForTextField:_deliverTime];
 }
 
@@ -59,7 +62,11 @@ typedef enum : NSUInteger {
 #pragma mark UItableview Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _addresses.count;
+    if (!_addresses.count) {
+        return 1;
+    } else {
+        return _addresses.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,7 +76,12 @@ typedef enum : NSUInteger {
     }
     cell.textLabel.numberOfLines = 0;
     
-    cell.textLabel.text = _addresses[indexPath.row];
+    if (!_addresses.count) {
+        cell.textLabel.text = @"No Data Found";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    } else {
+        cell.textLabel.text = _addresses[indexPath.row];
+    }
     return cell;
 }
 
@@ -87,7 +99,7 @@ typedef enum : NSUInteger {
 #pragma mark Ui Actions
 
 - (IBAction)segmentAction:(UISegmentedControl *)sender {
-    NSUInteger tag = sender.tag;
+    NSUInteger tag = sender.selectedSegmentIndex;
     switch (tag) {
         case kAddressTypeAttach:
         {
@@ -126,6 +138,15 @@ typedef enum : NSUInteger {
 
 - (IBAction)sendOrderTapped:(id)sender {
     
+}
+
+
+- (IBAction)maincategoryTapped:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)backToStoreTapped:(id)sender {
+    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
 }
 
 #pragma mark others
@@ -218,8 +239,8 @@ typedef enum : NSUInteger {
 - (void)performSendOrder {
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
     //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
-//    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
-
+    //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
+    
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
@@ -239,7 +260,7 @@ typedef enum : NSUInteger {
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if (textField == _deliverTime) {
-     
+        
         return YES;
     } else {
         return NO;

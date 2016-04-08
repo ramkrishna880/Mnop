@@ -41,14 +41,15 @@
 {
     [coder encodeObject:_itemId forKey:@"itemId"];
     [coder encodeObject:_name forKey:@"name"];
-    [coder encodeObject:_name forKey:@"price"];
-    [coder encodeObject:_name forKey:@"priceAfterDiscount"];
-    [coder encodeObject:_name forKey:@"quantity"];
-    [coder encodeObject:_name forKey:@"volume"];
-    [coder encodeObject:_name forKey:@"unit"];
-    [coder encodeObject:_name forKey:@"itemCount"];
-    [coder encodeObject:_name forKey:@"itemDes"];
-    [coder encodeObject:_name forKey:@"image"];
+    [coder encodeObject:_price forKey:@"price"];
+    [coder encodeObject:_priceAfterDiscount forKey:@"priceAfterDiscount"];
+    [coder encodeObject:_quantity forKey:@"quantity"];
+    [coder encodeObject:_volume forKey:@"volume"];
+    [coder encodeObject:_unit forKey:@"unit"];
+    [coder encodeObject:_itemCount forKey:@"itemCount"];
+    [coder encodeObject:_itemDescription forKey:@"itemDes"];
+    [coder encodeObject:_image forKey:@"image"];
+    [coder encodeObject:_noOfItems forKey:@"noOfItems"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder;
@@ -66,6 +67,7 @@
         self.itemCount = [coder decodeObjectForKey:@"itemCount"];
         self.itemDescription = [coder decodeObjectForKey:@"itemDes"];
         self.image = [coder decodeObjectForKey:@"image"];
+        self.noOfItems = [coder decodeObjectForKey:@"noOfItems"];
     }
     return self;
 }
