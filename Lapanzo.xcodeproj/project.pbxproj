@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		426F51D81CB90B0D006673F7 /* FlowersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */; };
+		426F51D91CB90B0D006673F7 /* FlowersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */; };
 		753D34EB1CB3B9D1004BCCB8 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */; };
 		753D34F11CB3BC80004BCCB8 /* RearVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F01CB3BC80004BCCB8 /* RearVC.m */; };
 		753D34F41CB3C7FE004BCCB8 /* UIViewController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F31CB3C7FE004BCCB8 /* UIViewController+Helpers.m */; };
@@ -86,6 +88,9 @@
 /* Begin PBXFileReference section */
 		283C50331BCF21F761AC5ABC /* Pods-Lapanzo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lapanzo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lapanzo/Pods-Lapanzo.debug.xcconfig"; sourceTree = "<group>"; };
 		38E2E60D7AB81C09EFECA9ED /* libPods-Lapanzo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lapanzo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		426F51D51CB90B0D006673F7 /* FlowersCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowersCollectionViewCell.h; sourceTree = "<group>"; };
+		426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowersCollectionViewCell.m; sourceTree = "<group>"; };
+		426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlowersCollectionViewCell.xib; sourceTree = "<group>"; };
 		753D34E91CB3B9D1004BCCB8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		753D34EF1CB3BC80004BCCB8 /* RearVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearVC.h; sourceTree = "<group>"; };
@@ -250,6 +255,9 @@
 				758C8CA41C8721E100370262 /* CategoryCollectionViewCell.h */,
 				758C8CA51C8721E100370262 /* CategoryCollectionViewCell.m */,
 				75429C8B1C91A5690071D352 /* CategoryCollectionViewCell.xib */,
+				426F51D51CB90B0D006673F7 /* FlowersCollectionViewCell.h */,
+				426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */,
+				426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */,
 				75A79C6C1C87FC0B0096241C /* StoresTableViewCell.h */,
 				75A79C6D1C87FC0B0096241C /* StoresTableViewCell.m */,
 				75C70FCB1C9C086500C6D9CF /* VendorCollectionViewCell.h */,
@@ -625,6 +633,7 @@
 				75429C8C1C91A5690071D352 /* CategoryCollectionViewCell.xib in Resources */,
 				758C8C8E1C86BEC500370262 /* Main.storyboard in Resources */,
 				758982CD1CB28C7600B9C542 /* PopDateViewController.xib in Resources */,
+				426F51D91CB90B0D006673F7 /* FlowersCollectionViewCell.xib in Resources */,
 				758C8C6A1C86BE8000370262 /* LaunchScreen.storyboard in Resources */,
 				75A79C931C8838740096241C /* stepper_white_bckg.png in Resources */,
 				75A79C921C8838740096241C /* plus_bckg@2x.png in Resources */,
@@ -733,6 +742,7 @@
 				75A79C791C880CEF0096241C /* StoreDetailVC.m in Sources */,
 				75429C931C92C76F0071D352 /* LZStepProgressView.m in Sources */,
 				75A79C901C8838740096241C /* PAStepper.m in Sources */,
+				426F51D81CB90B0D006673F7 /* FlowersCollectionViewCell.m in Sources */,
 				75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */,
 				758C8C911C86C67E00370262 /* NSString+Validations.m in Sources */,
 				754D7E1C1CB4E015002080C3 /* UIButton+UIButtonExt.m in Sources */,
