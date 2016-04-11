@@ -15,6 +15,7 @@
 - (NSString *)userId;
 - (NSDictionary *)userDetails;
 - (NSMutableArray *)cartItems;
+- (NSUInteger)cartItemsCount;
 
 #pragma mark Set
 - (void)setIsLogged:(BOOL)isloggedIn;

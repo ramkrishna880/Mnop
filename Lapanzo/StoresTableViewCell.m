@@ -7,6 +7,7 @@
 //
 
 #import "StoresTableViewCell.h"
+#import "UIColor+Helpers.h"
 
 @implementation StoresTableViewCell {
     Item *_currentItem;
@@ -14,11 +15,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
 //    self.stepper.value = 0.0;
 //    self.stepper.minimumValue = 0;
 //    self.stepper.maximumValue = 100;
 //    self.stepper.editableManually = NO;
+    //self.layer.borderColor = [UIColor navigationBarTintColor].CGColor   ;
+    //self.layer.borderWidth = 1.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -32,10 +36,11 @@
         return;
     }
     _currentItem = currentItem;
-    self.storeTitle.text = currentItem.name;
+    self.storeTitle.text = [NSString stringWithFormat:@"%@ (%@ pc)",currentItem.name,currentItem.itemCount];
     self.quantityLbl.text = currentItem.quantityval;
-    self.amountLbl.text = currentItem.price;
-    self.stepper.value = 0.0;
+    self.amountLbl.text = [NSString stringWithFormat:@"₹ %@",currentItem.priceAfterDiscount];
+    self.counterLbl.text = _currentItem.noOfItems;
+    //self.stepper.value = 0.0;
 }
 
 

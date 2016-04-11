@@ -23,13 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Cart";
     [self setupInitialUiElements];
 }
 
 - (void)setupInitialUiElements {
     [self homeButton];
+    _client = [Lapanzo_Client sharedClient];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
-    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:YES];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.cartLabel.text = @(_client.cartItemsCount).stringValue;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +47,7 @@
 #pragma mark tableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _cartItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

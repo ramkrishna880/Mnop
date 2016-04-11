@@ -49,23 +49,33 @@
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
+    //    [_client setCartItems:nil];
     [self homeButton];
     [self setNavigationBarTintColor:[UIColor navigationBarTintColor]];
     [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
-//    [self.firstVendor centerImageAndTitle];
+    //    [self.firstVendor centerImageAndTitle];
     
     LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
+    //[flowLayout setSectionInset:UIEdgeInsetsMake(10, 0, 0, 10)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 5.0f;
+    //flowLayout.minimumInteritemSpacing = 0;
+    //flowLayout.minimumLineSpacing = 0;
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
-//    [self fetchCurrentLOcation];
+    //    [self fetchCurrentLOcation];
     [self fetchCategories];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.cartLabel.text = @(_client.cartItemsCount).stringValue;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,18 +118,23 @@
 #pragma mark CollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _categories.count-1;
+    return _categories.count;  //previously _categories.count-1
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VendorCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:VENDOR_COLLECCELLID forIndexPath:indexPath];
-    cell.vendor = _categories [indexPath.row+1];
+    cell.vendor = _categories [indexPath.row];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row+1]];
+    [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row]]; //prev indexpath.row+1
 }
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    CGFloat width = (_collectionView.frame.size.width)/3;
+//    return CGSizeMake(width, width);
+//}
 
 #pragma mark Webops
 
@@ -130,7 +145,7 @@
         NSArray *vendors = responseObject[@"venderList"];
         if (vendors.count) {
             self.categories = [[NSMutableArray alloc] initWithArray:vendors];
-            [self setFirstVendor];
+            //[self setFirstVendor];
             [self.collectionView reloadData];
         } else {
             [self showAlert:nil message:@"No vendors Found"];
@@ -174,8 +189,8 @@
 
 - (void)setFirstVendor {
     NSDictionary *venDic = _categories[0];
-//    [_firstVendor setImage:[UIImage imageNamed:@"placeholder"] forState:UIControlStateNormal];
-//    [_firstVendor setTitle:venDic.vendor forState:UIControlStateNormal];
+    //    [_firstVendor setImage:[UIImage imageNamed:@"placeholder"] forState:UIControlStateNormal];
+    //    [_firstVendor setTitle:venDic.vendor forState:UIControlStateNormal];
     _firstVendorName.text = venDic.vendor;
 }
 

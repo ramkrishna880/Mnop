@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "NSDictionary+Response.h"
+#import "UIColor+Helpers.h"
 //#import "UIViewController+Helpers.h"
 #import "SWRevealViewController.h"
 #import "Store.h"
@@ -52,7 +53,7 @@
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CategoryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:STORE_COLLCCELLID];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(150, 100)];
+    [flowLayout setItemSize:CGSizeMake(150, 120)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];//top/left/bottem/right
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 10.0f;
@@ -63,27 +64,11 @@
 }
 
 
-- (UIView *)leftBarbuttonView {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [homeButton setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
-    [homeButton setFrame:CGRectMake(5, 5, 30, 30)];
-    SWRevealViewController *revealController = [self revealViewController];
-    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-    [homeButton addTarget:revealController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
-    [v addSubview:homeButton];
-    
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-    [back setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [back setFrame:CGRectMake(45, 5, 30, 30)];
-    [back addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
-    [v addSubview:back];
-    return v;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.cartLabel.text = @(_client.cartItemsCount).stringValue;
 }
 
-- (void)backAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -94,7 +79,8 @@
         self.definesPresentationContext = true;
         _searchController.dimsBackgroundDuringPresentation = false;
         [self.searchController.searchBar setPlaceholder:@"Do you have any store in mind"];
-        //[self.searchController.searchBar setBarTintColor:[UIColor cellSelectColor]];
+        [self.searchController.searchBar setBarTintColor:[UIColor blackColor]];
+        [self.searchController.searchBar setTintColor:[UIColor navigationBarTintColor]];
         [self.searchController.searchBar sizeToFit];
         _searchController.searchBar.frame = _searchHolder.bounds;
         [self.searchHolder addSubview:_searchController.searchBar];
@@ -204,6 +190,30 @@
 //    }];
 //}
 //@@//
+
+#pragma mark Others
+
+- (UIView *)leftBarbuttonView {
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [homeButton setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
+    [homeButton setFrame:CGRectMake(5, 5, 30, 30)];
+    SWRevealViewController *revealController = [self revealViewController];
+    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+    [homeButton addTarget:revealController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
+    [v addSubview:homeButton];
+    
+    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
+    [back setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [back setFrame:CGRectMake(45, 5, 30, 30)];
+    [back addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+    [v addSubview:back];
+    return v;
+}
+
+- (void)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - Navigation
 
