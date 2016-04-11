@@ -11,4 +11,5 @@
 @interface LZStepProgressView : UIView
 
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *progressViews;
+- (void)setProgressWithIndex:(NSUInteger)index;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HistoryTableViewCell.h"
+#import "LZStepProgressView.h"
 
 @implementation HistoryTableViewCell
 
@@ -27,7 +28,13 @@
         self.orderId.text = pastOrder.orderId.stringValue;
         self.orderDate.text = pastOrder.date;
         self.orderAmount.text = pastOrder.amount;
+        [self.progressView setProgressWithIndex:0]; //change according to status
     }
 }
 
+- (void)statusOfPreogress {
+    //if () {
+        
+   // }
+}
 @end

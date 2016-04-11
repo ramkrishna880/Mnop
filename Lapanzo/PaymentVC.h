@@ -14,4 +14,5 @@
 @property (nonatomic) NSNumber *storeId;
 //@property (nonatomic) NSNumber *userId;
 @property (nonatomic) NSArray *cartItems;
+@property (nonatomic) NSString *totalPrice;
 @end

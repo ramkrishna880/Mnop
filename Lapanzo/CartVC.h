@@ -11,4 +11,5 @@
 
 @interface CartVC : GenericViewController
 @property (nonatomic) NSMutableArray *cartItems;
+@property (nonatomic) NSNumber *storeId;
 @end

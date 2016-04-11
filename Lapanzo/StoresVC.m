@@ -222,10 +222,25 @@
     if ([segue.identifier isEqualToString:STOREDETAIL_SEGUEID]) {
         StoreDetailVC *storeDetail = (StoreDetailVC *)segue.destinationViewController;
         storeDetail.storeId = sender.storeId;
+        storeDetail.vendorType = [self findTypeOfVendor];
         //        storeDetail.storeId = _vendorId;
         //        storeDetail.maincategoryId = sender.storeId;
     }
 }
 
 
+- (kVendorType)findTypeOfVendor {
+    NSUInteger vendorId = _vendorId.integerValue;
+    kVendorType vendorType;
+    if (vendorId == 3) {
+        vendorType = kVendorTypeWater;
+    } else if (vendorId == 4) {
+        vendorType = kVendorTypeFlower;
+    } else if (vendorId == 9) {
+        vendorType = kVendorTypeHOmeServices;
+    } else {
+        vendorType = kVendorTypeGeneral;
+    }
+    return vendorType;
+}
 @end

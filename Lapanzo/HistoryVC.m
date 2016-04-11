@@ -23,11 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self homeButton];
+    _tblView.tableFooterView = [[UITableView alloc] initWithFrame:CGRectZero];
     
-#warning pasatordersummary pending 
-    //@@// a – pastOrderSummary
-    //billno - 18
-    //@@//
+//#warning pasatordersummary pending 
+//    //@@// a – pastOrderSummary
+//    //billno - 18
+//    //@@//
+    
 }
 
 
@@ -63,7 +65,7 @@
         [self hideHud];
         NSArray *history = responseObject [@"list"];
         if (!history.count) {
-            [self showAlert:nil message:@"No history"];
+            [self showAlert:nil message:@"No Past orders"];
             return;
         }
         
