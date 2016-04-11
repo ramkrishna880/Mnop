@@ -8,14 +8,15 @@
 
 #import "CartVC.h"
 #import "Constants.h"
+#import "PaymentVC.h"
 #import "StoresTableViewCell.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "UIViewController+Helpers.h"
 
+
 @interface CartVC () <UITableViewDelegate, UITableViewDataSource, StoreTableCellDelegate>
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) Lapanzo_Client *client;
-
 //@property (nonatomic) NSMutableArray *cartItems;
 @end
 
@@ -32,8 +33,9 @@
     _client = [Lapanzo_Client sharedClient];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
+    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];\
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -119,11 +121,24 @@
 }
 
 
+#pragma mark Others
+
+- (NSString *)totalPrice {
+    CGFloat totalVal = 0.0;
+    for (Item *item in _cartItems) {
+        CGFloat val = item.priceAfterDiscount.floatValue;
+        totalVal = totalVal+val;
+    }
+    return @(totalVal).stringValue;
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:PAYMENT_SEGUEID]) {
-        
+        PaymentVC *paymentVc = (PaymentVC *)segue.destinationViewController;
+        paymentVc.totalPrice = [self totalPrice];
+        paymentVc.storeId = _storeId;
     }
 }
 

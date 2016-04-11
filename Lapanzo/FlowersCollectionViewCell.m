@@ -21,4 +21,10 @@
     
 }
 
+- (void)setSelectedItem:(Item *)selectedItem {
+    if (selectedItem) {
+        self.name.text = selectedItem.name;
+        self.priceLbl.text = selectedItem.priceAfterDiscount;
+    }
+}
 @end

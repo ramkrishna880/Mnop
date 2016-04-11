@@ -72,6 +72,9 @@
 
 
 - (void)setProgressWithIndex:(NSUInteger)index {
+    if (index > 3) {
+        return;
+    }
     for (int i = 0; i<=index; i++) {
         UIView *pV = _progressViews[i];
         [pV setBackgroundColor:[UIColor redColor]];

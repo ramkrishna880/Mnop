@@ -16,6 +16,9 @@
 
 @interface PaymentVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>\
 @property (nonatomic) Lapanzo_Client *client;
+@property (nonatomic) IBOutlet UILabel *amountLabel;
+
+
 @property (nonatomic, weak) IBOutlet UITableView *adderssTableView;
 @property (nonatomic, weak) IBOutlet UIView *locationView;
 @property (nonatomic, weak) IBOutlet UIView *enterAddressView;
@@ -55,6 +58,7 @@ typedef enum : NSUInteger {
     _addresses = [[NSMutableArray alloc] init];
     
     _popDatePicker = [[PopDatePicker alloc] initForTextField:_deliverTime];
+    _amountLabel.text = _totalPrice;
 }
 
 
@@ -77,7 +81,7 @@ typedef enum : NSUInteger {
     cell.textLabel.numberOfLines = 0;
     
     if (!_addresses.count) {
-        cell.textLabel.text = @"No Data Found";
+        cell.textLabel.text = @"No Addresses Found";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     } else {
         cell.textLabel.text = _addresses[indexPath.row];

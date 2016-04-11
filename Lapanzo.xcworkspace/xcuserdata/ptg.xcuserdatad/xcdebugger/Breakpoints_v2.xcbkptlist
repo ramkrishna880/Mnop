@@ -42,7 +42,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481712521.283461"
+                  timestampString = "482045013.273946"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -57,7 +57,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481712521.284088"
+                  timestampString = "482045013.274786"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -72,7 +72,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481712521.284315"
+                  timestampString = "482045013.275245"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -87,7 +87,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "481712521.28453"
+                  timestampString = "482045013.275618"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -231,7 +231,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "-setAllLableValues"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -263,8 +263,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
+            landmarkName = "@implementation StoreDetailVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -295,7 +295,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -310,7 +310,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
-            endingLineNumber = "293">
+            endingLineNumber = "293"
+            landmarkName = "@implementation StoreDetailVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -324,7 +326,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
-            endingLineNumber = "286">
+            endingLineNumber = "286"
+            landmarkName = "-indexOfItemFromArray:foIitemId:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

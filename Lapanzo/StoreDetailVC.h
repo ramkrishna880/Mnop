@@ -11,7 +11,7 @@
 
 
 typedef enum : NSUInteger {
-    kVendorTypeGeneral,
+    kVendorTypeGeneral = 0,
     kVendorTypeFlower,
     kVendorTypeWater,
     kVendorTypeHOmeServices,
@@ -21,4 +21,5 @@ typedef enum : NSUInteger {
 @interface StoreDetailVC : GenericViewController
 @property (nonatomic) NSNumber *storeId;
 //@property (nonatomic) NSNumber *maincategoryId;
+@property (nonatomic) kVendorType vendorType;
 @end

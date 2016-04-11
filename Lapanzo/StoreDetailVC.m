@@ -12,27 +12,31 @@
 #import "HTHorizontalSelectionList.h"
 #import "Lapanzo_Client+DataAccess.h"
 #import "Subcategory.h"
+#import "FlowersCollectionViewCell.h"
+#import "CartVC.h"
 #import "UIColor+Helpers.h"
 #import "UIViewController+Helpers.h"
 
-@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate> {
-    //NSUInteger currentSubcategory;
+@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate, FlowerCollectionCellDelegate> {
     UIDatePicker *datepicker;
     UIPopoverController *popOverForDatePicker;
 }
 @property (nonatomic) UISearchController *searchController;
-@property (nonatomic) IBOutlet UIImageView *storeImage;
+//@property (nonatomic) IBOutlet UIImageView *storeImage;
 @property (nonatomic) IBOutlet UIView *tabsPlaceHolder;
 @property (nonatomic) IBOutlet UIView *searchPlaceHolder;
 @property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic) Lapanzo_Client *client;
 
 @property (nonatomic) HTHorizontalSelectionList *tabs;
 @property (nonatomic) NSArray *subCategories;
+@property (nonatomic) NSMutableArray *others;
 @property (nonatomic) NSMutableArray *searchedItems;
 @property (nonatomic) NSMutableArray *cartItems;
 @property (nonatomic, assign) NSUInteger index;
+@property (nonatomic) IBOutlet NSLayoutConstraint *tabsViewHeightConstraint;
 @end
 
 @implementation StoreDetailVC
@@ -57,13 +61,50 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
-    
+    [self setViewsBasedOnVendorType];
     [self fetchStoreSubcategories];
+}
+
+- (void)setViewsBasedOnVendorType {
+    
+    switch (_vendorType) {
+        case kVendorTypeGeneral:
+        {
+            
+        }
+            
+            break;
+        case kVendorTypeWater:
+        {
+            self.tabsViewHeightConstraint.constant = 0;
+            [self.tabsViewHeightConstraint.firstItem setHidden:YES];
+        }
+            
+            break;
+        case kVendorTypeFlower:
+        {
+            self.tabsViewHeightConstraint.constant = 0;
+            [self.tabsViewHeightConstraint.firstItem setHidden:YES];
+            [self.tableView setHidden:YES];
+            [self.collectionView setHidden:NO];
+            [self.collectionView registerNib:[UINib nibWithNibName:@"FlowersCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:FLOWERS_COLLCCELLID];
+        }
+            
+            break;
+        case kVendorTypeHOmeServices:
+        {
+            self.tabsViewHeightConstraint.constant = 0;
+            [self.tabsViewHeightConstraint.firstItem setHidden:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (!self.tabs) {
+    if (!self.tabs && self.vendorType == kVendorTypeGeneral) {
         self.tabs = [[HTHorizontalSelectionList alloc] initWithFrame:self.tabsPlaceHolder.bounds];
         _tabs.delegate = self;
         _tabs.dataSource = self;
@@ -120,6 +161,27 @@
     
     //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
     cell.delegate = self;
+    return cell;
+}
+
+
+#pragma mark CollectionView Datasource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (self.searchController.active && _searchController.searchBar.text.length) {
+        return _others.count;
+    } else {
+        return _searchedItems.count;
+    }
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath  {
+    FlowersCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:FLOWERS_COLLCCELLID forIndexPath:indexPath];
+    if (self.searchController.active && _searchController.searchBar.text.length) {
+        cell.selectedItem = _searchedItems[indexPath.row];
+    } else {
+        cell.selectedItem = _others[indexPath.row];
+    }
+    
     return cell;
 }
 
@@ -194,8 +256,7 @@
 
 - (void)fetchStoreSubcategories {
     [self showHUD];
-#warning differnt cell types for flowers , water , home services
-
+    
 #warning sort out for water services
     
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
@@ -203,6 +264,29 @@
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *subCategories = responseObject[@"list"];
+        
+        //        if (self.vendorType == kVendorTypeFlower) {
+        //            NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                Item *item = [[Item alloc] initWithDictionary:obj];
+        //                [flowers addObject:item];
+        //            }];
+        //            _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+        //            [_collectionView reloadData];
+        //        } else if (self.vendorType == kVendorTypeWater) {
+        //
+        //        } else if (self.vendorType == kVendorTypeHOmeServices) {
+        //            NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                Item *item = [[Item alloc] initWithDictionary:obj];
+        //                [flowers addObject:item];
+        //            }];
+        //            _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+        //            [_tableView reloadData];
+        //        } else {
+        //
+        //        }
+        
         if (subCategories.count) {
             NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
             [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -260,6 +344,9 @@
     Subcategory *sbCt = _subCategories[indexPath.section];
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
+    
+#warning remove item if count is 0
+    
     if (!items.count) {
         item.noOfItems = @(changedNumber).stringValue;
         [_cartItems addObject:item];
@@ -268,8 +355,6 @@
         Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
         itemFrmCart.noOfItems = @(changedNumber).stringValue;
     }
-    
-#warning think better way to save cart items instaed of saving everyTime when we click buttons
     [self.client setCartItems:_cartItems];
 }
 
@@ -290,11 +375,27 @@
     return index;
 }
 
+#pragma mark flowercell Delegate
+- (void)changedFlowerQuantityForCell:(FlowersCollectionViewCell *)cell  {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Item *item = _others[indexPath.row];
+    NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
+    if (!items.count) {
+        [_cartItems addObject:item];
+    } else {
+        Item *existedItem = items[0];
+        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
+    }
+    [self.client setCartItems:_cartItems];
+}
+
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:CART_SEGUEID]) {
-        
+        CartVC *cart =  segue.destinationViewController;
+        cart.storeId = self.storeId;
     }
 }
 
