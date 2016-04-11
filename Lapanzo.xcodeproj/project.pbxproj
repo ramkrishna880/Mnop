@@ -37,7 +37,6 @@
 		758C8C5F1C86BE8000370262 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C5E1C86BE8000370262 /* AppDelegate.m */; };
 		758C8C621C86BE8000370262 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C611C86BE8000370262 /* ViewController.m */; };
 		758C8C671C86BE8000370262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 758C8C661C86BE8000370262 /* Assets.xcassets */; };
-		758C8C6A1C86BE8000370262 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758C8C681C86BE8000370262 /* LaunchScreen.storyboard */; };
 		758C8C751C86BE8100370262 /* LapanzoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C741C86BE8100370262 /* LapanzoTests.m */; };
 		758C8C801C86BE8100370262 /* LapanzoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C7F1C86BE8100370262 /* LapanzoUITests.m */; };
 		758C8C8E1C86BEC500370262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 758C8C8D1C86BEC500370262 /* Main.storyboard */; };
@@ -142,7 +141,6 @@
 		758C8C601C86BE8000370262 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		758C8C611C86BE8000370262 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		758C8C661C86BE8000370262 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		758C8C691C86BE8000370262 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		758C8C6B1C86BE8000370262 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		758C8C701C86BE8100370262 /* LapanzoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LapanzoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		758C8C741C86BE8100370262 /* LapanzoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LapanzoTests.m; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 				758C8C981C87167A00370262 /* others */,
 				758C8C8D1C86BEC500370262 /* Main.storyboard */,
 				758C8C661C86BE8000370262 /* Assets.xcassets */,
-				758C8C681C86BE8000370262 /* LaunchScreen.storyboard */,
 				758C8C6B1C86BE8000370262 /* Info.plist */,
 				758C8C5A1C86BE8000370262 /* Supporting Files */,
 				758982C71CB28C7500B9C542 /* Lapanzo-Bridging-Header.h */,
@@ -634,7 +631,6 @@
 				758C8C8E1C86BEC500370262 /* Main.storyboard in Resources */,
 				758982CD1CB28C7600B9C542 /* PopDateViewController.xib in Resources */,
 				426F51D91CB90B0D006673F7 /* FlowersCollectionViewCell.xib in Resources */,
-				758C8C6A1C86BE8000370262 /* LaunchScreen.storyboard in Resources */,
 				75A79C931C8838740096241C /* stepper_white_bckg.png in Resources */,
 				75A79C921C8838740096241C /* plus_bckg@2x.png in Resources */,
 				75A79C941C8838740096241C /* stepper_white_bckg@2x.png in Resources */,
@@ -790,17 +786,6 @@
 			targetProxy = 758C8C7C1C86BE8100370262 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		758C8C681C86BE8000370262 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				758C8C691C86BE8000370262 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		758C8C821C86BE8100370262 /* Debug */ = {

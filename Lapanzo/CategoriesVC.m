@@ -60,12 +60,12 @@
     
     LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
-    [flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
-    //[flowLayout setSectionInset:UIEdgeInsetsMake(10, 0, 0, 10)];
+    //[flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.minimumInteritemSpacing = 5.0f;
-    //flowLayout.minimumInteritemSpacing = 0;
-    //flowLayout.minimumLineSpacing = 0;
+    //flowLayout.minimumInteritemSpacing = 5.0f;
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
@@ -131,10 +131,10 @@
     [self performSegueWithIdentifier:STORE_SEGUE sender:_categories[indexPath.row]]; //prev indexpath.row+1
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat width = (_collectionView.frame.size.width)/3;
-//    return CGSizeMake(width, width);
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat width = (_collectionView.frame.size.width)/3;
+    return CGSizeMake(width, width);
+}
 
 #pragma mark Webops
 

@@ -7,10 +7,12 @@
 //
 
 #import "RearVC.h"
+#import "UIColor+Helpers.h"
 
 @interface RearVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak) IBOutlet UIImageView *userImgView;
 @property (nonatomic, weak) IBOutlet UILabel *userName;
+@property (nonatomic, strong) NSArray *rows;
 @end
 
 @implementation RearVC
@@ -23,12 +25,13 @@
 
 - (void)setUPinitialUIElements {
     [self.userImgView.layer setCornerRadius:40.0f];
+    self.rows = @[@"My Account",@"My Activities",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
 }
 
 #pragma mark Tableview datasouce
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _rows.count;
 }
 
 
@@ -38,9 +41,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"id"];
     }
-    
+    cell.textLabel.textColor = [UIColor navigationBarTintColor];
+    cell.textLabel.text = _rows[indexPath.row];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
