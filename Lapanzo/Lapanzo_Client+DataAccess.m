@@ -42,9 +42,14 @@
     return self.cartItems.count;
 }
 
-- (NSMutableArray *)locationDetails {
+- (NSDictionary *)locationDetails {
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     return [currentDefaults valueForKey:LOCATION_KEY];
+}
+
+- (NSDictionary *)manualLocation {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    return [currentDefaults valueForKey:MANUALLOCATION_KEY];
 }
 
 #pragma mark set
@@ -92,12 +97,20 @@
         NSDictionary *dic = @{[NSNumber numberWithDouble:latitude]:LATITUDEKEY,[NSNumber numberWithDouble:longitude]:LOGITUDEKEY};
         [standardUserDefaults setObject:dic forKey:LOCATION_KEY];
     }
+    [standardUserDefaults synchronize];
 }
 
 //clarification needed
 
-- (void)setLastLocation:(NSString *)address {
-    
+- (void)setLastLocationCity:(NSString *)city area:(NSString *)area {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    if (!city || !area) {
+        [standardUserDefaults removeObjectForKey:MANUALLOCATION_KEY];
+    } else {
+        NSDictionary *dic = @{city:CITYKEY,area:AREAKEY};
+        [standardUserDefaults setObject:dic forKey:MANUALLOCATION_KEY];
+    }
+    [standardUserDefaults synchronize];
 }
 
 @end

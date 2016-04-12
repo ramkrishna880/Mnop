@@ -8,6 +8,10 @@
 
 #import "RearVC.h"
 #import "UIColor+Helpers.h"
+#import "SWRevealViewController.h"
+#import "Lapanzo_Client+DataAccess.m"
+#import "AppDelegate.h"
+#import "Constants.h"
 
 @interface RearVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak) IBOutlet UIImageView *userImgView;
@@ -47,7 +51,45 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SWRevealViewController *revealController = self.revealViewController;
+    UINavigationController *navigationController = (UINavigationController*)[revealController.frontViewController navigationController];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    NSString *storyBoardName;
+    switch (indexPath.row) {
+        case 0:
+            storyBoardName = @"";
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;
+        case 6:
+            
+            break;
+        case 7:
+        {
+            Lapanzo_Client *client = [Lapanzo_Client sharedClient];
+            [client setIsLogged:NO];
+            [appDelegate performLoginIfNeeded];
+        }
+            
+            break;
+        default:
+            break;
+    }
     
+    [revealController pushFrontViewController:navigationController animated:YES];
 }
 
 

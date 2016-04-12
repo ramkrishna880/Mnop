@@ -11,6 +11,9 @@
 #define LATITUDEKEY  @"Latitude"
 #define LOGITUDEKEY @"Logitude"
 
+#define CITYKEY  @"city"
+#define AREAKEY @"area"
+
 @interface Lapanzo_Client (DataAccess)
 
 #pragma mark Get
@@ -19,7 +22,8 @@
 - (NSDictionary *)userDetails;
 - (NSMutableArray *)cartItems;
 - (NSUInteger)cartItemsCount;
-- (NSMutableArray *)locationDetails;
+- (NSDictionary *)locationDetails;
+- (NSDictionary *)manualLocation;
 
 #pragma mark Set
 - (void)setIsLogged:(BOOL)isloggedIn;
@@ -27,4 +31,5 @@
 - (void)setUserDetails:(NSDictionary *)dic;
 - (void)setCartItems:(NSMutableArray *)cartItems;
 - (void)setLocationLatitude:(double)latitude logitude:(double)longitude;
+- (void)setLastLocationCity:(NSString *)city area:(NSString *)area;
 @end

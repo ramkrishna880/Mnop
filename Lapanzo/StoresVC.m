@@ -46,7 +46,6 @@
 }
 
 - (void)setUpInitialUIElements {
-    //    [self homeButton];
     _client = [Lapanzo_Client sharedClient];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self leftBarbuttonView]];
@@ -60,7 +59,6 @@
     [_collectionView setCollectionViewLayout:flowLayout];
     
     [self fetchStoresforUrlString:nil];
-    //[self fetchCategories];
 }
 
 
@@ -139,14 +137,18 @@
 #pragma mark WebOperations
 
 
-- (void)fetchStoresforUrlString:(NSString *)urlString {
-    [self showHUD];
+- (void)fetchStoresforUrlString:(BOOL)useCurrentLocation {
     
-    //by latitude and logitude
-    //@//       @"portal?a=showNear&lat=17.438028799999998&lan=78.4330179"    //@//
+//    if (!useCurrentLocation) {
+//        NSDictionary *dic = _client.manualLocation;
+//        NSString *url = [NSString stringWithFormat:@"portal?a=search&area=%@&city=%@&vtype=%@",dic[CITYKEY],dic[AREAKEY],_vendorId];
+//    } else {
+//        NSDictionary *dic = _client.locationDetails;
+//        NSString *url = [NSString stringWithFormat:@"portal?a=showNear&lat=%@&lan=%@&vtype=%@",dic[LATITUDEKEY],dic[LOGITUDEKEY],_vendorId];
+//    }
     
-//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=%@&city=%@&vtype=%@",@"",@"",_vendorId];
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Banjarahills&city=Hyderabad&vtype=1"];
+    [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *vendors = responseObject[@"result"];
@@ -166,30 +168,7 @@
     }];
 }
 
-//@@// old one
-//- (void)fetchCategories {
-//    //@"portal?a=maincatogory&storeId=1
-//    [self showHUD];
-//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=maincatogory&storeId=%@",_vendorId];
-//    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
-//        [self hideHud];
-//        NSArray *vendors = responseObject[@"list"];
-//        if (vendors.count) {
-//            NSMutableArray *tempStores = [[NSMutableArray alloc] init];
-//            [vendors enumerateObjectsUsingBlock:^(NSDictionary  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                [tempStores addObject:[[Store alloc] initStorewithDictionary:obj]];
-//            }];
-//            _stores = [[NSMutableArray alloc] initWithArray:tempStores copyItems:NO];
-//            [self.collectionView reloadData];
-//        } else {
-//            [self showAlert:nil message:@"No Stores Found"];
-//        }
-//    } failure:^(NSError *connectionError) {
-//        [self hideHud];
-//        [self showAlert:nil message:connectionError.localizedDescription];
-//    }];
-//}
-//@@//
+
 
 #pragma mark Others
 
@@ -224,7 +203,6 @@
         storeDetail.storeId = sender.storeId;
         storeDetail.vendorType = [self findTypeOfVendor];
         //        storeDetail.storeId = _vendorId;
-        //        storeDetail.maincategoryId = sender.storeId;
     }
 }
 
@@ -243,4 +221,29 @@
     }
     return vendorType;
 }
+
+//@@// old one
+//- (void)fetchCategories {
+//    //@"portal?a=maincatogory&storeId=1
+//    [self showHUD];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=maincatogory&storeId=%@",_vendorId];
+//    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+//        [self hideHud];
+//        NSArray *vendors = responseObject[@"list"];
+//        if (vendors.count) {
+//            NSMutableArray *tempStores = [[NSMutableArray alloc] init];
+//            [vendors enumerateObjectsUsingBlock:^(NSDictionary  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                [tempStores addObject:[[Store alloc] initStorewithDictionary:obj]];
+//            }];
+//            _stores = [[NSMutableArray alloc] initWithArray:tempStores copyItems:NO];
+//            [self.collectionView reloadData];
+//        } else {
+//            [self showAlert:nil message:@"No Stores Found"];
+//        }
+//    } failure:^(NSError *connectionError) {
+//        [self hideHud];
+//        [self showAlert:nil message:connectionError.localizedDescription];
+//    }];
+//}
+//@@//
 @end

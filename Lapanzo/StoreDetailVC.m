@@ -65,6 +65,9 @@
     [self fetchStoreSubcategories];
 }
 
+- (void)dealloc {
+    [_searchController.view removeFromSuperview];
+}
 - (void)setViewsBasedOnVendorType {
     
     switch (_vendorType) {

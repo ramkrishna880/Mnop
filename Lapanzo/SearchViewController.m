@@ -20,6 +20,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *localityButton;
 
 @property (nonatomic) Lapanzo_Client *client;
+
+@property (nonatomic) NSArray *cityList;
+@property (nonatomic) NSArray *areaList;
 @end
 
 @implementation SearchViewController
@@ -36,12 +39,22 @@
     
     _localityButton.layer.borderColor = [UIColor navigationBarTintColor].CGColor;
     _localityButton.layer.borderWidth = 1.0f;
+    
+    [self fetchCityList];
 }
 
 - (IBAction)dropdownButtonClicked:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    if (btn.tag > 1) {
+        return;
+    }
+    if (btn.tag == 0) {
+         [self showDropDownForButton:sender adContents:_cityList multipleSelection:NO];
+    } else {
+        [self showDropDownForButton:sender adContents:_areaList multipleSelection:NO];
+    }
     
-    [self showDropDownForButton:sender adContents:@[@"Two wrongs don't make a right.",@"No man is an island.",@"Aplhabetic sorting",@"Fortune favors the bold.",@"If it ain't broke, don't fix it.",@"If you can't beat 'em, join 'em.",@"One man's trash is another man's treasure.",@"You can lead a horse to water, but you can't make him drink."] multipleSelection:YES];
-    
+    //[self showDropDownForButton:sender adContents:@[@"Two wrongs don't make a right.",@"No man is an island.",@"Aplhabetic sorting",@"Fortune favors the bold.",@"If it ain't broke, don't fix it.",@"If you can't beat 'em, join 'em.",@"One man's trash is another man's treasure.",@"You can lead a horse to water, but you can't make him drink."] multipleSelection:NO];
     //    /[_dropdown reloadDropdownWithContents:self.countries keyPath:@"name" selectedItems:@[_myButton.titleLabel.text]];
 }
 
@@ -70,45 +83,36 @@
 }
 
 #pragma mark - VSDropdown Delegate methods.
-- (void)dropdown:(VSDropdown *)dropDown didChangeSelectionForValue:(NSString *)str atIndex:(NSUInteger)index selected:(BOOL)selected
-{
+- (void)dropdown:(VSDropdown *)dropDown didChangeSelectionForValue:(NSString *)str atIndex:(NSUInteger)index selected:(BOOL)selected {
     UIButton *btn = (UIButton *)dropDown.dropDownView;
-    
     NSString *allSelectedItems = nil;
-    if (dropDown.selectedItems.count > 1)
-    {
+    if (dropDown.selectedItems.count > 1) {
         allSelectedItems = [dropDown.selectedItems componentsJoinedByString:@";"];
-        
     }
-    else
-    {
+    else {
         allSelectedItems = [dropDown.selectedItems firstObject];
-        
     }
     [btn setTitle:allSelectedItems forState:UIControlStateNormal];
     
+    if (btn.tag == 0) {
+        [self fetchAreaList:allSelectedItems];
+    }
 }
 
-- (UIColor *)outlineColorForDropdown:(VSDropdown *)dropdown
-{
+- (UIColor *)outlineColorForDropdown:(VSDropdown *)dropdown {
     UIButton *btn = (UIButton *)dropdown.dropDownView;
-    
     return btn.titleLabel.textColor;
-    
 }
 
-- (CGFloat)outlineWidthForDropdown:(VSDropdown *)dropdown
-{
+- (CGFloat)outlineWidthForDropdown:(VSDropdown *)dropdown {
     return 2.0;
 }
 
-- (CGFloat)cornerRadiusForDropdown:(VSDropdown *)dropdown
-{
+- (CGFloat)cornerRadiusForDropdown:(VSDropdown *)dropdown {
     return 3.0;
 }
 
-- (CGFloat)offsetForDropdown:(VSDropdown *)dropdown
-{
+- (CGFloat)offsetForDropdown:(VSDropdown *)dropdown {
     return -2.0;
 }
 
@@ -120,12 +124,12 @@
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
-        NSArray *history = responseObject [@"list"];
-        if (!history.count) {
-            [self showAlert:nil message:@"No history"];
+        NSArray *citylst = responseObject [@"cities"];
+        if (!citylst.count) {
+            [self showAlert:nil message:@"No cities found"];
             return;
         }
-        
+        _cityList = [[NSArray alloc] initWithArray:citylst];
     } failure:^(NSError *connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
@@ -137,12 +141,12 @@
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
-        NSArray *history = responseObject [@"list"];
-        if (!history.count) {
-            [self showAlert:nil message:@"No history"];
+        NSArray *areas = responseObject [@"results"];
+        if (!areas.count) {
+            [self showAlert:nil message:@"No Areas Found"];
             return;
         }
-        
+        _areaList = [[NSArray alloc] initWithArray:areas];
     } failure:^(NSError *connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
