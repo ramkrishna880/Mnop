@@ -42,7 +42,7 @@ static NSString *const ISLOGGED_KEY = @"isLogged";
 static NSString *const USERID_KEY = @"userID";
 static NSString *const USER_DETAILS = @"userDetails";
 static NSString *const CARTITEMS_KEY = @"cartValueskey";
-
+static NSString *const LOCATION_KEY = @"latitudeLogitudeValueskey";
 
 #pragma mark Others
 static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";

@@ -38,9 +38,13 @@
     return nil;
 }
 
-
 - (NSUInteger)cartItemsCount {
     return self.cartItems.count;
+}
+
+- (NSMutableArray *)locationDetails {
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    return [currentDefaults valueForKey:LOCATION_KEY];
 }
 
 #pragma mark set
@@ -76,6 +80,17 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:cartItems] forKey:CARTITEMS_KEY];
     } else {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:CARTITEMS_KEY];
+    }
+}
+
+
+- (void)setLocationLatitude:(double)latitude logitude:(double)longitude {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    if (latitude==0 || longitude==0) {
+        [standardUserDefaults removeObjectForKey:LOCATION_KEY];
+    } else {
+        NSDictionary *dic = @{[NSNumber numberWithDouble:latitude]:LATITUDEKEY,[NSNumber numberWithDouble:longitude]:LOGITUDEKEY};
+        [standardUserDefaults setObject:dic forKey:LOCATION_KEY];
     }
 }
 

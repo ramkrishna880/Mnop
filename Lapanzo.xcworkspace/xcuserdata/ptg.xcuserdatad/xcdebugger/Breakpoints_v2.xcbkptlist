@@ -263,8 +263,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "@implementation StoreDetailVC"
-            landmarkType = "3">
+            landmarkName = "-fetchStoreSubcategories"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -295,7 +295,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkName = "-setViewsBasedOnVendorType"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -311,8 +311,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
             endingLineNumber = "293"
-            landmarkName = "@implementation StoreDetailVC"
-            landmarkType = "3">
+            landmarkName = "-fetchStoreSubcategories"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,7 +327,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
             endingLineNumber = "286"
-            landmarkName = "-indexOfItemFromArray:foIitemId:"
+            landmarkName = "-fetchStoreSubcategories"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

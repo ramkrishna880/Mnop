@@ -8,6 +8,9 @@
 
 #import "Lapanzo-Client.h"
 
+#define LATITUDEKEY  @"Latitude"
+#define LOGITUDEKEY @"Logitude"
+
 @interface Lapanzo_Client (DataAccess)
 
 #pragma mark Get
@@ -16,10 +19,12 @@
 - (NSDictionary *)userDetails;
 - (NSMutableArray *)cartItems;
 - (NSUInteger)cartItemsCount;
+- (NSMutableArray *)locationDetails;
 
 #pragma mark Set
 - (void)setIsLogged:(BOOL)isloggedIn;
 - (void)setUserId:(NSString *)userId;
 - (void)setUserDetails:(NSDictionary *)dic;
 - (void)setCartItems:(NSMutableArray *)cartItems;
+- (void)setLocationLatitude:(double)latitude logitude:(double)longitude;
 @end
