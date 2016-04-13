@@ -170,14 +170,13 @@
 #pragma mark Others
 
 - (void)fetchCurrentLOcation {
-    
     INTULocationManager *locMgr = [INTULocationManager sharedInstance];
     [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
                                        timeout:10.0
                           delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
                                          block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
                                              if (status == INTULocationStatusSuccess) {
-                                                 
+                                                 [_client setLocationLatitude:currentLocation.coordinate.latitude logitude:currentLocation.coordinate.longitude];
                                              }
                                              else if (status == INTULocationStatusTimedOut) {
                                                  
