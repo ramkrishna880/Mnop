@@ -172,6 +172,11 @@
     LMAlertView *cardAlertView = [[LMAlertView alloc] initWithTitle:@"Choose a card" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done",nil];
     
     [cardAlertView setSize:CGSizeMake(270.0, 167.0)];
+    UIView *contentView = cardAlertView.contentView;
+    UIViewController *vcPopUp = INSTANTIATE(@"searchid");
+    [self addChildViewController:vcPopUp];
+    [vcPopUp didMoveToParentViewController:self];
+    [contentView addSubview:vcPopUp.view];
     [cardAlertView show];
 }
 
