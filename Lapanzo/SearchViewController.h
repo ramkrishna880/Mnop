@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "GenericViewController.h"
 
-@interface SearchViewController : GenericViewController
+@protocol ManualSelectionControllerDelegate <NSObject>
+@optional
+- (void)selectedCity:(NSString *)city andArea:(NSString *)area;
+@end
 
+@interface SearchViewController : GenericViewController
+@property (nonatomic, weak) id <ManualSelectionControllerDelegate> selectionDelegate;
 @end

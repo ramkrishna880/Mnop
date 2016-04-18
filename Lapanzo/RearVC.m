@@ -29,7 +29,7 @@
 
 - (void)setUPinitialUIElements {
     [self.userImgView.layer setCornerRadius:40.0f];
-    self.rows = @[@"My Account",@"My Activities",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
+    self.rows = @[@"My Account",@"Home",@"My Activities",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
 }
 
 #pragma mark Tableview datasouce

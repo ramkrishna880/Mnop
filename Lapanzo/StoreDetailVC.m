@@ -348,16 +348,20 @@
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
     
-#warning remove item if count is 0
-    
     if (!items.count) {
         item.noOfItems = @(changedNumber).stringValue;
         [_cartItems addObject:item];
     } else {
+#warning remove item if count is 0
         Item *existedItem = items[0];
+        if (changedNumber == 0) {
+            NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId];
+            [_cartItems removeObjectAtIndex:index];
+        }
         Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
         itemFrmCart.noOfItems = @(changedNumber).stringValue;
     }
+    self.cartLabel.text = @(_cartItems.count).stringValue;
     [self.client setCartItems:_cartItems];
 }
 
