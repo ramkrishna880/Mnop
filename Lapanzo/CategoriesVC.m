@@ -173,7 +173,7 @@
     
     [cardAlertView setSize:CGSizeMake(270.0, 167.0)];
     UIView *contentView = cardAlertView.contentView;
-    UIViewController *vcPopUp = INSTANTIATE(@"searchid");
+    UIViewController *vcPopUp = INSTANTIATE(SEARCHM_SEGUEID);
     [self addChildViewController:vcPopUp];
     [vcPopUp didMoveToParentViewController:self];
     [contentView addSubview:vcPopUp.view];

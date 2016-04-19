@@ -22,6 +22,7 @@ static NSString *const CATEGORY_NAV_SEGUEID = @"navigationCategorySegueId";
 static NSString *const STOREDETAIL_SEGUEID = @"storeDetailSegueId";
 static NSString *const CART_SEGUEID = @"cartSegueId";
 static NSString *const PAYMENT_SEGUEID = @"paymetsegueId";
+static NSString *const SEARCHM_SEGUEID = @"searchviewid";
 
 //view IDs
 static NSString *const POPOVER_VIEWID = @"popoverVcId";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1695,7 +1695,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oB9-vY-VaL">
-                                <rect key="frame" x="0.0" y="192" width="320" height="312"/>
+                                <rect key="frame" x="0.0" y="192" width="320" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="0.85358588129496393" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hNW-Bo-6RF">
                                     <size key="itemSize" width="100" height="100"/>
@@ -1747,6 +1747,29 @@
                                     <outlet property="delegate" destination="2hF-kp-XqR" id="i1B-pZ-DOI"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU1-MN-beq">
+                                <rect key="frame" x="0.0" y="469" width="320" height="35"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIH-3O-g2e">
+                                        <rect key="frame" x="120" y="0.0" width="200" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="tdp-TA-jat"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Manual Location"/>
+                                        <connections>
+                                            <action selector="manualLocationTapped:" destination="2hF-kp-XqR" eventType="touchUpInside" id="CZx-GB-WgD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iIH-3O-g2e" secondAttribute="trailing" id="Cwk-pt-AWr"/>
+                                    <constraint firstItem="iIH-3O-g2e" firstAttribute="top" secondItem="eU1-MN-beq" secondAttribute="top" id="S86-YT-Cem"/>
+                                    <constraint firstAttribute="bottom" secondItem="iIH-3O-g2e" secondAttribute="bottom" id="rty-90-F3e"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.6470588235294118" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1757,11 +1780,15 @@
                             <constraint firstItem="cr7-vd-dXy" firstAttribute="top" secondItem="LqE-Xb-2Us" secondAttribute="bottom" id="6Qz-ct-3db"/>
                             <constraint firstAttribute="trailing" secondItem="oB9-vY-VaL" secondAttribute="trailing" id="7nY-Ri-gvg"/>
                             <constraint firstItem="Q2g-Ql-cP3" firstAttribute="top" secondItem="LqE-Xb-2Us" secondAttribute="bottom" id="9HI-h6-dn2"/>
+                            <constraint firstItem="eU1-MN-beq" firstAttribute="top" secondItem="oB9-vY-VaL" secondAttribute="bottom" id="CVB-Ad-WGc"/>
                             <constraint firstItem="cr7-vd-dXy" firstAttribute="leading" secondItem="sH4-j1-pJp" secondAttribute="leading" id="Fnc-uG-dd9"/>
                             <constraint firstItem="oB9-vY-VaL" firstAttribute="top" secondItem="e51-4M-2jL" secondAttribute="bottom" constant="2" id="IdL-Hy-Kcl"/>
                             <constraint firstItem="e51-4M-2jL" firstAttribute="leading" secondItem="sH4-j1-pJp" secondAttribute="leading" id="MGm-NG-s7E"/>
                             <constraint firstItem="oB9-vY-VaL" firstAttribute="leading" secondItem="sH4-j1-pJp" secondAttribute="leading" id="SV3-Ae-Bqf"/>
-                            <constraint firstItem="V3T-Q4-kqy" firstAttribute="top" secondItem="oB9-vY-VaL" secondAttribute="bottom" id="hvu-r8-CYk"/>
+                            <constraint firstItem="V3T-Q4-kqy" firstAttribute="top" secondItem="eU1-MN-beq" secondAttribute="bottom" id="a0u-Q1-UWa"/>
+                            <constraint firstItem="eU1-MN-beq" firstAttribute="leading" secondItem="sH4-j1-pJp" secondAttribute="leading" id="baf-En-6GX"/>
+                            <constraint firstItem="V3T-Q4-kqy" firstAttribute="top" secondItem="oB9-vY-VaL" secondAttribute="bottom" constant="35" id="hvu-r8-CYk"/>
+                            <constraint firstAttribute="trailing" secondItem="eU1-MN-beq" secondAttribute="trailing" id="oUk-7r-aHR"/>
                             <constraint firstAttribute="trailing" secondItem="e51-4M-2jL" secondAttribute="trailing" id="uek-0F-l3Q"/>
                         </constraints>
                     </view>
@@ -1860,7 +1887,7 @@
         <!--Search View Controller-->
         <scene sceneID="aW3-a1-3Pv">
             <objects>
-                <viewController id="CyX-XY-rfA" customClass="SearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchviewid" id="CyX-XY-rfA" customClass="SearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I6M-rd-twA"/>
                         <viewControllerLayoutGuide type="bottom" id="iTk-4A-gCf"/>
