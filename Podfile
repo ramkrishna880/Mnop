@@ -9,6 +9,7 @@ pod 'SSKeychain'
 pod 'HTHorizontalSelectionList'
 pod 'MBProgressHUD', '~> 0.9.2'
 pod 'INTULocationManager'
+pod 'LMAlertView'
 end
 
 target 'LapanzoTests' do

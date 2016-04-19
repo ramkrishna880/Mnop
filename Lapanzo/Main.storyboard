@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1869,16 +1869,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-BN-pga">
-                                <rect key="frame" x="24" y="279" width="272" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jV0-yQ-TKd">
+                                <rect key="frame" x="32" y="197" width="256" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1nA-L4-OzJ"/>
+                                </constraints>
+                                <state key="normal" title="Select"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jV0-yQ-TKd">
-                                <rect key="frame" x="24" y="209" width="272" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-BN-pga">
+                                <rect key="frame" x="32" y="272" width="256" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="vS3-dl-5ZW"/>
+                                </constraints>
+                                <state key="normal" title="Select"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jV0-yQ-TKd" firstAttribute="width" secondItem="rpj-bG-B7K" secondAttribute="width" multiplier="0.8" id="63S-rH-0sv"/>
+                            <constraint firstItem="jV0-yQ-TKd" firstAttribute="centerY" secondItem="rpj-bG-B7K" secondAttribute="centerY" constant="-70" id="M87-px-Wqy"/>
+                            <constraint firstItem="kYu-BN-pga" firstAttribute="width" secondItem="jV0-yQ-TKd" secondAttribute="width" id="li6-dp-rXA"/>
+                            <constraint firstItem="kYu-BN-pga" firstAttribute="centerX" secondItem="rpj-bG-B7K" secondAttribute="centerX" id="rye-P2-434"/>
+                            <constraint firstItem="jV0-yQ-TKd" firstAttribute="centerX" secondItem="rpj-bG-B7K" secondAttribute="centerX" id="tO6-qf-5vB"/>
+                            <constraint firstItem="jV0-yQ-TKd" firstAttribute="centerX" secondItem="rpj-bG-B7K" secondAttribute="centerX" id="tqS-4y-eF3"/>
+                            <constraint firstItem="kYu-BN-pga" firstAttribute="top" secondItem="jV0-yQ-TKd" secondAttribute="bottom" constant="40" id="xpM-U5-a6w"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>

@@ -51,4 +51,6 @@ static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";
 #define LogoTopConstant 40.0
 
 #define appDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define INSTANTIATE(viewController) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:viewController];
+
 #endif /* Constants_h */
