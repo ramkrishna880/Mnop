@@ -57,6 +57,12 @@ typedef enum : NSUInteger {
     self.adderssTableView.rowHeight = UITableViewAutomaticDimension;
     _addresses = [[NSMutableArray alloc] init];
     
+    [_locationValLbl.layer setBorderWidth:1.0f];
+    [_locationValLbl.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    
+    [_addressTxtView.layer setBorderWidth:1.0f];
+    [_addressTxtView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    
     _popDatePicker = [[PopDatePicker alloc] initForTextField:_deliverTime];
     _amountLabel.text = _totalPrice;
 }
