@@ -18,6 +18,7 @@
 #import <LMAlertView.h>
 #import "LCollectionViewFlowLayout.h"
 #import "ORNavigationBar.h"
+#import "SearchViewController.h"
 
 @interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -169,15 +170,22 @@
 
 
 - (IBAction)manualLocationTapped:(id)sender {
-    LMAlertView *cardAlertView = [[LMAlertView alloc] initWithTitle:@"Choose a card" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done",nil];
+//    LMAlertView *cardAlertView = [[LMAlertView alloc] initWithTitle:@"Choose a card" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done",nil];
+//    
+//    [cardAlertView setSize:CGSizeMake(270.0, 167.0)];
+//    UIView *contentView = cardAlertView.contentView;
+//    UIViewController *vcPopUp = INSTANTIATE(SEARCHM_SEGUEID);
+//    [self addChildViewController:vcPopUp];
+//    [vcPopUp didMoveToParentViewController:self];
+//    [contentView addSubview:vcPopUp.view];
+//    [cardAlertView show];
     
-    [cardAlertView setSize:CGSizeMake(270.0, 167.0)];
-    UIView *contentView = cardAlertView.contentView;
-    UIViewController *vcPopUp = INSTANTIATE(SEARCHM_SEGUEID);
-    [self addChildViewController:vcPopUp];
-    [vcPopUp didMoveToParentViewController:self];
-    [contentView addSubview:vcPopUp.view];
-    [cardAlertView show];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
+    svc.view.alpha = 0.5;
+    svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:svc animated:NO completion:nil];
+    
     
 //    ReportIssueViewController *reportIssueVC = [[ReportIssueViewController alloc] init];
 //    reportIssueVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
