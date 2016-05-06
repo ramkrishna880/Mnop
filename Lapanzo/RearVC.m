@@ -96,6 +96,7 @@
     if (storyBoardName.length == 0) {
         return;
     }
+    
     UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:storyBoardName];
     [frontNavigationController setViewControllers:@[vc]];
     [revealController pushFrontViewController:frontNavigationController animated:YES];

@@ -178,6 +178,11 @@
     [vcPopUp didMoveToParentViewController:self];
     [contentView addSubview:vcPopUp.view];
     [cardAlertView show];
+    
+//    ReportIssueViewController *reportIssueVC = [[ReportIssueViewController alloc] init];
+//    reportIssueVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [self presentViewController:reportIssueVC animated:YES completion:nil];
+
 }
 
 #pragma mark Others
