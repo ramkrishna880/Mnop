@@ -344,7 +344,7 @@
 
 - (void)changedQuantityForCell:(StoresTableViewCell *)cell andValue:(NSUInteger)changedNumber {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    Subcategory *sbCt = _subCategories[indexPath.section];
+    Subcategory *sbCt = _subCategories[_index];
     Item *item = sbCt.items[indexPath.row];
     NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
     
