@@ -30,8 +30,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _client = [Lapanzo_Client sharedClient];
     _dropdown = [[VSDropdown alloc]initWithDelegate:self];
-    [_dropdown setAdoptParentTheme:YES];
+    _dropdown.backgroundColor = [UIColor lightGrayColor];
+    [_dropdown setAdoptParentTheme:NO];
     [_dropdown setShouldSortItems:YES];
     
     _cityButton.layer.borderColor = [UIColor navigationBarTintColor].CGColor;
@@ -49,7 +51,7 @@
         return;
     }
     if (btn.tag == 0) {
-         [self showDropDownForButton:sender adContents:_cityList multipleSelection:NO];
+        [self showDropDownForButton:sender adContents:_cityList multipleSelection:NO];
     } else {
         [self showDropDownForButton:sender adContents:_areaList multipleSelection:NO];
     }
@@ -58,28 +60,26 @@
     //    /[_dropdown reloadDropdownWithContents:self.countries keyPath:@"name" selectedItems:@[_myButton.titleLabel.text]];
 }
 
--(void)showDropDownForButton:(UIButton *)sender adContents:(NSArray *)contents multipleSelection:(BOOL)multipleSelection
-{
-    
+- (IBAction)submitActionClicked:(id)sender {
+    if ([_cityButton.titleLabel.text isEqualToString:@"Select"] || [_localityButton.titleLabel.text isEqualToString:@"Select"]) {
+        [self showAlert:nil message:@"plse select all fileds."];
+        return;
+    }
+    [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
+    [self showAlert:nil message:@"your location has been set now."];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showDropDownForButton:(UIButton *)sender adContents:(NSArray *)contents multipleSelection:(BOOL)multipleSelection {
     [_dropdown setDrodownAnimation:rand()%2];
-    
     [_dropdown setAllowMultipleSelection:multipleSelection];
-    
     [_dropdown setupDropdownForView:sender];
-    
     [_dropdown setSeparatorColor:sender.titleLabel.textColor];
-    
-    if (_dropdown.allowMultipleSelection)
-    {
+    if (_dropdown.allowMultipleSelection) {
         [_dropdown reloadDropdownWithContents:contents andSelectedItems:[[sender titleForState:UIControlStateNormal] componentsSeparatedByString:@";"]];
-        
-    }
-    else
-    {
+    } else {
         [_dropdown reloadDropdownWithContents:contents andSelectedItems:@[[sender titleForState:UIControlStateNormal]]];
-        
     }
-    
 }
 
 #pragma mark - VSDropdown Delegate methods.
@@ -105,7 +105,7 @@
 }
 
 - (CGFloat)outlineWidthForDropdown:(VSDropdown *)dropdown {
-    return 2.0;
+    return 1.0;
 }
 
 - (CGFloat)cornerRadiusForDropdown:(VSDropdown *)dropdown {
@@ -120,7 +120,7 @@
 #pragma mark webOperations
 
 - (void)fetchCityList {
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=cityList&country=%@",@"india"];
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=cityList&country=%@",@"India"];
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];

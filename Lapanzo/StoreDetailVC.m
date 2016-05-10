@@ -13,11 +13,12 @@
 #import "Lapanzo_Client+DataAccess.h"
 #import "Subcategory.h"
 #import "FlowersCollectionViewCell.h"
+#import "HomeservicesCell.h"
 #import "CartVC.h"
 #import "UIColor+Helpers.h"
 #import "UIViewController+Helpers.h"
 
-@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate, FlowerCollectionCellDelegate> {
+@interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate, FlowerCollectionCellDelegate, HomeservicesCellDelegate> {
     UIDatePicker *datepicker;
     UIPopoverController *popOverForDatePicker;
 }
@@ -261,6 +262,7 @@
     [self showHUD];
     
 #warning sort out for water services
+    //    3
     
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
     //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
@@ -357,9 +359,10 @@
         if (changedNumber == 0) {
             NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId];
             [_cartItems removeObjectAtIndex:index];
+        } else {
+            Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
+            itemFrmCart.noOfItems = @(changedNumber).stringValue;
         }
-        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
-        itemFrmCart.noOfItems = @(changedNumber).stringValue;
     }
     self.cartLabel.text = @(_cartItems.count).stringValue;
     [self.client setCartItems:_cartItems];
@@ -383,6 +386,7 @@
 }
 
 #pragma mark flowercell Delegate
+
 - (void)changedFlowerQuantityForCell:(FlowersCollectionViewCell *)cell  {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     Item *item = _others[indexPath.row];
@@ -396,6 +400,25 @@
     [self.client setCartItems:_cartItems];
 }
 
+
+- (void)didItemAddorremoveFromCartForCell:(HomeservicesCell *)cell didAddOrRemove:(BOOL)shouldAdd {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Subcategory *sbCt = _subCategories[_index];
+    Item *item = sbCt.items[indexPath.row];
+    //NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
+    
+#warning change logic for flowers and homes servces etc like array passed
+    
+    // if (!items.count) {
+    if (shouldAdd) {
+        [_cartItems addObject:item];
+    } else {
+        NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:item.itemId];
+        [_cartItems removeObjectAtIndex:index];
+    }
+    // }
+    [self.client setCartItems:_cartItems];
+}
 
 #pragma mark - Navigation
 

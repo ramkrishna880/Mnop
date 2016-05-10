@@ -1902,19 +1902,39 @@
                                     <constraint firstAttribute="height" constant="35" id="1nA-L4-OzJ"/>
                                 </constraints>
                                 <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="dropdownButtonClicked:" destination="CyX-XY-rfA" eventType="touchUpInside" id="EI5-gr-Vvk"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-BN-pga">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-BN-pga">
                                 <rect key="frame" x="32" y="272" width="256" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="vS3-dl-5ZW"/>
                                 </constraints>
                                 <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="dropdownButtonClicked:" destination="CyX-XY-rfA" eventType="touchUpInside" id="c7T-Ah-ut5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tut-U8-cnv">
+                                <rect key="frame" x="32" y="347" width="256" height="40"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.64705882349999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WDG-gt-Yfu"/>
+                                </constraints>
+                                <state key="normal" title="SUBMIT"/>
+                                <connections>
+                                    <action selector="submitActionClicked:" destination="CyX-XY-rfA" eventType="touchUpInside" id="zOc-uO-deH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Tut-U8-cnv" firstAttribute="leading" secondItem="kYu-BN-pga" secondAttribute="leading" id="0MY-rr-QIt"/>
                             <constraint firstItem="jV0-yQ-TKd" firstAttribute="width" secondItem="rpj-bG-B7K" secondAttribute="width" multiplier="0.8" id="63S-rH-0sv"/>
                             <constraint firstItem="jV0-yQ-TKd" firstAttribute="centerY" secondItem="rpj-bG-B7K" secondAttribute="centerY" constant="-70" id="M87-px-Wqy"/>
+                            <constraint firstItem="Tut-U8-cnv" firstAttribute="top" secondItem="kYu-BN-pga" secondAttribute="bottom" constant="40" id="Qfg-Vf-uEX"/>
+                            <constraint firstItem="Tut-U8-cnv" firstAttribute="trailing" secondItem="kYu-BN-pga" secondAttribute="trailing" id="idC-MU-lS1"/>
                             <constraint firstItem="kYu-BN-pga" firstAttribute="width" secondItem="jV0-yQ-TKd" secondAttribute="width" id="li6-dp-rXA"/>
                             <constraint firstItem="kYu-BN-pga" firstAttribute="centerX" secondItem="rpj-bG-B7K" secondAttribute="centerX" id="rye-P2-434"/>
                             <constraint firstItem="jV0-yQ-TKd" firstAttribute="centerX" secondItem="rpj-bG-B7K" secondAttribute="centerX" id="tO6-qf-5vB"/>
@@ -1923,6 +1943,10 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="cityButton" destination="jV0-yQ-TKd" id="XSi-6b-N4o"/>
+                        <outlet property="localityButton" destination="kYu-BN-pga" id="f1A-xE-o3R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mt-4u-xOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

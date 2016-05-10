@@ -42,7 +42,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "484546514.110274"
+                  timestampString = "484555474.632633"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -57,7 +57,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "484546514.110564"
+                  timestampString = "484555474.633128"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -72,7 +72,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "484546514.110696"
+                  timestampString = "484555474.63332"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -87,7 +87,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/RegistrationVC.m"
-                  timestampString = "484546514.110824"
+                  timestampString = "484555474.633454"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "95"
@@ -231,7 +231,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "-viewDidAppear:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -279,8 +279,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
             endingLineNumber = "45"
-            landmarkName = "-countButtonsPressed:"
-            landmarkType = "5">
+            landmarkName = "@implementation StoresTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -344,6 +344,166 @@
             startingLineNumber = "173"
             endingLineNumber = "173"
             landmarkName = "-manualLocationTapped:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/SearchViewController.m"
+            timestampString = "484549179.136865"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/SearchViewController.m"
+            timestampString = "484555474.559596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-fetchCityList"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SearchViewController fetchCityList]"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/SearchViewController.m"
+                  timestampString = "484554983.082964"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[SearchViewController fetchCityList]_block_invoke"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/SearchViewController.m"
+                  timestampString = "484554983.083123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/SearchViewController.m"
+            timestampString = "484555474.559596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-fetchCityList"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/Lapanzo-Client.m"
+            timestampString = "484547427.775443"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-performOperationWithUrl:andCompletionHandler:failure:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[Lapanzo_Client performOperationWithUrl:andCompletionHandler:failure:]"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/Lapanzo-Client.m"
+                  timestampString = "484554983.084655"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "139">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__71-[Lapanzo_Client performOperationWithUrl:andCompletionHandler:failure:]_block_invoke"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ptg/Documents/Mnop/Lapanzo/Lapanzo-Client.m"
+                  timestampString = "484554983.08478"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/Lapanzo-Client.m"
+            timestampString = "484547435.984427"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-performOperationWithUrl:andCompletionHandler:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/SearchViewController.m"
+            timestampString = "484555474.559596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-fetchAreaList:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

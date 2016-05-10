@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		426F51D81CB90B0D006673F7 /* FlowersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */; };
 		426F51D91CB90B0D006673F7 /* FlowersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */; };
+		750F64651CE1F5B0008C83C8 /* HomeservicesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750F64641CE1F5B0008C83C8 /* HomeservicesCell.m */; };
 		753D34EB1CB3B9D1004BCCB8 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */; };
 		753D34F11CB3BC80004BCCB8 /* RearVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F01CB3BC80004BCCB8 /* RearVC.m */; };
 		753D34F41CB3C7FE004BCCB8 /* UIViewController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F31CB3C7FE004BCCB8 /* UIViewController+Helpers.m */; };
@@ -90,6 +91,8 @@
 		426F51D51CB90B0D006673F7 /* FlowersCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowersCollectionViewCell.h; sourceTree = "<group>"; };
 		426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowersCollectionViewCell.m; sourceTree = "<group>"; };
 		426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlowersCollectionViewCell.xib; sourceTree = "<group>"; };
+		750F64631CE1F5B0008C83C8 /* HomeservicesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeservicesCell.h; sourceTree = "<group>"; };
+		750F64641CE1F5B0008C83C8 /* HomeservicesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeservicesCell.m; sourceTree = "<group>"; };
 		753D34E91CB3B9D1004BCCB8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		753D34EF1CB3BC80004BCCB8 /* RearVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearVC.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				75C70FCC1C9C086500C6D9CF /* VendorCollectionViewCell.m */,
 				758982CE1CB2A66400B9C542 /* HistoryTableViewCell.h */,
 				758982CF1CB2A66400B9C542 /* HistoryTableViewCell.m */,
+				750F64631CE1F5B0008C83C8 /* HomeservicesCell.h */,
+				750F64641CE1F5B0008C83C8 /* HomeservicesCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -742,6 +747,7 @@
 				75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */,
 				758C8C911C86C67E00370262 /* NSString+Validations.m in Sources */,
 				754D7E1C1CB4E015002080C3 /* UIButton+UIButtonExt.m in Sources */,
+				750F64651CE1F5B0008C83C8 /* HomeservicesCell.m in Sources */,
 				75429C8F1C929F430071D352 /* LZLabel.m in Sources */,
 				757C21111C99787D001C6BC9 /* Vendor.m in Sources */,
 				75A79C731C8808F20096241C /* Store.m in Sources */,

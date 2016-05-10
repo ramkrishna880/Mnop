@@ -147,7 +147,7 @@
 //        NSString *url = [NSString stringWithFormat:@"portal?a=showNear&lat=%@&lan=%@&vtype=%@",dic[LATITUDEKEY],dic[LOGITUDEKEY],_vendorId];
 //    }
     
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Banjarahills&city=Hyderabad&vtype=1"];
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Madhapur&city=Hyderabad&vtype=%@",_vendorId];
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];

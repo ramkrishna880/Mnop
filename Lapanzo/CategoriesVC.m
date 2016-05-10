@@ -182,7 +182,7 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
-    svc.view.alpha = 0.5;
+    //svc.view.alpha = 0.5;
     svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:svc animated:NO completion:nil];
     
