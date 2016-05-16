@@ -70,6 +70,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+- (IBAction)cancelTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)showDropDownForButton:(UIButton *)sender adContents:(NSArray *)contents multipleSelection:(BOOL)multipleSelection {
     [_dropdown setDrodownAnimation:rand()%2];
     [_dropdown setAllowMultipleSelection:multipleSelection];
@@ -137,7 +142,8 @@
 }
 
 - (void)fetchAreaList:(NSString *)city {
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",@"Hyderabad"];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",@"Hyderabad"];
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",city];
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];

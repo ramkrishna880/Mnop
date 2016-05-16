@@ -7,8 +7,11 @@
 //
 
 #import "HomeservicesCell.h"
+#import "Item.h"
 
-@implementation HomeservicesCell
+@implementation HomeservicesCell {
+     Item *_currentItem;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -31,6 +34,17 @@
 //    } else {
 //        
 //    }
+}
+
+- (void)setCurrentItem:(Item *)currentItem {
+    if (currentItem == _currentItem) {
+        return;
+    }
+    _currentItem = currentItem;
+    self.storeTitle.text = [NSString stringWithFormat:@"%@ (%@ pc)",currentItem.name,currentItem.itemCount];
+    self.quantityLbl.text = currentItem.quantityval;
+    self.amountLbl.text = [NSString stringWithFormat:@"₹ %@",currentItem.priceAfterDiscount];
+//    self.counterLbl.text = _currentItem.noOfItems;
 }
 
 @end

@@ -33,7 +33,7 @@
     _client = [Lapanzo_Client sharedClient];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];\
+    _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
 }
 
 
@@ -49,18 +49,31 @@
 #pragma mark tableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _cartItems.count;
+    if (_cartItems.count == 0) {
+        return 1;
+    } else{
+        return _cartItems.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
-    if (!cell) {
-        cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
+    if (_cartItems.count == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCellIdentifier"];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
+        cell.textLabel.text = @"No Items Found in Cart";
+        return cell;
+    } else {
+        
+        StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
+        if (!cell) {
+            cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
+        }
+        cell.currentItem = _cartItems[indexPath.row];
+        
+        cell.delegate = self;
+        return cell;
     }
-    cell.currentItem = _cartItems[indexPath.row];
-    
-    cell.delegate = self;
-    return cell;
 }
 
 

@@ -596,6 +596,7 @@
 				TargetAttributes = {
 					758C8C561C86BE8000370262 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4HSG8F7X6N;
 					};
 					758C8C6F1C86BE8100370262 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -881,6 +882,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sampath Bhoopalraogari (4HSG8F7X6N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sampath Bhoopalraogari (4HSG8F7X6N)";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -888,8 +891,9 @@
 				INFOPLIST_FILE = Lapanzo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ptg.Lapanzo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lapanzocustomer.softnxt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7d4d9c07-6145-487d-a179-0ed4a093943f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Lapanzo/Lapanzo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -902,6 +906,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sampath Bhoopalraogari (4HSG8F7X6N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sampath Bhoopalraogari (4HSG8F7X6N)";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -909,8 +915,9 @@
 				INFOPLIST_FILE = Lapanzo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ptg.Lapanzo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lapanzocustomer.softnxt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7d4d9c07-6145-487d-a179-0ed4a093943f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Lapanzo/Lapanzo-Bridging-Header.h";
 			};
 			name = Release;

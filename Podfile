@@ -5,12 +5,11 @@
 
 target 'Lapanzo' do
 pod 'AFNetworking', '~> 3.0'
-#pod 'SSKeychain'
 pod 'SSKeychain'
 pod 'HTHorizontalSelectionList'
 pod 'MBProgressHUD', '~> 0.9.2'
 pod 'INTULocationManager'
-pod 'LMAlertView'
+#pod 'LMAlertVtiew'
 end
 
 target 'LapanzoTests' do

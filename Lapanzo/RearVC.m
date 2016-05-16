@@ -62,7 +62,7 @@
             storyBoardName = @"";
             break;
         case 1:
-            storyBoardName = @""; //there Home
+            storyBoardName = @"categoryVcSegueId"; //there Home
             break;
         case 2:
             storyBoardName = @"";

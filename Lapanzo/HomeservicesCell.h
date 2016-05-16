@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Item;
 
 @protocol HomeservicesCellDelegate;
 
 @interface HomeservicesCell : UITableViewCell
-@property (nonatomic, weak) IBOutlet UILabel *storeTitle;
-@property (nonatomic) IBOutlet UILabel *quantityLbl;
-@property (nonatomic) IBOutlet UILabel *amountLbl;
+@property (nonatomic, weak) IBOutlet UILabel          *storeTitle;
+@property (nonatomic) IBOutlet UILabel                *quantityLbl;
+@property (nonatomic) IBOutlet UILabel                *amountLbl;
+@property (nonatomic, weak) IBOutlet UILabel          *counterLbl;
+@property (nonatomic, weak) IBOutlet UIButton         *radioButton;
+@property (nonatomic, strong) Item                    *currentItem;
 
 @property (nonatomic, weak) id <HomeservicesCellDelegate> delegate;
+
 @end
 
 

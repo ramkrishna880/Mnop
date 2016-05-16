@@ -94,7 +94,12 @@
     if (latitude==0 || longitude==0) {
         [standardUserDefaults removeObjectForKey:LOCATION_KEY];
     } else {
-        NSDictionary *dic = @{[NSNumber numberWithDouble:latitude]:LATITUDEKEY,[NSNumber numberWithDouble:longitude]:LOGITUDEKEY};
+        
+        NSMutableDictionary *dic = [NSMutableDictionary new];
+        [dic setObject:[NSNumber numberWithDouble:latitude] forKey:LATITUDEKEY];
+        [dic setObject:[NSNumber numberWithDouble:longitude] forKey:LOGITUDEKEY];
+        
+//        NSDictionary *dic = @{[NSNumber numberWithDouble:latitude]:LATITUDEKEY,[NSNumber numberWithDouble:longitude]:LOGITUDEKEY};
         [standardUserDefaults setObject:dic forKey:LOCATION_KEY];
     }
     [standardUserDefaults synchronize];
@@ -107,7 +112,9 @@
     if (!city || !area) {
         [standardUserDefaults removeObjectForKey:MANUALLOCATION_KEY];
     } else {
-        NSDictionary *dic = @{city:CITYKEY,area:AREAKEY};
+         NSMutableDictionary *dic = [NSMutableDictionary new];
+        [dic setObject:city forKey:CITYKEY];
+        [dic setObject:area forKey:AREAKEY];
         [standardUserDefaults setObject:dic forKey:MANUALLOCATION_KEY];
     }
     [standardUserDefaults synchronize];

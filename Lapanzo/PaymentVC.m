@@ -258,8 +258,10 @@ typedef enum : NSUInteger {
             [self showAlert:@"Proceed" message:responseObject.message];
         } else {
             //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
+            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
+            [self showAlert:nil message:message];
+            [self performSegueWithIdentifier:@"historySegueId" sender:nil];
         }
-        
     } failure:^(NSError *connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
@@ -283,5 +285,8 @@ typedef enum : NSUInteger {
     
 }
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 
 @end

@@ -54,4 +54,7 @@ static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";
 #define appDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define INSTANTIATE(viewController) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:viewController];
 
+
+#define WEATHERAPIKEY @"8b1a5942ff26021d76c4ec7b6c9930c5"
+
 #endif /* Constants_h */

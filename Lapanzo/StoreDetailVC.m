@@ -148,24 +148,55 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
-    if (!cell) {
-        cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
-        //        cell.delegate = self;
-    }
-    Subcategory *sbCat = _subCategories [_index];
-    Item *crntItem =  sbCat.items [indexPath.row];
-    NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
-    NSLog(@"inside cell :%lu",checkedItems.count);
-    if (!checkedItems.count) {
+    
+    if (self.vendorType == kVendorTypeHOmeServices) {
+        HomeservicesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeservicesCellIdentifier"];
+        if (!cell) {
+            cell = [[HomeservicesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeservicesCellIdentifier"];
+        }
+        Item *crntItem = _others [indexPath.row];
+        NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
+        if (checkedItems.count) {
+            [cell.radioButton setSelected:YES];
+        } else {
+            [cell.radioButton setSelected:NO];
+        }
         cell.currentItem = crntItem;
+        return cell;
+    } else if (self.vendorType == kVendorTypeWater) {
+        StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
+        if (!cell) {
+            cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
+        }
+        Item *crntItem = _others [indexPath.row];
+        NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
+        if (checkedItems.count) {
+            cell.currentItem = checkedItems[0];
+        } else {
+            cell.currentItem = crntItem;
+        }
+        cell.delegate = self;
+        return cell;
     } else {
-        cell.currentItem = checkedItems[0];
+        StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
+        if (!cell) {
+            cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
+        }
+        Subcategory *sbCat = _subCategories [_index];
+        Item *crntItem =  sbCat.items [indexPath.row];
+        NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
+        NSLog(@"inside cell :%lu",checkedItems.count);
+        if (!checkedItems.count) {
+            cell.currentItem = crntItem;
+        } else {
+            cell.currentItem = checkedItems[0];
+        }
+        
+        cell.delegate = self;
+        return cell;
     }
     
     //http://stackoverflow.com/questions/31063571/getting-indexpath-from-switch-on-uitableview
-    cell.delegate = self;
-    return cell;
 }
 
 
@@ -261,48 +292,64 @@
 - (void)fetchStoreSubcategories {
     [self showHUD];
     
-#warning sort out for water services
+//#warning sort out for water services
     //    3
-    
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
     //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
     [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *subCategories = responseObject[@"list"];
         
-        //        if (self.vendorType == kVendorTypeFlower) {
-        //            NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-        //            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        //                Item *item = [[Item alloc] initWithDictionary:obj];
-        //                [flowers addObject:item];
-        //            }];
-        //            _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
-        //            [_collectionView reloadData];
-        //        } else if (self.vendorType == kVendorTypeWater) {
-        //
-        //        } else if (self.vendorType == kVendorTypeHOmeServices) {
-        //            NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-        //            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        //                Item *item = [[Item alloc] initWithDictionary:obj];
-        //                [flowers addObject:item];
-        //            }];
-        //            _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
-        //            [_tableView reloadData];
-        //        } else {
-        //
-        //        }
-        
         if (subCategories.count) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
-            }];
-            self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
-            [self.tabs reloadData];
-            [self.tableView reloadData];
-        } else {
-            [self showAlert:nil message:@"No Subcategories Found"];
+            if (self.vendorType == kVendorTypeFlower) {
+                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    Item *item = [[Item alloc] initWithDictionary:obj];
+                    [flowers addObject:item];
+                }];
+                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+                [_collectionView reloadData];
+            } else if (self.vendorType == kVendorTypeWater) {
+                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    Item *item = [[Item alloc] initWithDictionary:obj];
+                    [flowers addObject:item];
+                }];
+                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+                [_tableView reloadData];
+            } else if (self.vendorType == kVendorTypeHOmeServices) {
+                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    Item *item = [[Item alloc] initWithDictionary:obj];
+                    [flowers addObject:item];
+                }];
+                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+                [_tableView reloadData];
+            } else {
+                NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
+                }];
+                self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
+                [self.tabs reloadData];
+                [self.tableView reloadData];
+                
+            }
+        }else {
+            [self showAlert:nil message:@"No List Found"];
         }
+        
+        //        if (subCategories.count) {
+        //            NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //            [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
+        //            }];
+        //            self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
+        //            [self.tabs reloadData];
+        //            [self.tableView reloadData];
+        //        } else {
+        //            [self showAlert:nil message:@"No Subcategories Found"];
+        //        }
     } failure:^(NSError *connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
