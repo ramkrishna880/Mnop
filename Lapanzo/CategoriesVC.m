@@ -26,17 +26,17 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSMutableArray *categories;
 
-@property (nonatomic, weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *periodLabel;
-@property (nonatomic, weak) IBOutlet UILabel *temparatureLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *dayOrNightImg;
-@property (nonatomic, weak) IBOutlet UILabel *wishLabel;
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *quoteLabel;
-
+@property (nonatomic, weak) IBOutlet UILabel             *timeLabel;
+@property (nonatomic, weak) IBOutlet UILabel             *periodLabel;
+@property (nonatomic, weak) IBOutlet UILabel             *temparatureLabel;
+@property (nonatomic, weak) IBOutlet UIImageView         *dayOrNightImg;
+@property (nonatomic, weak) IBOutlet UILabel             *wishLabel;
+@property (nonatomic, weak) IBOutlet UILabel             *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel             *quoteLabel;
+@property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
 //@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
-@property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
-@property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
+//@property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
+//@property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
 @end
 
 @implementation CategoriesVC
@@ -57,8 +57,6 @@
     [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    
-    //    [self.firstVendor centerImageAndTitle];
     
     LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
@@ -185,6 +183,14 @@
 }
 
 
+- (IBAction)switchChanged:(UISwitch *)sender {
+    if (sender.on) {
+        [self fetchCurrentLOcation];
+    } else {
+        [self manualLocationTapped:nil];
+    }
+}
+
 - (IBAction)manualLocationTapped:(id)sender {
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -192,11 +198,6 @@
     //svc.view.alpha = 0.5;
     svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:svc animated:NO completion:nil];
-    
-    
-    //    ReportIssueViewController *reportIssueVC = [[ReportIssueViewController alloc] init];
-    //    reportIssueVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    //    [self presentViewController:reportIssueVC animated:YES completion:nil];
     
 }
 
