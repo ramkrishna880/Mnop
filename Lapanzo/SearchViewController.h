@@ -12,6 +12,7 @@
 @protocol ManualSelectionControllerDelegate <NSObject>
 @optional
 - (void)selectedCity:(NSString *)city andArea:(NSString *)area;
+- (void)didManualLocationSelected:(BOOL)isManual;
 @end
 
 @interface SearchViewController : GenericViewController

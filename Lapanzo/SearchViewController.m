@@ -61,10 +61,18 @@
 }
 
 - (IBAction)submitActionClicked:(id)sender {
+    
     if ([_cityButton.titleLabel.text isEqualToString:@"Select"] || [_localityButton.titleLabel.text isEqualToString:@"Select"]) {
         [self showAlert:nil message:@"plse select all fileds."];
         return;
     }
+//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    [def setBool:YES forKey:ISMANUALLOCATION];
+    
+    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
+        [self.selectionDelegate didManualLocationSelected:YES];
+    }
+    
     [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
     [self showAlert:nil message:@"your location has been set now."];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -72,6 +80,11 @@
 
 
 - (IBAction)cancelTapped:(id)sender {
+//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    [def setBool:NO forKey:ISMANUALLOCATION];
+    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
+        [self.selectionDelegate didManualLocationSelected:NO];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

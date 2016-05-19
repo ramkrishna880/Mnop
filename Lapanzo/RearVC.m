@@ -29,7 +29,7 @@
 
 - (void)setUPinitialUIElements {
     [self.userImgView.layer setCornerRadius:40.0f];
-    self.rows = @[@"My Account",@"Home",@"My Activities",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
+    self.rows = @[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
 }
 
 #pragma mark Tableview datasouce
@@ -57,6 +57,8 @@
     //    UINavigationController *navigationController = (UINavigationController*)[revealController.frontViewController navigationController];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     NSString *storyBoardName;
+    
+    //@[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
     switch (indexPath.row) {
         case 0:
             storyBoardName = @"";

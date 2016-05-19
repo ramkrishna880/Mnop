@@ -46,6 +46,8 @@
 		758C8C9C1C8716C000370262 /* Lapanzo-Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8C9B1C8716C000370262 /* Lapanzo-Client.m */; };
 		758C8CA21C87217B00370262 /* CategoriesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8CA11C87217B00370262 /* CategoriesVC.m */; };
 		758C8CA61C8721E100370262 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C8CA51C8721E100370262 /* CategoryCollectionViewCell.m */; };
+		75A6D30C1CEDC09F006C01E5 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A6D3091CEDC09F006C01E5 /* SSKeychain.m */; };
+		75A6D30D1CEDC09F006C01E5 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A6D30B1CEDC09F006C01E5 /* SSKeychainQuery.m */; };
 		75A79C691C87FB580096241C /* StoresVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A79C681C87FB580096241C /* StoresVC.m */; };
 		75A79C6B1C87FB860096241C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A79C6A1C87FB860096241C /* MapKit.framework */; };
 		75A79C6E1C87FC0B0096241C /* StoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A79C6D1C87FC0B0096241C /* StoresTableViewCell.m */; };
@@ -163,6 +165,10 @@
 		758C8CA11C87217B00370262 /* CategoriesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesVC.m; sourceTree = "<group>"; };
 		758C8CA41C8721E100370262 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
 		758C8CA51C8721E100370262 /* CategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewCell.m; sourceTree = "<group>"; };
+		75A6D3081CEDC09F006C01E5 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		75A6D3091CEDC09F006C01E5 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		75A6D30A1CEDC09F006C01E5 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		75A6D30B1CEDC09F006C01E5 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		75A79C671C87FB570096241C /* StoresVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresVC.h; sourceTree = "<group>"; };
 		75A79C681C87FB580096241C /* StoresVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresVC.m; sourceTree = "<group>"; };
 		75A79C6A1C87FB860096241C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -228,6 +234,10 @@
 		42258B411CAC17A800DCFCCF /* sskeychain */ = {
 			isa = PBXGroup;
 			children = (
+				75A6D3081CEDC09F006C01E5 /* SSKeychain.h */,
+				75A6D3091CEDC09F006C01E5 /* SSKeychain.m */,
+				75A6D30A1CEDC09F006C01E5 /* SSKeychainQuery.h */,
+				75A6D30B1CEDC09F006C01E5 /* SSKeychainQuery.m */,
 			);
 			name = sskeychain;
 			sourceTree = "<group>";
@@ -718,6 +728,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75C70FC61C9AAB5B00C6D9CF /* Subcategory.m in Sources */,
+				75A6D30D1CEDC09F006C01E5 /* SSKeychainQuery.m in Sources */,
 				758C8C621C86BE8000370262 /* ViewController.m in Sources */,
 				758982CC1CB28C7600B9C542 /* PopDateViewController.swift in Sources */,
 				758C8CA21C87217B00370262 /* CategoriesVC.m in Sources */,
@@ -758,6 +769,7 @@
 				753D34F11CB3BC80004BCCB8 /* RearVC.m in Sources */,
 				755931351C8EDB5200D1946F /* LButton.m in Sources */,
 				758C8C5C1C86BE8000370262 /* main.m in Sources */,
+				75A6D30C1CEDC09F006C01E5 /* SSKeychain.m in Sources */,
 				758982CB1CB28C7600B9C542 /* PopDatePicker.swift in Sources */,
 				75504AFF1C96D14400CDA023 /* NSDictionary+Response.m in Sources */,
 			);

@@ -20,7 +20,7 @@
 #import "ORNavigationBar.h"
 #import "SearchViewController.h"
 
-@interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate, ManualSelectionControllerDelegate>
 
 @property (nonatomic) Lapanzo_Client *client;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
@@ -34,6 +34,9 @@
 @property (nonatomic, weak) IBOutlet UILabel             *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *quoteLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
+@property (nonatomic, weak) IBOutlet UISwitch            *locationSwitch;
+
+//@property (nonatomic) BOOL                               *isManualLoaction;
 //@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
 //@property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
 //@property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
@@ -69,6 +72,7 @@
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
+//    self.isManualLoaction = false;
     [self fetchCurrentLOcation];
     [self fetchCategories];
 }
@@ -76,6 +80,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.cartLabel.text = @(_client.cartItemsCount).stringValue;
+    
+//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    BOOL isManualLocation = [def boolForKey:ISMANUALLOCATION];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -196,9 +203,9 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
     //svc.view.alpha = 0.5;
+    svc.selectionDelegate = self;
     svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:svc animated:NO completion:nil];
-    
 }
 
 #pragma mark Others
@@ -210,6 +217,14 @@
                           delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
                                          block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
                                              if (status == INTULocationStatusSuccess) {
+                                                 CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+                                                 [geoCoder reverseGeocodeLocation:currentLocation
+                                                                completionHandler:^(NSArray *placemarks, NSError *error) {
+                                                                    
+                                                                    CLPlacemark *place = placemarks[0];
+                                                                    NSString *cityNameCode = [NSString stringWithFormat:@"%@,%@",place.locality,place.ISOcountryCode];
+                                                                    [self fetchWeatherDetails:cityNameCode];
+                                                                }];
                                                  [_client setLocationLatitude:currentLocation.coordinate.latitude logitude:currentLocation.coordinate.longitude];
                                              }
                                              else if (status == INTULocationStatusTimedOut) {
@@ -220,6 +235,18 @@
                                          }];
 }
 
+
+#pragma mark ManualSelectionDelegate
+
+- (void)didManualLocationSelected:(BOOL)isManual {
+    if (isManual) {
+        [_locationSwitch setOn:NO];
+        _locationtypeLbl.text = @"Manual Location";
+    } else {
+        [_locationSwitch setOn:YES];
+        _locationtypeLbl.text = @"Current Location";
+    }
+}
 
 #pragma mark - Navigation
 

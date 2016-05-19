@@ -51,6 +51,8 @@ static NSString *const USERDETAILSFETCHEDNOTIFICATION = @"userDetailsfetched";
 #define KeyboardMoveHeightConstant -40.0
 #define LogoTopConstant 40.0
 
+static NSString *const ISMANUALLOCATION = @"isManualLoacation";
+
 #define appDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define INSTANTIATE(viewController) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:viewController];
 
