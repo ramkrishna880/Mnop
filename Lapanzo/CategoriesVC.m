@@ -36,7 +36,7 @@
 @property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
 @property (nonatomic, weak) IBOutlet UISwitch            *locationSwitch;
 
-//@property (nonatomic) BOOL                               *isManualLoaction;
+@property (nonatomic) BOOL                               isManualLoaction;
 //@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
 //@property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
 //@property (nonatomic, weak) IBOutlet UIImageView *firstVendorImg;
@@ -72,7 +72,7 @@
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
-//    self.isManualLoaction = false;
+    self.isManualLoaction = NO;
     [self fetchCurrentLOcation];
     [self fetchCategories];
 }
@@ -246,7 +246,9 @@
         [_locationSwitch setOn:YES];
         _locationtypeLbl.text = @"Current Location";
     }
+    self.isManualLoaction = isManual;
 }
+
 
 #pragma mark - Navigation
 
@@ -254,6 +256,7 @@
     if ([segue.identifier isEqualToString:STORE_SEGUE]) {
         StoresVC *storeVc = (StoresVC *)segue.destinationViewController;
         storeVc.vendorId = ((NSDictionary *)sender).vendorId;
+        storeVc.useCurrentLocation = !_isManualLoaction;
     }
 }
 

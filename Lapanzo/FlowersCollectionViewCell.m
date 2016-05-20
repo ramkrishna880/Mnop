@@ -17,8 +17,27 @@
 
 
 
-- (IBAction)addButtonClicked:(id)sender {
+- (IBAction)addButtonClicked:(UIButton *)sender {
     
+    BOOL shouldAdd;
+    if ([sender.titleLabel.text isEqualToString:@"ADD+"]) {
+        [sender setTitle:@"Remove -" forState:UIControlStateNormal];
+        shouldAdd = YES;
+    } else {
+        [sender setTitle:@"ADD+" forState:UIControlStateNormal];
+        shouldAdd = NO;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didItemAddOrRemoveFlowerFromCartForCell:didAddOrRemove:)]) {
+        [self.delegate didItemAddOrRemoveFlowerFromCartForCell:self didAddOrRemove:shouldAdd];
+    }
+}
+
+- (void)setTitleForAddbutton:(BOOL)isAdd {
+    if (isAdd) {
+        [_addButton setTitle:@"Remove -" forState:UIControlStateNormal];
+    } else {
+        [_addButton setTitle:@"ADD+" forState:UIControlStateNormal];
+    }
 }
 
 - (void)setSelectedItem:(Item *)selectedItem {

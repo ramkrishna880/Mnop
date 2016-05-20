@@ -28,6 +28,8 @@ static NSString * const KEY_LISTOFITEMS = @"list";
             NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:listofItems.count];
             [listofItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 Item *item = [[Item alloc] initWithDictionary:obj];
+                item.subcategoryId = self.subCategoryId;
+                item.subcategaryName = self.subCategoryName;
                 [mutableItems addObject:item];
             }];
             self.items = [[NSArray alloc] initWithArray:mutableItems copyItems:NO];

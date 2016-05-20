@@ -74,7 +74,7 @@
     }
     
     [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
-    [self showAlert:nil message:@"your location has been set now."];
+    [self showAlert:nil message:@"Your location has been set now."];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

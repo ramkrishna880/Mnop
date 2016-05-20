@@ -514,18 +514,22 @@
                                     <constraint firstItem="iC5-BQ-UEF" firstAttribute="top" secondItem="vFZ-Fi-z2o" secondAttribute="top" constant="1" id="ptE-4R-cnJ"/>
                                 </constraints>
                             </view>
-                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CeU-qP-Zte">
-                                <rect key="frame" x="0.0" y="90" width="320" height="374"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G9u-ig-RGZ">
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ufp-Ao-bWb">
+                                <rect key="frame" x="0.0" y="55" width="320" height="384"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LIh-1J-Xj9">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="E6G-30-1Ga" id="x3Z-aG-VxA"/>
+                                    <outlet property="delegate" destination="E6G-30-1Ga" id="wky-0k-o2n"/>
+                                </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdO-By-Mq4">
-                                <rect key="frame" x="0.0" y="90" width="320" height="374"/>
+                                <rect key="frame" x="0.0" y="55" width="320" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -642,7 +646,7 @@
                                             <outlet property="storeTitle" destination="mpZ-Ui-MQF" id="z09-oq-Rk1"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeservicesTableViewCellId" rowHeight="70" id="LHF-PY-coJ" customClass="StoresTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeservicesCellIdentifier" rowHeight="70" id="LHF-PY-coJ" customClass="HomeservicesCell">
                                         <rect key="frame" x="0.0" y="98" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LHF-PY-coJ" id="onu-gX-zjA">
@@ -710,6 +714,7 @@
                                         <connections>
                                             <outlet property="amountLbl" destination="Z0W-Ms-FYY" id="jnQ-tF-ppw"/>
                                             <outlet property="quantityLbl" destination="lKd-AP-uuP" id="cDh-4N-UWQ"/>
+                                            <outlet property="radioButton" destination="l4Q-A9-tjx" id="PAj-5s-8bf"/>
                                             <outlet property="storeTitle" destination="DRm-eO-51C" id="u58-di-E0B"/>
                                         </connections>
                                     </tableViewCell>
@@ -724,27 +729,27 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Qid-fW-sr9" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="3Ea-Bo-zfT"/>
-                            <constraint firstAttribute="trailing" secondItem="mdO-By-Mq4" secondAttribute="trailing" id="Blv-Ga-0It"/>
-                            <constraint firstItem="mdO-By-Mq4" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="C3l-Pi-xQ2"/>
+                            <constraint firstItem="mdO-By-Mq4" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="6zr-c0-xuc"/>
+                            <constraint firstItem="ufp-Ao-bWb" firstAttribute="trailing" secondItem="mdO-By-Mq4" secondAttribute="trailing" id="9cy-8M-zkm"/>
                             <constraint firstItem="T6E-M6-ffE" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="J3k-OM-9AR"/>
                             <constraint firstItem="T6E-M6-ffE" firstAttribute="top" secondItem="Qid-fW-sr9" secondAttribute="bottom" id="KQO-7M-8jH"/>
                             <constraint firstItem="Qid-fW-sr9" firstAttribute="top" secondItem="3HS-57-djn" secondAttribute="bottom" id="M4I-hH-c2z"/>
-                            <constraint firstItem="vFZ-Fi-z2o" firstAttribute="top" secondItem="mdO-By-Mq4" secondAttribute="bottom" id="U12-sW-vQf"/>
+                            <constraint firstAttribute="trailing" secondItem="mdO-By-Mq4" secondAttribute="trailing" id="MoO-nW-9MM"/>
+                            <constraint firstItem="mdO-By-Mq4" firstAttribute="top" secondItem="Qid-fW-sr9" secondAttribute="bottom" constant="10" id="RAS-gP-bwM"/>
                             <constraint firstAttribute="trailing" secondItem="vFZ-Fi-z2o" secondAttribute="trailing" id="UJ5-3H-Xfq"/>
-                            <constraint firstItem="mdO-By-Mq4" firstAttribute="top" secondItem="T6E-M6-ffE" secondAttribute="bottom" id="Wan-Bu-KKC"/>
+                            <constraint firstItem="vFZ-Fi-z2o" firstAttribute="top" secondItem="mdO-By-Mq4" secondAttribute="bottom" constant="25" id="WHg-3W-zpG"/>
                             <constraint firstItem="vFZ-Fi-z2o" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="Wth-ja-ttg"/>
-                            <constraint firstItem="CeU-qP-Zte" firstAttribute="top" secondItem="T6E-M6-ffE" secondAttribute="bottom" id="XX5-Pf-W9v"/>
+                            <constraint firstItem="ufp-Ao-bWb" firstAttribute="leading" secondItem="mdO-By-Mq4" secondAttribute="leading" id="aU4-ED-muQ"/>
                             <constraint firstAttribute="trailing" secondItem="T6E-M6-ffE" secondAttribute="trailing" id="c4d-ax-Fuk"/>
-                            <constraint firstItem="vFZ-Fi-z2o" firstAttribute="top" secondItem="CeU-qP-Zte" secondAttribute="bottom" id="e3h-Mo-zmW"/>
-                            <constraint firstItem="CeU-qP-Zte" firstAttribute="leading" secondItem="rIN-DZ-GcW" secondAttribute="leading" id="eZo-7S-9YT"/>
-                            <constraint firstAttribute="trailing" secondItem="CeU-qP-Zte" secondAttribute="trailing" id="qaE-Gb-0kW"/>
+                            <constraint firstItem="ufp-Ao-bWb" firstAttribute="top" secondItem="mdO-By-Mq4" secondAttribute="top" id="m8L-pI-Srx"/>
+                            <constraint firstItem="ufp-Ao-bWb" firstAttribute="bottom" secondItem="mdO-By-Mq4" secondAttribute="bottom" id="n3J-L0-qpy"/>
                             <constraint firstItem="ZSR-OJ-LRl" firstAttribute="top" secondItem="vFZ-Fi-z2o" secondAttribute="bottom" id="qcD-Rz-u1v"/>
                             <constraint firstAttribute="trailing" secondItem="Qid-fW-sr9" secondAttribute="trailing" id="x3L-4u-sNX"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="collectionView" destination="CeU-qP-Zte" id="cIB-UC-s3N"/>
+                        <outlet property="collectionView" destination="ufp-Ao-bWb" id="pdL-KD-zfY"/>
                         <outlet property="searchPlaceHolder" destination="Qid-fW-sr9" id="y4c-NL-ptI"/>
                         <outlet property="tableView" destination="mdO-By-Mq4" id="ic0-5K-wIJ"/>
                         <outlet property="tabsPlaceHolder" destination="T6E-M6-ffE" id="Kiy-CH-wgp"/>

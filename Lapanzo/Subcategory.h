@@ -13,6 +13,9 @@
 @property (nonatomic) NSString *subCategoryName;
 @property (nonatomic) NSArray *items;
 
+@property (nonatomic) NSNumber *storeId;
+@property (nonatomic) NSString *storeName;
+
 - (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary;
 @end
 

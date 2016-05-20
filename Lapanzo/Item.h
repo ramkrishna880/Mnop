@@ -25,8 +25,8 @@
 @property (nonatomic) NSString *noOfItems;
 
 //Optional depends May be in future
-//@property (nonatomic) NSNumber *subcategoryId;
-//@property (nonatomic) NSString *subcategaryName;
+@property (nonatomic) NSNumber *subcategoryId;
+@property (nonatomic) NSString *subcategaryName;
 
 //
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

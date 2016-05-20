@@ -17,6 +17,9 @@
 @interface CartVC () <UITableViewDelegate, UITableViewDataSource, StoreTableCellDelegate>
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) Lapanzo_Client *client;
+
+@property (nonatomic, weak) IBOutlet UIButton *mainCatButton;
+@property (nonatomic, weak) IBOutlet UIButton *backStoreButton;
 //@property (nonatomic) NSMutableArray *cartItems;
 @end
 
@@ -31,6 +34,10 @@
 - (void)setupInitialUiElements {
     [self homeButton];
     _client = [Lapanzo_Client sharedClient];
+    if (!_isFrmStore) {
+        [_mainCatButton setHidden:YES];
+        [_backStoreButton setHidden:YES];
+    }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];

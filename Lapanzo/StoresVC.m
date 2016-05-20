@@ -19,7 +19,6 @@
 #import "Store.h"
 #import "StoreDetailVC.h"
 
-@import MapKit;
 
 @interface StoresVC () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
@@ -147,7 +146,7 @@
 //        NSString *url = [NSString stringWithFormat:@"portal?a=showNear&lat=%@&lan=%@&vtype=%@",dic[LATITUDEKEY],dic[LOGITUDEKEY],_vendorId];
 //    }
     
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Madhapur&city=Hyderabad&vtype=%@",_vendorId];
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Madhapur&city=Hyderabad&vtype=%@",_vendorId]; //
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];

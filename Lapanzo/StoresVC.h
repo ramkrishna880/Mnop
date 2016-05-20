@@ -11,4 +11,5 @@
 
 @interface StoresVC : GenericViewController
 @property (nonatomic) NSNumber *vendorId;
+@property (nonatomic) BOOL useCurrentLocation;
 @end

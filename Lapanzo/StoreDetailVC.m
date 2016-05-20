@@ -19,6 +19,7 @@
 #import "UIViewController+Helpers.h"
 
 @interface StoreDetailVC () <UITableViewDataSource, UITableViewDelegate,HTHorizontalSelectionListDataSource, HTHorizontalSelectionListDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate, StoreTableCellDelegate, UIPopoverControllerDelegate, FlowerCollectionCellDelegate, HomeservicesCellDelegate> {
+    
     UIDatePicker *datepicker;
     UIPopoverController *popOverForDatePicker;
 }
@@ -34,8 +35,10 @@
 @property (nonatomic) HTHorizontalSelectionList *tabs;
 @property (nonatomic) NSArray *subCategories;
 @property (nonatomic) NSMutableArray *others;
+
 @property (nonatomic) NSMutableArray *searchedItems;
 @property (nonatomic) NSMutableArray *cartItems;
+
 @property (nonatomic, assign) NSUInteger index;
 @property (nonatomic) IBOutlet NSLayoutConstraint *tabsViewHeightConstraint;
 @end
@@ -46,6 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Products";
     _index = 0;
     [self setUpInitialUIelements];
 }
@@ -143,8 +147,13 @@
 #pragma mark tableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    Subcategory *sbCat = _subCategories[_index];
-    return sbCat.items.count;
+    
+    if (self.vendorType == kVendorTypeGeneral) {
+        Subcategory *sbCat = _subCategories[_index];
+        return sbCat.items.count;
+    } else {
+        return  _others.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +163,14 @@
         if (!cell) {
             cell = [[HomeservicesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeservicesCellIdentifier"];
         }
-        Item *crntItem = _others [indexPath.row];
+        
+        Item *crntItem;
+        if (self.searchController.active && _searchController.searchBar.text.length) {
+            crntItem = _searchedItems [indexPath.row];
+        } else {
+            crntItem = _others [indexPath.row];
+        }
+        //        Item *crntItem = _others [indexPath.row];
         NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
         if (checkedItems.count) {
             [cell.radioButton setSelected:YES];
@@ -168,7 +184,15 @@
         if (!cell) {
             cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
         }
-        Item *crntItem = _others [indexPath.row];
+        
+        Item *crntItem;
+        if (self.searchController.active && _searchController.searchBar.text.length) {
+            crntItem = _searchedItems [indexPath.row];
+        } else {
+            crntItem = _others [indexPath.row];
+        }
+        
+        //Item *crntItem = _others [indexPath.row];
         NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
         if (checkedItems.count) {
             cell.currentItem = checkedItems[0];
@@ -182,8 +206,17 @@
         if (!cell) {
             cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
         }
-        Subcategory *sbCat = _subCategories [_index];
-        Item *crntItem =  sbCat.items [indexPath.row];
+        
+        Item *crntItem;
+        if (self.searchController.active && _searchController.searchBar.text.length) {
+            crntItem = _searchedItems [indexPath.row];
+        } else {
+            Subcategory *sbCat = _subCategories [_index];
+            crntItem =  sbCat.items [indexPath.row];
+        }
+        
+        //        Subcategory *sbCat = _subCategories [_index];
+        //        Item *crntItem =  sbCat.items [indexPath.row];
         NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
         NSLog(@"inside cell :%lu",checkedItems.count);
         if (!checkedItems.count) {
@@ -211,12 +244,21 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath  {
     FlowersCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:FLOWERS_COLLCCELLID forIndexPath:indexPath];
+    Item *item;
     if (self.searchController.active && _searchController.searchBar.text.length) {
-        cell.selectedItem = _searchedItems[indexPath.row];
+        item = _searchedItems[indexPath.row];
     } else {
-        cell.selectedItem = _others[indexPath.row];
+        item = _others[indexPath.row];
     }
     
+    NSArray *checkedItems = [self checkForSelectedFromCartOfItems:item.itemId];
+    if (checkedItems.count) {
+        cell.selectedItem = checkedItems[0];
+        [cell setTitleForAddbutton:YES];
+    } else {
+        cell.selectedItem = item;
+        [cell setTitleForAddbutton:NO];
+    }
     return cell;
 }
 
@@ -291,8 +333,6 @@
 
 - (void)fetchStoreSubcategories {
     [self showHUD];
-    
-//#warning sort out for water services
     //    3
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",_storeId];
     //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
@@ -301,31 +341,8 @@
         NSArray *subCategories = responseObject[@"list"];
         
         if (subCategories.count) {
-            if (self.vendorType == kVendorTypeFlower) {
-                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    Item *item = [[Item alloc] initWithDictionary:obj];
-                    [flowers addObject:item];
-                }];
-                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
-                [_collectionView reloadData];
-            } else if (self.vendorType == kVendorTypeWater) {
-                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    Item *item = [[Item alloc] initWithDictionary:obj];
-                    [flowers addObject:item];
-                }];
-                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
-                [_tableView reloadData];
-            } else if (self.vendorType == kVendorTypeHOmeServices) {
-                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
-                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    Item *item = [[Item alloc] initWithDictionary:obj];
-                    [flowers addObject:item];
-                }];
-                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
-                [_tableView reloadData];
-            } else {
+            
+            if (self.vendorType == kVendorTypeGeneral) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
                 [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
@@ -333,11 +350,66 @@
                 self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
                 [self.tabs reloadData];
                 [self.tableView reloadData];
+            } else {
+                NSDictionary *type = subCategories [0];
+                NSArray *subItems = [type valueForKey:@"list"];
+                NSMutableArray *otherThanGenTypes = [[NSMutableArray alloc] initWithCapacity:subItems.count];
+                [subItems enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    Item *item = [[Item alloc] initWithDictionary:obj];
+                    item.subcategoryId = [type valueForKey:@"id"];
+                    item.subcategaryName = [type valueForKey:@"name"];
+                    [otherThanGenTypes addObject:item];
+                }];
+                _others = [[NSMutableArray alloc]initWithArray:otherThanGenTypes copyItems:NO];
                 
+                if (self.vendorType == kVendorTypeFlower) {
+                    [_collectionView reloadData];
+                } else {
+                    [self.tableView reloadData];
+                }
             }
         }else {
             [self showAlert:nil message:@"No List Found"];
         }
+        
+        //        if (subCategories.count) {
+        //            if (self.vendorType == kVendorTypeFlower) {
+        //                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                    Item *item = [[Item alloc] initWithDictionary:obj];
+        //                    [flowers addObject:item];
+        //                }];
+        //                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+        //                [_collectionView reloadData];
+        //            } else if (self.vendorType == kVendorTypeWater) {
+        //                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                    Item *item = [[Item alloc] initWithDictionary:obj];
+        //                    [flowers addObject:item];
+        //                }];
+        //                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+        //                [_tableView reloadData];
+        //            } else if (self.vendorType == kVendorTypeHOmeServices) {
+        //                NSMutableArray *flowers = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                    Item *item = [[Item alloc] initWithDictionary:obj];
+        //                    [flowers addObject:item];
+        //                }];
+        //                _others = [[NSMutableArray alloc]initWithArray:flowers copyItems:NO];
+        //                [_tableView reloadData];
+        //            } else {
+        //                NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
+        //                [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
+        //                }];
+        //                self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
+        //                [self.tabs reloadData];
+        //                [self.tableView reloadData];
+        //
+        //            }
+        //        }else {
+        //            [self showAlert:nil message:@"No List Found"];
+        //        }
         
         //        if (subCategories.count) {
         //            NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
@@ -362,8 +434,23 @@
     [self.searchedItems removeAllObjects];
     //NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"storeName  contains [c] %@", searchText];//LIKE
-    self.searchedItems = [NSMutableArray arrayWithArray: [self.subCategories filteredArrayUsingPredicate:resultPredicate]]; // passed wrong array here change in future
-    [self.tableView reloadData];
+    
+    if (self.vendorType == kVendorTypeGeneral) {
+        NSMutableArray *tempSearchItems = [[NSMutableArray alloc] init];
+        for (Subcategory *subCat in self.subCategories) {
+            [tempSearchItems addObjectsFromArray:subCat.items];
+        }
+        self.searchedItems = [NSMutableArray arrayWithArray: [tempSearchItems filteredArrayUsingPredicate:resultPredicate]];
+    } else {
+        self.searchedItems = [NSMutableArray arrayWithArray: [self.others filteredArrayUsingPredicate:resultPredicate]];
+    }
+    
+    //self.searchedItems = [NSMutableArray arrayWithArray: [self.subCategories filteredArrayUsingPredicate:resultPredicate]]; // passed wrong array here change in future
+    if (self.vendorType == kVendorTypeFlower) {
+        [self.collectionView reloadData];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -372,20 +459,30 @@
     [self filterContentForSearchText:searchBar.text scope:@"All"];
 }
 
-# warning implement proper search implementation
+//# warning implement proper search implementation
 
 - (void)didPresentSearchController:(UISearchController *)searchController {
     NSLog(@"search activated");
+    
+    if (self.vendorType == kVendorTypeGeneral) {
+        self.tabsViewHeightConstraint.constant = 0;
+        [self.tabsViewHeightConstraint.firstItem setHidden:YES];
+    }
 }
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
     NSLog(@"search dismissed");
+    if (self.vendorType == kVendorTypeGeneral) {
+        self.tabsViewHeightConstraint.constant = 0;
+        [self.tabsViewHeightConstraint.firstItem setHidden:YES];
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSLog(@"searchText");
     if (searchText.length == 0) {
         NSLog(@"No searchText");
+        //        [self.view endEditing:YES];
     }
 }
 
@@ -401,7 +498,7 @@
         item.noOfItems = @(changedNumber).stringValue;
         [_cartItems addObject:item];
     } else {
-#warning remove item if count is 0
+        //#warning remove item if count is 0
         Item *existedItem = items[0];
         if (changedNumber == 0) {
             NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId];
@@ -434,36 +531,34 @@
 
 #pragma mark flowercell Delegate
 
-- (void)changedFlowerQuantityForCell:(FlowersCollectionViewCell *)cell  {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+- (void)didItemAddOrRemoveFlowerFromCartForCell:(FlowersCollectionViewCell *)cell didAddOrRemove:(BOOL)shouldAdd  {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)cell];
     Item *item = _others[indexPath.row];
-    NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
-    if (!items.count) {
-        [_cartItems addObject:item];
-    } else {
-        Item *existedItem = items[0];
-        Item *itemFrmCart = _cartItems [[self indexOfItemFromArray:_cartItems foIitemId:existedItem.itemId]];
-    }
-    [self.client setCartItems:_cartItems];
-}
-
-
-- (void)didItemAddorremoveFromCartForCell:(HomeservicesCell *)cell didAddOrRemove:(BOOL)shouldAdd {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    Subcategory *sbCt = _subCategories[_index];
-    Item *item = sbCt.items[indexPath.row];
     //NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
-    
-#warning change logic for flowers and homes servces etc like array passed
-    
-    // if (!items.count) {
+    //if (!items.count) {
     if (shouldAdd) {
         [_cartItems addObject:item];
     } else {
         NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:item.itemId];
         [_cartItems removeObjectAtIndex:index];
     }
-    // }
+    [self.client setCartItems:_cartItems];
+}
+
+#pragma mark Homeservices Delegate
+
+- (void)didItemAddorremoveFromCartForCell:(HomeservicesCell *)cell didAddOrRemove:(BOOL)shouldAdd {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    //    Subcategory *sbCt = _subCategories[_index];
+    Item *item = _others[indexPath.row];
+    //NSArray *items = [self checkForSelectedFromCartOfItems:item.itemId];
+    
+    if (shouldAdd) {
+        [_cartItems addObject:item];
+    } else {
+        NSUInteger index = [self indexOfItemFromArray:_cartItems foIitemId:item.itemId];
+        [_cartItems removeObjectAtIndex:index];
+    }
     [self.client setCartItems:_cartItems];
 }
 

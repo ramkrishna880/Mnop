@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UILabel                *amountLbl;
 @property (nonatomic, weak) IBOutlet UILabel          *counterLbl;
 @property (nonatomic, weak) IBOutlet UIButton         *radioButton;
+
 @property (nonatomic, strong) Item                    *currentItem;
 
 @property (nonatomic, weak) id <HomeservicesCellDelegate> delegate;

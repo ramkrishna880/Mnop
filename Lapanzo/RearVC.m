@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "Lapanzo_Client+DataAccess.m"
 #import "AppDelegate.h"
+#import "CartVC.h"
 #import "Constants.h"
 
 @interface RearVC () <UITableViewDelegate, UITableViewDataSource>
@@ -66,25 +67,25 @@
         case 1:
             storyBoardName = @"categoryVcSegueId"; //there Home
             break;
+//        case 2:
+//            storyBoardName = @"";
+//            break;
         case 2:
-            storyBoardName = @"";
-            break;
-        case 3:
             storyBoardName = @"HistoryVC"; //der History
             break;
-        case 4:
+        case 3:
             storyBoardName = @"CartVC"; //der Cart
             break;
-        case 5:
+        case 4:
             storyBoardName = @"";
+            break;
+        case 5:
+            storyBoardName = @"searchviewid";
             break;
         case 6:
             storyBoardName = @"";
             break;
         case 7:
-            storyBoardName = @"";
-            break;
-        case 8:
         {
             Lapanzo_Client *client = [Lapanzo_Client sharedClient];
             [client setIsLogged:NO];
@@ -100,6 +101,9 @@
     }
     
     UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:storyBoardName];
+    if (indexPath.row == 3) {
+        ((CartVC *)vc).isFrmStore = NO;
+    }
     [frontNavigationController setViewControllers:@[vc]];
     [revealController pushFrontViewController:frontNavigationController animated:YES];
     [revealController setFrontViewPosition:FrontViewPositionLeft animated:YES];
