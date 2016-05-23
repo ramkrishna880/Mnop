@@ -16,7 +16,8 @@
 @property (nonatomic) NSNumber *storeId;
 @property (nonatomic) NSString *storeName;
 
-- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary;
+//- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary andStoreId:(NSNumber *)storeId;
 @end
 
 /*

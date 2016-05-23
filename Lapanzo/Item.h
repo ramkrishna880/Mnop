@@ -28,6 +28,8 @@
 @property (nonatomic) NSNumber *subcategoryId;
 @property (nonatomic) NSString *subcategaryName;
 
+@property (nonatomic) NSNumber *storeId;
+
 //
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (NSString *)quantityval;

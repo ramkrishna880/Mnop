@@ -19,8 +19,10 @@
 @property (nonatomic) Lapanzo_Client *client;
 
 @property (nonatomic, weak) IBOutlet UIButton *mainCatButton;
-@property (nonatomic, weak) IBOutlet UIButton *backStoreButton;
-//@property (nonatomic) NSMutableArray *cartItems;
+//@property (nonatomic, weak) IBOutlet UIButton *backStoreButton;
+@property (nonatomic, weak) IBOutlet UILabel  *multipleStoreStatLabel;
+@property (nonatomic, weak) IBOutlet UILabel  *totalAmountLabel;
+
 @end
 
 @implementation CartVC
@@ -36,11 +38,23 @@
     _client = [Lapanzo_Client sharedClient];
     if (!_isFrmStore) {
         [_mainCatButton setHidden:YES];
-        [_backStoreButton setHidden:YES];
+//        [_backStoreButton setHidden:YES];
     }
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
+    
+    NSMutableArray *storeIds = [[NSMutableArray alloc] init];
+    for (Item *itm in _cartItems) {
+        [storeIds addObject:itm.storeId];
+    }
+    NSSet *storeIdSet = [[NSSet alloc] initWithArray:storeIds];
+    if (storeIdSet.count >1) {
+//        [_backStoreButton setHidden:YES];
+        _multipleStoreStatLabel.text = @"You Have selected Multiple Stores";
+    }
+    _totalAmountLabel.text = [self totalPrice];
 }
 
 
@@ -71,7 +85,6 @@
         cell.textLabel.text = @"No Items Found in Cart";
         return cell;
     } else {
-        
         StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
         if (!cell) {
             cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];

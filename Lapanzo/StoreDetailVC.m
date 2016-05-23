@@ -345,7 +345,7 @@
             if (self.vendorType == kVendorTypeGeneral) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
                 [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj]];
+                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj andStoreId:self.storeId]];
                 }];
                 self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
                 [self.tabs reloadData];
@@ -358,6 +358,7 @@
                     Item *item = [[Item alloc] initWithDictionary:obj];
                     item.subcategoryId = [type valueForKey:@"id"];
                     item.subcategaryName = [type valueForKey:@"name"];
+                    item.storeId = self.storeId;
                     [otherThanGenTypes addObject:item];
                 }];
                 _others = [[NSMutableArray alloc]initWithArray:otherThanGenTypes copyItems:NO];

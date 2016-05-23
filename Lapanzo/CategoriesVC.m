@@ -72,6 +72,7 @@
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
+    
     self.isManualLoaction = NO;
     [self fetchCurrentLOcation];
     [self fetchCategories];

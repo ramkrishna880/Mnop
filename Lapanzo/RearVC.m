@@ -15,6 +15,7 @@
 #import "Constants.h"
 
 @interface RearVC () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic) Lapanzo_Client *client;
 @property (nonatomic, weak) IBOutlet UIImageView *userImgView;
 @property (nonatomic, weak) IBOutlet UILabel *userName;
 @property (nonatomic, strong) NSArray *rows;
@@ -30,7 +31,13 @@
 
 - (void)setUPinitialUIElements {
     [self.userImgView.layer setCornerRadius:40.0f];
-    self.rows = @[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
+    _client = [Lapanzo_Client sharedClient];
+    
+    //set Image also if avaliable
+    _userName.text = _client.userDetails.userName;
+    
+    //    self.rows = @[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
+    self.rows = @[@"Lapanzo",@"Home",@"History",@"Location",@"Notifications",@"Verify Account",@"Logout"];
 }
 
 #pragma mark Tableview datasouce
@@ -59,7 +66,8 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     NSString *storyBoardName;
     
-    //@[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
+//[@"Lapanzo",@"History",@"Location",@"Notifications",@"Verify Account",@"Logout"]
+    
     switch (indexPath.row) {
         case 0:
             storyBoardName = @"";
@@ -67,25 +75,27 @@
         case 1:
             storyBoardName = @"categoryVcSegueId"; //there Home
             break;
-//        case 2:
-//            storyBoardName = @"";
-//            break;
+            //        case 2:
+            //            storyBoardName = @"";
+            //            break;
         case 2:
             storyBoardName = @"HistoryVC"; //der History
             break;
         case 3:
-            storyBoardName = @"CartVC"; //der Cart
-            break;
-        case 4:
-            storyBoardName = @"";
-            break;
-        case 5:
+            //storyBoardName = @"CartVC"; //der Cart
             storyBoardName = @"searchviewid";
             break;
-        case 6:
-            storyBoardName = @"";
+        case 4:
+            storyBoardName = @"";//notifications
             break;
-        case 7:
+        case 5:
+//            storyBoardName = @"searchviewid"; //
+            //verify account
+            break;
+//        case 6:
+//            storyBoardName = @"";
+//            break;
+        case 6:
         {
             Lapanzo_Client *client = [Lapanzo_Client sharedClient];
             [client setIsLogged:NO];
