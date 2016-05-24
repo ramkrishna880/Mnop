@@ -23,8 +23,15 @@
 @property (nonatomic, weak) IBOutlet UIView *locationView;
 @property (nonatomic, weak) IBOutlet UIView *enterAddressView;
 @property (nonatomic, weak) IBOutlet UILabel *locationValLbl;
-@property (nonatomic, weak) IBOutlet UITextView *addressTxtView;
+//@property (nonatomic, weak) IBOutlet UITextView *addressTxtView;
 @property (nonatomic, weak) IBOutlet UITextField *deliverTime;
+
+@property (nonatomic, weak) IBOutlet UITextField *addressline1;
+@property (nonatomic, weak) IBOutlet UITextField *addressline2;
+@property (nonatomic, weak) IBOutlet UITextField *addressCity;
+@property (nonatomic, weak) IBOutlet UITextField *addressState;
+@property (nonatomic, weak) IBOutlet UITextField *addressPincode;
+
 
 @property (nonatomic) NSMutableArray *addresses;
 @property (strong, nonatomic) CLGeocoder *geocoder;
@@ -60,8 +67,8 @@ typedef enum : NSUInteger {
     [_locationValLbl.layer setBorderWidth:1.0f];
     [_locationValLbl.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
-    [_addressTxtView.layer setBorderWidth:1.0f];
-    [_addressTxtView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//    [_addressTxtView.layer setBorderWidth:1.0f];
+//    [_addressTxtView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     
     _popDatePicker = [[PopDatePicker alloc] initForTextField:_deliverTime];
     _amountLabel.text = _totalPrice;
@@ -180,7 +187,12 @@ typedef enum : NSUInteger {
     if (_addresses.count == 5) {
         [_addresses removeLastObject];
     }
-    [_addresses insertObject:_addressTxtView.text atIndex:0];
+//    [_addresses insertObject:_addressTxtView.text atIndex:0];
+    
+//#warning insert address to file path to save
+    
+    NSString *address = [NSString stringWithFormat:@"%@, %@, %@ ,%@ ,%@",_addressline1,_addressline2,_addressCity,_addressState,_addressPincode];
+    [_addresses insertObject:address atIndex:0];
     [_addresses writeToFile:addressArrayPath atomically:YES];
 }
 
@@ -270,9 +282,29 @@ typedef enum : NSUInteger {
 
 #pragma mark TextField Delegate
 
+- (void)resign {
+    [self.view endEditing:YES];
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if (textField == _deliverTime) {
         
+        [self resign];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterNoStyle;
+        
+        NSDate *initDate = [dateFormatter dateFromString:_deliverTime.text];
+        [_popDatePicker pick:self initDate:initDate dataChanged:^(NSDate  *newDate, UITextField  *textField) {
+            // here we don't use self (no retain cycle)
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateStyle = NSDateFormatterMediumStyle;
+            formatter.timeStyle = NSDateFormatterNoStyle;
+            //return formatter.stringFromDate(self)
+            
+            self.deliverTime.text = [formatter stringFromDate:newDate];
+        }];
         return YES;
     } else {
         return NO;
