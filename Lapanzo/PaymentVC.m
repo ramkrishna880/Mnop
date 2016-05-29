@@ -37,7 +37,6 @@
 @property (strong, nonatomic) CLGeocoder *geocoder;
 
 @property (nonatomic , strong) NSString *addressString;
-
 @property (nonatomic) PopDatePicker *popDatePicker;
 @end
 
@@ -259,12 +258,18 @@ typedef enum : NSUInteger {
 #pragma mark weboperations
 
 - (void)performSendOrder {
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet"];
+    
     //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
     //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
     
     [self showHUD];
-    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+    
+    
+    [_client performPostOperationWithUrl:urlStr andParams:_cartItems andCompletionHandler:^(NSDictionary *responseObject) {
+        
         [self hideHud];
         if ([responseObject.status isEqualToString:@"fail"]) {
             [self showAlert:@"Proceed" message:responseObject.message];
@@ -274,10 +279,26 @@ typedef enum : NSUInteger {
             [self showAlert:nil message:message];
             [self performSegueWithIdentifier:@"historySegueId" sender:nil];
         }
-    } failure:^(NSError *connectionError) {
+        
+    } failure:^(NSError * _Nullable connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];
     }];
+    
+//    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+//        [self hideHud];
+//        if ([responseObject.status isEqualToString:@"fail"]) {
+//            [self showAlert:@"Proceed" message:responseObject.message];
+//        } else {
+//            //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
+//            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
+//            [self showAlert:nil message:message];
+//            [self performSegueWithIdentifier:@"historySegueId" sender:nil];
+//        }
+//    } failure:^(NSError *connectionError) {
+//        [self hideHud];
+//        [self showAlert:nil message:connectionError.localizedDescription];
+//    }];
 }
 
 #pragma mark TextField Delegate
