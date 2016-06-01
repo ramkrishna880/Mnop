@@ -10,6 +10,7 @@
 		426F51D81CB90B0D006673F7 /* FlowersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426F51D61CB90B0D006673F7 /* FlowersCollectionViewCell.m */; };
 		426F51D91CB90B0D006673F7 /* FlowersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */; };
 		750F64651CE1F5B0008C83C8 /* HomeservicesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 750F64641CE1F5B0008C83C8 /* HomeservicesCell.m */; };
+		7511C3711CFEDB6800286702 /* ForgotPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7511C3701CFEDB6800286702 /* ForgotPwdVC.m */; };
 		753D34EB1CB3B9D1004BCCB8 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */; };
 		753D34F11CB3BC80004BCCB8 /* RearVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F01CB3BC80004BCCB8 /* RearVC.m */; };
 		753D34F41CB3C7FE004BCCB8 /* UIViewController+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 753D34F31CB3C7FE004BCCB8 /* UIViewController+Helpers.m */; };
@@ -95,6 +96,8 @@
 		426F51D71CB90B0D006673F7 /* FlowersCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlowersCollectionViewCell.xib; sourceTree = "<group>"; };
 		750F64631CE1F5B0008C83C8 /* HomeservicesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeservicesCell.h; sourceTree = "<group>"; };
 		750F64641CE1F5B0008C83C8 /* HomeservicesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeservicesCell.m; sourceTree = "<group>"; };
+		7511C36F1CFEDB6800286702 /* ForgotPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPwdVC.h; sourceTree = "<group>"; };
+		7511C3701CFEDB6800286702 /* ForgotPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPwdVC.m; sourceTree = "<group>"; };
 		753D34E91CB3B9D1004BCCB8 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		753D34EA1CB3B9D1004BCCB8 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		753D34EF1CB3BC80004BCCB8 /* RearVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearVC.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				758C8C611C86BE8000370262 /* ViewController.m */,
 				75FFE2A71C89B344006DCDD5 /* RegistrationVC.h */,
 				75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */,
+				7511C36F1CFEDB6800286702 /* ForgotPwdVC.h */,
+				7511C3701CFEDB6800286702 /* ForgotPwdVC.m */,
 			);
 			name = "Login&registration";
 			sourceTree = "<group>";
@@ -736,6 +741,7 @@
 				758C8C5F1C86BE8000370262 /* AppDelegate.m in Sources */,
 				758982D31CB2A87200B9C542 /* PastOrder.m in Sources */,
 				753D34EB1CB3B9D1004BCCB8 /* SWRevealViewController.m in Sources */,
+				7511C3711CFEDB6800286702 /* ForgotPwdVC.m in Sources */,
 				758C8C9C1C8716C000370262 /* Lapanzo-Client.m in Sources */,
 				75FFE2A91C89B344006DCDD5 /* RegistrationVC.m in Sources */,
 				75C70FCD1C9C086500C6D9CF /* VendorCollectionViewCell.m in Sources */,
