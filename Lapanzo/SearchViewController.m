@@ -22,7 +22,7 @@
 @property (nonatomic) Lapanzo_Client *client;
 
 @property (nonatomic) NSArray *cityList;
-@property (nonatomic) NSArray *areaList;
+@property (nonatomic) NSMutableArray *areaList;
 @end
 
 @implementation SearchViewController
@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     _client = [Lapanzo_Client sharedClient];
     _dropdown = [[VSDropdown alloc]initWithDelegate:self];
-    _dropdown.backgroundColor = [UIColor lightGrayColor];
+    _dropdown.backgroundColor = [UIColor whiteColor];
     [_dropdown setAdoptParentTheme:NO];
     [_dropdown setShouldSortItems:YES];
     
@@ -66,25 +66,27 @@
         [self showAlert:nil message:@"plse select all fileds."];
         return;
     }
-//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-//    [def setBool:YES forKey:ISMANUALLOCATION];
     
-    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
-        [self.selectionDelegate didManualLocationSelected:YES];
+    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(selectedCity:andArea:)]) {
+        [self.selectionDelegate selectedCity:_cityButton.titleLabel.text andArea:_localityButton.titleLabel.text];
     }
     
-    [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
-    [self showAlert:nil message:@"Your location has been set now."];
+//    [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
+//    [self showAlert:nil message:@"Your location has been set now."];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 - (IBAction)cancelTapped:(id)sender {
-//    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-//    [def setBool:NO forKey:ISMANUALLOCATION];
-    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
-        [self.selectionDelegate didManualLocationSelected:NO];
+
+//    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
+//        [self.selectionDelegate didManualLocationSelected:NO];
+//    }
+    
+    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(selectedCity:andArea:)]) {
+        [self.selectionDelegate selectedCity:nil andArea:nil];
     }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -155,6 +157,7 @@
 }
 
 - (void)fetchAreaList:(NSString *)city {
+    [self.areaList removeAllObjects];
 //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",@"Hyderabad"];
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",city];
     [self showHUD];
@@ -165,7 +168,7 @@
             [self showAlert:nil message:@"No Areas Found"];
             return;
         }
-        _areaList = [[NSArray alloc] initWithArray:areas];
+        _areaList = [[NSMutableArray alloc] initWithArray:areas];
     } failure:^(NSError *connectionError) {
         [self hideHud];
         [self showAlert:nil message:connectionError.localizedDescription];

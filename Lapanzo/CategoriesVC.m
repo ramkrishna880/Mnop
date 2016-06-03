@@ -32,9 +32,12 @@
 @property (nonatomic, weak) IBOutlet UIImageView         *dayOrNightImg;
 @property (nonatomic, weak) IBOutlet UILabel             *wishLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel             *quoteLabel;
-@property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
-@property (nonatomic, weak) IBOutlet UISwitch            *locationSwitch;
+
+@property (nonatomic, weak) IBOutlet UIButton            *locationBtn;
+
+//@property (nonatomic, weak) IBOutlet UILabel             *quoteLabel;
+//@property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
+//@property (nonatomic, weak) IBOutlet UISwitch            *locationSwitch;
 
 @property (nonatomic) BOOL                               isManualLoaction;
 //@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
@@ -75,8 +78,8 @@
     
     self.isManualLoaction = NO;
     [self fetchCurrentLOcation];
-    [self fetchCategories];
-//    [self fetchStoreSubcategories];
+//    [self fetchCategories];
+    [self fetchStoreSubcategories];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,30 +120,63 @@
 - (void)performSendOrder:(NSArray *)items {
     //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
     
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet"];
     
-    //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
-    //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
-    
-    [self showHUD];
-    
-    
-    [_client performPostOperationWithUrl:urlStr andParams:items andCompletionHandler:^(NSDictionary *responseObject) {
-        
-        [self hideHud];
-        if ([responseObject.status isEqualToString:@"fail"]) {
-            [self showAlert:@"Proceed" message:responseObject.message];
-        } else {
-            //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
-            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
-            [self showAlert:nil message:message];
-            //[self performSegueWithIdentifier:@"historySegueId" sender:nil];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 0; i<items.count; i++) {
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        NSDictionary *valDic = items[i];
+        [dic setObject:valDic [@"id"] forKey:@"product"];
+        [dic setObject:@"3" forKey:@"quantity"];
+        [array addObject:dic];
         }
+    NSString *urlStr = [NSString stringWithFormat:@"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:jsonData forKey:@"list"];
+//    [request setval]
+
+//    [request setValue:jsonData forHTTPHeaderField:@"list"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         
-    } failure:^(NSError * _Nullable connectionError) {
-        [self hideHud];
-        [self showAlert:nil message:connectionError.localizedDescription];
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+       
+        if (!connectionError) {
+             NSLog(@"%@",res);
+        } 
     }];
+    
+////    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:items options:NSJSONWritingPrettyPrinted error:nil];
+//    
+//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55"];
+//    //YYYY-MM-dd HH:mm
+//    
+//    //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
+//    //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
+//    
+//    [self showHUD];
+//    
+//    
+//    [_client performPostOperationWithUrl:urlStr andParams:array andCompletionHandler:^(NSDictionary *responseObject) {
+//        
+//        [self hideHud];
+//        if ([responseObject.status isEqualToString:@"fail"]) {
+//            [self showAlert:@"Proceed" message:responseObject.message];
+//        } else {
+//            //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
+//            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
+//            [self showAlert:nil message:message];
+//            //[self performSegueWithIdentifier:@"historySegueId" sender:nil];
+//        }
+//        
+//    } failure:^(NSError * _Nullable connectionError) {
+//        [self hideHud];
+//        [self showAlert:nil message:connectionError.localizedDescription];
+//    }];
 
 }
 
@@ -178,7 +214,7 @@
     }
     _wishLabel.text = message;
     _nameLabel.text = user.userName;
-    _quoteLabel.text = @"Hello this is Random Quote";
+    //_quoteLabel.text = @"Hello this is Random Quote";
 }
 
 
@@ -250,22 +286,24 @@
 }
 
 
-- (IBAction)switchChanged:(UISwitch *)sender {
-    if (sender.on) {
-        [self fetchCurrentLOcation];
-    } else {
-        [self manualLocationTapped:nil];
-    }
-}
+//- (IBAction)switchChanged:(UISwitch *)sender {
+//    if (sender.on) {
+//        [self fetchCurrentLOcation];
+//    } else {
+//        [self manualLocationTapped:nil];
+//    }
+//}
 
 - (IBAction)manualLocationTapped:(id)sender {
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
-    //svc.view.alpha = 0.5;
-    svc.selectionDelegate = self;
-    svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self presentViewController:svc animated:NO completion:nil];
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
+//    //svc.view.alpha = 0.5;
+//    svc.selectionDelegate = self;
+//    svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [self presentViewController:svc animated:NO completion:nil];
+    
+    [self performSegueWithIdentifier:SEARCH_SEGUEID sender:nil];
 }
 
 #pragma mark Others
@@ -299,14 +337,15 @@
 #pragma mark ManualSelectionDelegate
 
 - (void)didManualLocationSelected:(BOOL)isManual {
-    if (isManual) {
-        [_locationSwitch setOn:NO];
-        _locationtypeLbl.text = @"Manual Location";
-    } else {
-        [_locationSwitch setOn:YES];
-        _locationtypeLbl.text = @"Current Location";
-    }
-    self.isManualLoaction = isManual;
+    
+//    if (isManual) {
+//        [_locationSwitch setOn:NO];
+//        _locationtypeLbl.text = @"Manual Location";
+//    } else {
+//        [_locationSwitch setOn:YES];
+//        _locationtypeLbl.text = @"Current Location";
+//    }
+//    self.isManualLoaction = isManual;
 }
 
 
@@ -317,6 +356,9 @@
         StoresVC *storeVc = (StoresVC *)segue.destinationViewController;
         storeVc.vendorId = ((NSDictionary *)sender).vendorId;
         storeVc.useCurrentLocation = !_isManualLoaction;
+    } else if ([segue.identifier isEqualToString:SEARCH_SEGUEID]) {
+        SearchViewController *searchVc = (SearchViewController *)segue.destinationViewController;
+        searchVc.selectionDelegate = self;
     }
 }
 

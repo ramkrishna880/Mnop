@@ -22,11 +22,14 @@ static NSString *const CATEGORY_NAV_SEGUEID = @"navigationCategorySegueId";
 static NSString *const STOREDETAIL_SEGUEID = @"storeDetailSegueId";
 static NSString *const CART_SEGUEID = @"cartSegueId";
 static NSString *const PAYMENT_SEGUEID = @"paymetsegueId";
-static NSString *const SEARCHM_SEGUEID = @"searchviewid";
+static NSString *const SEARCHM_STORYBOARDID = @"searchviewid";
+static NSString *const SEARCH_SEGUEID = @"searchlocationSegueId";
 
 //view IDs
 static NSString *const POPOVER_VIEWID = @"popoverVcId";
 static NSString *SectionHeaderViewIdentifier = @"SectionHeaderViewIdentifier";
+
+//searchlocationSegueId
 
 #pragma mark CellIds
 
