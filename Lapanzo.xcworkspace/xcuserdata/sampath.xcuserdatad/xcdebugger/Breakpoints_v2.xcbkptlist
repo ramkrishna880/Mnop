@@ -127,8 +127,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "347"
             endingLineNumber = "347"
-            landmarkName = "-changedQuantityForCell:andValue:"
+            landmarkName = "-fetchStoreSubcategories"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[StoreDetailVC fetchStoreSubcategories]_block_invoke"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sampath/Documents/Mnop/Lapanzo/StoreDetailVC.m"
+                  timestampString = "485878667.84479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "347"
+                  endingLineNumber = "347"
+                  offsetFromSymbolStart = "322">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[StoreDetailVC fetchStoreSubcategories]_block_invoke_2"
+                  moduleName = "Lapanzo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sampath/Documents/Mnop/Lapanzo/StoreDetailVC.m"
+                  timestampString = "485878667.845014"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "347"
+                  endingLineNumber = "347"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

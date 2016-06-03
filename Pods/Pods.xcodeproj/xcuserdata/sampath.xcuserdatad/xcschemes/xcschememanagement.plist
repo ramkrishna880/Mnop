@@ -9,22 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CAAnimationBlocks.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>HTHorizontalSelectionList.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>INTULocationManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>LMAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,16 +34,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RBBAnimation.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SSKeychain.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -67,27 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>580787BAE4AF0786626C42AAE3E9CE14</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7CCF2286A540224535739FCC0F0D0822</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C603EFE4AB12127AFC95861855B07DD5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CEDE8705ABBA23A19A8FDC079DB9EF62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDC4981285617666BFB83C856ED23F94</key>
+		<key>F15095109BE01BC645F70BEB1FD531C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
