@@ -76,6 +76,7 @@
     self.isManualLoaction = NO;
     [self fetchCurrentLOcation];
     [self fetchCategories];
+//    [self fetchStoreSubcategories];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,6 +86,64 @@
 //    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
 //    BOOL isManualLocation = [def boolForKey:ISMANUALLOCATION];
 }
+
+
+// Samplept
+- (void)fetchStoreSubcategories {
+    [self showHUD];
+    //    3
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",@"1"];
+    //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
+    [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
+        [self hideHud];
+        NSArray *subCategories = responseObject[@"list"];
+        
+        if (subCategories.count) {
+            
+            NSDictionary *sampleDic = subCategories[0];
+            [self performSendOrder:sampleDic[@"list"]];
+        }else {
+            [self showAlert:nil message:@"No List Found"];
+        }
+        
+        
+    } failure:^(NSError *connectionError) {
+        [self hideHud];
+        [self showAlert:nil message:connectionError.localizedDescription];
+    }];
+}
+
+
+- (void)performSendOrder:(NSArray *)items {
+    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet"];
+    
+    //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
+    //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
+    
+    [self showHUD];
+    
+    
+    [_client performPostOperationWithUrl:urlStr andParams:items andCompletionHandler:^(NSDictionary *responseObject) {
+        
+        [self hideHud];
+        if ([responseObject.status isEqualToString:@"fail"]) {
+            [self showAlert:@"Proceed" message:responseObject.message];
+        } else {
+            //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
+            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
+            [self showAlert:nil message:message];
+            //[self performSegueWithIdentifier:@"historySegueId" sender:nil];
+        }
+        
+    } failure:^(NSError * _Nullable connectionError) {
+        [self hideHud];
+        [self showAlert:nil message:connectionError.localizedDescription];
+    }];
+
+}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

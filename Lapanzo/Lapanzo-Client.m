@@ -70,6 +70,19 @@
     }];
 }
 
+- (void)performPostOperationWithUrl:(NSString *)urlString andParams:(id)params andCompletionHandler:(void (^) (id responseObject))completionHandler  failure:(void (^) (NSError* __nullable connectionError))failure {
+    
+    [self POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completionHandler (responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+
+
+
+
 //    if (![AFNetworkReachabilityManager sharedManager].reachable) {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"Make sure your device is connected to the internet" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //        [alert show];

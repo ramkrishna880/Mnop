@@ -29,12 +29,22 @@
         self.orderDate.text = pastOrder.date;
         self.orderAmount.text = pastOrder.amount;
         [self.progressView setProgressWithIndex:0]; //change according to status
+        
+        if ([pastOrder.status isEqualToString:@"new"]) {
+            
+        } else if ([pastOrder.status isEqualToString:@"initiated"]) {
+            
+        } else if ([pastOrder.status isEqualToString:@"initiated"]) {
+            
+        } else {
+            
+        }
     }
 }
 
-- (void)statusOfPreogress {
-    //if () {
-        
-   // }
-}
+//- (void)statusOfPreogress {
+//    if () {
+//        
+//    }
+//}
 @end
