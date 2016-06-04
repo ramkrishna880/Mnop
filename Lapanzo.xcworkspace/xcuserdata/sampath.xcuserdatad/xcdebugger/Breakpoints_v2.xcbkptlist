@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
-            landmarkName = "-segmentAction:"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,7 +138,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sampath/Documents/Mnop/Lapanzo/StoreDetailVC.m"
-                  timestampString = "486664959.606202"
+                  timestampString = "486746578.862796"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "347"
@@ -153,7 +153,7 @@
                   moduleName = "Lapanzo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sampath/Documents/Mnop/Lapanzo/StoreDetailVC.m"
-                  timestampString = "486664959.606467"
+                  timestampString = "486746578.863115"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "347"
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486664958.495"
+            timestampString = "486746577.526867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
             landmarkName = "-didManualLocationSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,28 +186,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486659513.125549"
+            timestampString = "486731719.767099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-fetchStoreSubcategories"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486659515.793531"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-performSendOrder:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486659550.231385"
+            timestampString = "486731719.767099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-fetchStoreSubcategories"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,12 +218,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486664886.886505"
+            timestampString = "486731717.52982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-performSendOrder:"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-sendOrder"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/CategoriesVC.m"
+            timestampString = "486746577.526867"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-sendOrder"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/CategoriesVC.m"
+            timestampString = "486746577.526867"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-sendOrder"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

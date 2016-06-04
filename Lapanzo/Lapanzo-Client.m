@@ -18,7 +18,7 @@
 
 + (Lapanzo_Client *)sharedClient {
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^ {
-//        return [[self alloc] init];
+        //        return [[self alloc] init];
         return [[self alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];
     })
 }
@@ -73,14 +73,17 @@
 - (void)performPostOperationWithUrl:(NSString *)urlString andParams:(id)params andCompletionHandler:(void (^) (id responseObject))completionHandler  failure:(void (^) (NSError* __nullable connectionError))failure {
     
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError * __autoreleasing * error) {
-        
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:error];
-        NSString *argString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        return argString;
-    }];
-
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *argString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [self.requestSerializer setValue:argString forHTTPHeaderField:@"orderList"];
+    
+    //    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError * __autoreleasing * error) {
+    //
+    //        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:error];
+    //        NSString *argString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    //        return argString;
+    //    }];
+    
     
     [self POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         completionHandler (responseObject);
