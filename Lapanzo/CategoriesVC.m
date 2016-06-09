@@ -121,10 +121,11 @@
 - (void)sendOrder {
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
     for (int i= 0; i<5; i++) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:@(5+i).stringValue forKey:@"product"];
-        [dic setObject:@"3" forKey:@"quantity"];
+        [dic setObject:@"5" forKey:@"quantity"];
         [arr addObject:dic];
     }
     
@@ -134,8 +135,11 @@
     NSString *jsonString = [[NSString alloc] initWithData:jsondata encoding:NSUTF8StringEncoding];
     
     NSString *urlStr = [NSString stringWithFormat:@"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55&orderList=%@",jsonString];
+    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSString *str = @"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{\"storeId\":4,\"list\":[{\"product\":9,\"quantity\":1},{\"product\":10,\"quantity\":1}]},{\"storeId\":13,\"list\":[{\"product\":18,\"quantity\":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00";
+    
+    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{"storeId":4,"list":[{"product":9,"quantity":1},{"product":10,"quantity":1}]},{"storeId":13,"list":[{"product":18,"quantity":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00
 
@@ -159,7 +163,7 @@
 //    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
     
 //    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonString length]] forHTTPHeaderField:@"Content-Length"];
+    //[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonString length]] forHTTPHeaderField:@"Content-Length"];
 
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         
@@ -167,7 +171,7 @@
             if (!data) {
                 NSLog(@"no data");
             } else {
-            NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"%@",res);
             }
         }
