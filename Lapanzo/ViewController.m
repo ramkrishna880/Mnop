@@ -52,19 +52,20 @@
 }
 
 - (IBAction)forGotPasswordClicked:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Forgot Password" message:@"Please enter your registered email" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Email";
-    }];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        UITextField *alertTxtField = alert.textFields[0];
-        [self forGotPasswordForEmail:alertTxtField.text];
-    }];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:cancelAction];
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"ForgotPwdSegueId" sender:nil];
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Forgot Password" message:@"Please enter your registered email" preferredStyle:UIAlertControllerStyleAlert];
+//    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//        textField.placeholder = @"Email";
+//    }];
+//    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//        UITextField *alertTxtField = alert.textFields[0];
+//        [self forGotPasswordForEmail:alertTxtField.text];
+//    }];
+//    
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+//    [alert addAction:cancelAction];
+//    [alert addAction:defaultAction];
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark web operations
@@ -92,23 +93,23 @@
     }];
 }
 
-- (void)forGotPasswordForEmail:(NSString *)email {
-    NSString *urlString = [NSString stringWithFormat:@"portal?a=resetpwd&em=%@",email];
-    NSLog(@"%@",urlString);
-    //@"portal?a=resetpwd&em=mails2mrk@gmail.com"
-    [_client performOperationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
-        NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
-        if ([responseObject.status isEqualToString:@"fail"]) {
-            [self showAlert:@"Login" message:responseObject.message];
-        } else {
-            NSLog(@"%@",responseObject.userId);
-            [self showAlert:@"Login" message:responseObject.message];
-        }
-    } failure:^(NSError *connectionError) {
-        NSLog(@"%@",connectionError.localizedDescription);
-        [self showAlert:@"Error" message:connectionError.localizedDescription];
-    }];
-}
+//- (void)forGotPasswordForEmail:(NSString *)email {
+//    NSString *urlString = [NSString stringWithFormat:@"portal?a=resetpwd&em=%@",email];
+//    NSLog(@"%@",urlString);
+//    //@"portal?a=resetpwd&em=mails2mrk@gmail.com"
+//    [_client performOperationWithUrl:urlString andCompletionHandler:^(NSDictionary *responseObject) {
+//        NSLog(@"%@, : %@",responseObject,responseObject[@"msg"]);
+//        if ([responseObject.status isEqualToString:@"fail"]) {
+//            [self showAlert:@"Login" message:responseObject.message];
+//        } else {
+//            NSLog(@"%@",responseObject.userId);
+//            [self showAlert:@"Login" message:responseObject.message];
+//        }
+//    } failure:^(NSError *connectionError) {
+//        NSLog(@"%@",connectionError.localizedDescription);
+//        [self showAlert:@"Error" message:connectionError.localizedDescription];
+//    }];
+//}
 
 
 #pragma mark Notifications & KeyBoard

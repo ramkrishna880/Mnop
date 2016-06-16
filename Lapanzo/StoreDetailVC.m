@@ -117,7 +117,7 @@
         _tabs.delegate = self;
         _tabs.dataSource = self;
         _tabs.selectionIndicatorColor = [UIColor whiteColor];
-        _tabs.selectionIndicatorHeight = 8.0f;
+        _tabs.selectionIndicatorHeight = 4.0f;
         [_tabs setTitleColor:[UIColor colorFromRGBforRed:55.0 blue:57.0 green:80.0] forState:UIControlStateNormal];
         [_tabs setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_tabs setTitleFont:[UIFont boldSystemFontOfSize:15.0] forState:UIControlStateNormal];
@@ -345,7 +345,7 @@
             if (self.vendorType == kVendorTypeGeneral) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc] initWithCapacity:subCategories.count];
                 [subCategories enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj andStoreId:self.storeId]];
+                    [tempArr addObject:[[Subcategory alloc] initWithSubcatogarywithDictionary:obj andStoreId:self.storeId andCategoryId:_maincategoryId]];
                 }];
                 self.subCategories = [[NSMutableArray alloc] initWithArray:tempArr copyItems:NO];
                 [self.tabs reloadData];
@@ -359,6 +359,7 @@
                     item.subcategoryId = [type valueForKey:@"id"];
                     item.subcategaryName = [type valueForKey:@"name"];
                     item.storeId = self.storeId;
+                    item.categoryId = self.maincategoryId;
                     [otherThanGenTypes addObject:item];
                 }];
                 _others = [[NSMutableArray alloc]initWithArray:otherThanGenTypes copyItems:NO];

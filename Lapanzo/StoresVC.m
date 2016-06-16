@@ -14,7 +14,6 @@
 #import "Lapanzo_Client+DataAccess.h"
 #import "NSDictionary+Response.h"
 #import "UIColor+Helpers.h"
-//#import "UIViewController+Helpers.h"
 #import "SWRevealViewController.h"
 #import "Store.h"
 #import "StoreDetailVC.h"
@@ -138,17 +137,18 @@
 
 - (void)fetchStoresforUrlString:(BOOL)useCurrentLocation {
     
-//    if (!useCurrentLocation) {
-//        NSDictionary *dic = _client.manualLocation;
-//        NSString *url = [NSString stringWithFormat:@"portal?a=search&area=%@&city=%@&vtype=%@",dic[CITYKEY],dic[AREAKEY],_vendorId];
-//    } else {
-//        NSDictionary *dic = _client.locationDetails;
-//        NSString *url = [NSString stringWithFormat:@"portal?a=showNear&lat=%@&lan=%@&vtype=%@",dic[LATITUDEKEY],dic[LOGITUDEKEY],_vendorId];
-//    }
+    NSString *url;
+    if (!useCurrentLocation) {
+        NSDictionary *dic = _client.manualLocation;
+        url = [NSString stringWithFormat:@"portal?a=search&area=%@&city=%@&vtype=%@",dic[CITYKEY],dic[AREAKEY],_vendorId];
+    } else {
+        NSDictionary *dic = _client.locationDetails;
+        url = [NSString stringWithFormat:@"portal?a=showNear&lat=%@&lan=%@&vtype=%@",dic[LATITUDEKEY],dic[LOGITUDEKEY],_vendorId];
+    }
     
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Madhapur&city=Hyderabad&vtype=%@",_vendorId]; //
+    // NSString *urlStr = [NSString stringWithFormat:@"portal?a=search&area=Madhapur&city=Hyderabad&vtype=%@",_vendorId]; //
     [self showHUD];
-    [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {
+    [_client performOperationWithUrl:url  andCompletionHandler:^(NSDictionary *responseObject) {
         [self hideHud];
         NSArray *vendors = responseObject[@"result"];
         if (vendors.count) {
@@ -201,7 +201,7 @@
         StoreDetailVC *storeDetail = (StoreDetailVC *)segue.destinationViewController;
         storeDetail.storeId = sender.storeId;
         storeDetail.vendorType = [self findTypeOfVendor];
-        //        storeDetail.storeId = _vendorId;
+        storeDetail.maincategoryId = _vendorId;
     }
 }
 

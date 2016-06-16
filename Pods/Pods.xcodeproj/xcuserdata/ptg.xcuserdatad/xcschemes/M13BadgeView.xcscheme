@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D3DD9200985C3F85C6D0EDE0'
+               BlueprintIdentifier = '9D2539919E69404AC2B2B7DB'
                BlueprintName = 'M13BadgeView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libM13BadgeView.a'>

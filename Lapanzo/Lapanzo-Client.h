@@ -19,5 +19,5 @@
 
 - (void)performOperationWithUrl:(NSString *)urlString andCompletionHandler:(void (^) (id responseObject))completionHandler  failure:(void (^) (NSError *connectionError))failure;
 
-- (void)performPostOperationWithUrl:(NSString *)urlString andParams:(id)params andCompletionHandler:(void (^) (id responseObject))completionHandler  failure:(void (^) (NSError* __nullable connectionError))failure;
+//- (void)performPostOperationWithUrl:(NSString *)urlString andParams:(id)params andCompletionHandler:(void (^) (id responseObject))completionHandler  failure:(void (^) (NSError* __nullable connectionError))failure;
 @end

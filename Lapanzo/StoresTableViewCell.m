@@ -40,7 +40,9 @@
     self.quantityLbl.text = currentItem.quantityval;
     self.amountLbl.text = [NSString stringWithFormat:@"₹ %@",currentItem.priceAfterDiscount];
     self.counterLbl.text = _currentItem.noOfItems;
-    //self.stepper.value = 0.0;
+    if ([currentItem.categoryId.stringValue isEqualToString:@"3"] || [currentItem.categoryId.stringValue isEqualToString:@"4"] || [currentItem.categoryId.stringValue isEqualToString:@"9"]) {
+        [self.countView setHidden:YES];
+    }
 }
 
 

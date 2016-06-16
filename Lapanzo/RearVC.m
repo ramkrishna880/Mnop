@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"User";
     [self setUPinitialUIElements];
 }
 
@@ -32,12 +33,11 @@
 - (void)setUPinitialUIElements {
     [self.userImgView.layer setCornerRadius:40.0f];
     _client = [Lapanzo_Client sharedClient];
-    
     //set Image also if avaliable
     _userName.text = _client.userDetails.userName;
-    
-    //    self.rows = @[@"My Account",@"Home",@"Order History",@"My Cart",@"Favorities",@"Location",@"Notifications",@"Logout"];
-    self.rows = @[@"Lapanzo",@"Home",@"History",@"Location",@"Notifications",@"Verify Account",@"Logout"];
+   
+//    self.rows = @[@"Lapanzo",@"Home",@"History",@"Location",@"Notifications",@"Verify Account",@"Logout"];
+    self.rows = @[@"Home",@"History",@"Cart",@"Verify Account",@"Logout"];
 }
 
 #pragma mark Tableview datasouce
@@ -52,8 +52,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"id"];
+        cell.backgroundColor = [UIColor clearColor];
     }
-    cell.textLabel.textColor = [UIColor navigationBarTintColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.text = _rows[indexPath.row];
     return cell;
 }
@@ -62,40 +63,24 @@
     SWRevealViewController *revealController = self.revealViewController;
     
     UINavigationController *frontNavigationController = (id)revealController.frontViewController;
-    //    UINavigationController *navigationController = (UINavigationController*)[revealController.frontViewController navigationController];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     NSString *storyBoardName;
     
-//[@"Lapanzo",@"History",@"Location",@"Notifications",@"Verify Account",@"Logout"]
-    
+    //@"Home",@"History",@"Cart",@"Verify Account",@"Logout"
     switch (indexPath.row) {
         case 0:
-            storyBoardName = @"";
+            storyBoardName = @"categoryVcSegueId";
             break;
         case 1:
-            storyBoardName = @"categoryVcSegueId"; //there Home
+            storyBoardName = @"HistoryVC";
             break;
-            //        case 2:
-            //            storyBoardName = @"";
-            //            break;
         case 2:
-            storyBoardName = @"HistoryVC"; //der History
+            storyBoardName = @"CartVC";
             break;
         case 3:
-            //storyBoardName = @"CartVC"; //der Cart
-            storyBoardName = @"searchviewid";
+            storyBoardName = @""; //verify account
             break;
         case 4:
-            storyBoardName = @"";//notifications
-            break;
-        case 5:
-//            storyBoardName = @"searchviewid"; //
-            //verify account
-            break;
-//        case 6:
-//            storyBoardName = @"";
-//            break;
-        case 6:
         {
             Lapanzo_Client *client = [Lapanzo_Client sharedClient];
             [client setIsLogged:NO];
@@ -111,7 +96,7 @@
     }
     
     UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:storyBoardName];
-    if (indexPath.row == 3) {
+    if (indexPath.row == 2) {
         ((CartVC *)vc).isFrmStore = NO;
     }
     [frontNavigationController setViewControllers:@[vc]];
@@ -119,15 +104,5 @@
     [revealController setFrontViewPosition:FrontViewPositionLeft animated:YES];
 }
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

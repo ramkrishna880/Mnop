@@ -90,7 +90,6 @@
             cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
         }
         cell.currentItem = _cartItems[indexPath.row];
-        
         cell.delegate = self;
         return cell;
     }
@@ -159,7 +158,7 @@
 - (NSString *)totalPrice {
     CGFloat totalVal = 0.0;
     for (Item *item in _cartItems) {
-        CGFloat val = item.priceAfterDiscount.floatValue;
+        CGFloat val = (item.priceAfterDiscount.floatValue)*item.noOfItems.integerValue;
         totalVal = totalVal+val;
     }
     return @(totalVal).stringValue;

@@ -210,29 +210,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoresVC.m"
-            timestampString = "485416905.413635"
+            timestampString = "487333456.678451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoresTableViewCell.m"
-            timestampString = "481215740.211582"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "@implementation StoresTableViewCell"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -334,15 +318,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoresVC.m"
-            timestampString = "485416960.953398"
+            timestampString = "487333456.678451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-fetchStoresforUrlString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -350,15 +334,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lapanzo/StoresVC.m"
-            timestampString = "485417133.656411"
+            timestampString = "487333456.678451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-fetchStoresforUrlString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -389,73 +373,9 @@
             timestampString = "485432184.93118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "@implementation StoreDetailVC"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "485432184.93118"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
             endingLineNumber = "159"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "485432184.93118"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-swipedOntableView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "485433058.325851"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
-            landmarkName = "-swipedOntableView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Lapanzo/StoreDetailVC.m"
-            timestampString = "485433126.561836"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "-swipedOntableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -478,16 +398,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486199747.210957"
+            filePath = "Lapanzo/CartVC.m"
+            timestampString = "487333688.147449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-fetchStoreSubcategories"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-setupInitialUiElements"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -497,13 +417,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486199683.385724"
+            filePath = "Lapanzo/Subcategory.m"
+            timestampString = "487333838.646533"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-fetchStoreSubcategories"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-initWithSubcatogarywithDictionary:andStoreId:andCategoryId:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/Subcategory.m"
+            timestampString = "487333863.555437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-initWithSubcatogarywithDictionary:andStoreId:andCategoryId:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -513,13 +449,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486199685.224169"
+            filePath = "Lapanzo/CartVC.m"
+            timestampString = "487334972.547344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-performSendOrder:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-setupInitialUiElements"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -529,13 +465,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lapanzo/CategoriesVC.m"
-            timestampString = "486199855.218815"
+            filePath = "Lapanzo/StoreDetailVC.m"
+            timestampString = "487335056.604275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-performSendOrder:"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "-changedQuantityForCell:andValue:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lapanzo/StoreDetailVC.m"
+            timestampString = "487335705.867587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
+            landmarkName = "-checkForSelectedFromCartOfItems:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

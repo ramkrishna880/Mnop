@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Store.h"s
+#import "Store.h"
 
 
 @interface CategoryCollectionViewCell : UICollectionViewCell
-@property (nonatomic, weak) IBOutlet UILabel *titleLbl;
-@property (nonatomic, weak) IBOutlet UILabel *yearbl;
-@property (nonatomic, weak) IBOutlet UILabel *placeLbl;
+@property (nonatomic, weak) IBOutlet UILabel        *titleLbl;
+@property (nonatomic, weak) IBOutlet UILabel        *yearbl;
+@property (nonatomic, weak) IBOutlet UILabel        *placeLbl;
+@property (nonatomic, weak) IBOutlet UIImageView    *bgImgView;
 
 @property (nonatomic) Store *currentStore;
 @end

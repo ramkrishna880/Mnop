@@ -20,6 +20,7 @@
 @property (nonatomic) Item *currentItem;
 
 @property (nonatomic, weak) IBOutlet UILabel *counterLbl;
+@property (nonatomic, weak) IBOutlet UIView *countView;
 @property (nonatomic, weak) id <StoreTableCellDelegate> delegate;
 - (IBAction)countButtonsPressed:(id)sender;
 

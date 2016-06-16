@@ -27,6 +27,7 @@
 		75504B021C97F13900CDA023 /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 75504B011C97F13900CDA023 /* UIColor+Helpers.m */; };
 		755931351C8EDB5200D1946F /* LButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 755931341C8EDB5200D1946F /* LButton.m */; };
 		7559313C1C902D3400D1946F /* Lapanzo_Client+DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 7559313B1C902D3400D1946F /* Lapanzo_Client+DataAccess.m */; };
+		755B511E1D0EF0DD00A0FA81 /* ForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 755B511D1D0EF0DD00A0FA81 /* ForgetPwdVC.m */; };
 		75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75783EF71CA1804500B24F90 /* ORNavigationBar.m */; };
 		757C21111C99787D001C6BC9 /* Vendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 757C21101C99787D001C6BC9 /* Vendor.m */; };
 		758982B11CB26E9400B9C542 /* UIApplication+Paths.m in Sources */ = {isa = PBXBuildFile; fileRef = 758982B01CB26E9400B9C542 /* UIApplication+Paths.m */; };
@@ -128,6 +129,8 @@
 		755931341C8EDB5200D1946F /* LButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LButton.m; sourceTree = "<group>"; };
 		7559313A1C902D3400D1946F /* Lapanzo_Client+DataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Lapanzo_Client+DataAccess.h"; sourceTree = "<group>"; };
 		7559313B1C902D3400D1946F /* Lapanzo_Client+DataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Lapanzo_Client+DataAccess.m"; sourceTree = "<group>"; };
+		755B511C1D0EF0DD00A0FA81 /* ForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdVC.h; sourceTree = "<group>"; };
+		755B511D1D0EF0DD00A0FA81 /* ForgetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdVC.m; sourceTree = "<group>"; };
 		75783EF61CA1804500B24F90 /* ORNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORNavigationBar.h; sourceTree = "<group>"; };
 		75783EF71CA1804500B24F90 /* ORNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORNavigationBar.m; sourceTree = "<group>"; };
 		757C210F1C99787D001C6BC9 /* Vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vendor.h; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				758C8C611C86BE8000370262 /* ViewController.m */,
 				75FFE2A71C89B344006DCDD5 /* RegistrationVC.h */,
 				75FFE2A81C89B344006DCDD5 /* RegistrationVC.m */,
+				755B511C1D0EF0DD00A0FA81 /* ForgetPwdVC.h */,
+				755B511D1D0EF0DD00A0FA81 /* ForgetPwdVC.m */,
 				7511C36F1CFEDB6800286702 /* ForgotPwdVC.h */,
 				7511C3701CFEDB6800286702 /* ForgotPwdVC.m */,
 			);
@@ -762,6 +767,7 @@
 				75429C931C92C76F0071D352 /* LZStepProgressView.m in Sources */,
 				75A79C901C8838740096241C /* PAStepper.m in Sources */,
 				426F51D81CB90B0D006673F7 /* FlowersCollectionViewCell.m in Sources */,
+				755B511E1D0EF0DD00A0FA81 /* ForgetPwdVC.m in Sources */,
 				75783EF81CA1804500B24F90 /* ORNavigationBar.m in Sources */,
 				758C8C911C86C67E00370262 /* NSString+Validations.m in Sources */,
 				754D7E1C1CB4E015002080C3 /* UIButton+UIButtonExt.m in Sources */,

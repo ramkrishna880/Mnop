@@ -15,30 +15,22 @@
 #import "UIColor+Helpers.h"
 #import "UIViewController+Helpers.h"
 //#import "UIButton+UIButtonExt.h"
-//#import <LMAlertView.h>
 #import "LCollectionViewFlowLayout.h"
 #import "ORNavigationBar.h"
 #import "SearchViewController.h"
+#import "SWRevealViewController.h"
 
 @interface CategoriesVC ()<UICollectionViewDataSource, UICollectionViewDelegate, ManualSelectionControllerDelegate>
-
-@property (nonatomic) Lapanzo_Client *client;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic) NSMutableArray *categories;
-
+@property (nonatomic) Lapanzo_Client                     *client;
+@property (nonatomic, weak) IBOutlet UICollectionView    *collectionView;
+@property (nonatomic) NSMutableArray                     *categories;
 @property (nonatomic, weak) IBOutlet UILabel             *timeLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *periodLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *temparatureLabel;
 @property (nonatomic, weak) IBOutlet UIImageView         *dayOrNightImg;
 @property (nonatomic, weak) IBOutlet UILabel             *wishLabel;
 @property (nonatomic, weak) IBOutlet UILabel             *nameLabel;
-
-@property (nonatomic, weak) IBOutlet UIButton            *locationBtn;
-
-//@property (nonatomic, weak) IBOutlet UILabel             *quoteLabel;
-//@property (nonatomic, weak) IBOutlet UILabel             *locationtypeLbl;
-//@property (nonatomic, weak) IBOutlet UISwitch            *locationSwitch;
-
+@property (nonatomic, weak) IBOutlet UILabel             *locationLbl;
 @property (nonatomic) BOOL                               isManualLoaction;
 //@property (nonatomic, weak) IBOutlet UIButton *firstVendor;
 //@property (nonatomic, weak) IBOutlet UILabel *firstVendorName;
@@ -57,16 +49,17 @@
 
 - (void)setUpinitialElements {
     _client = [Lapanzo_Client sharedClient];
-    //    [_client setCartItems:nil];
+//        [_client setCartItems:nil];
     [self homeButton];
     [self setNavigationBarTintColor:[UIColor navigationBarTintColor]];
     [self.navigationController setValue:[[ORNavigationBar alloc]init]  forKeyPath:@"navigationBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightBarButtonView]];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
+    [self.navigationController.navigationBar addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
-    //[flowLayout setSectionInset:UIEdgeInsetsMake(10, 5, 5, 10)];
     [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     //flowLayout.minimumInteritemSpacing = 5.0f;
@@ -75,182 +68,68 @@
     flowLayout.rowColors = @[[UIColor collectionCellGreen],[UIColor collectionCellGray]];
     [_collectionView setCollectionViewLayout:flowLayout];
     
-    
     self.isManualLoaction = NO;
     [self fetchCurrentLOcation];
-    //    [self fetchCategories];
-//    [self fetchStoreSubcategories];
-    [self sendOrder];
+    [self fetchCategories];
+    //[self sendOrder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.cartLabel.text = @(_client.cartItemsCount).stringValue;
-    
-    //    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    //    BOOL isManualLocation = [def boolForKey:ISMANUALLOCATION];
 }
 
-
-// Samplept
-- (void)fetchStoreSubcategories {
-    [self showHUD];
-    //    3
-    NSString *urlStr = [NSString stringWithFormat:@"portal?a=subcatogory&storeId=%@",@"1"];
-    //NSString *urlStr = @"portal?a=subcatogory&storeId=1";
-    [_client performOperationWithUrl:urlStr andCompletionHandler:^(NSDictionary *responseObject) {
-        [self hideHud];
-        NSArray *subCategories = responseObject[@"list"];
-        
-        if (subCategories.count) {
-            
-           // NSDictionary *sampleDic = subCategories[0];
-            //[self performSendOrder:sampleDic[@"list"]];
-        }else {
-            [self showAlert:nil message:@"No List Found"];
-        }
-        
-        
-    } failure:^(NSError *connectionError) {
-        [self hideHud];
-        [self showAlert:nil message:connectionError.localizedDescription];
-    }];
-}
-
-
-- (void)sendOrder {
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
-    
-    for (int i= 0; i<5; i++) {
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setObject:@(5+i).stringValue forKey:@"product"];
-        [dic setObject:@"5" forKey:@"quantity"];
-        [arr addObject:dic];
-    }
-    
-//    NSDictionary *dic = 
-    
-    NSData *jsondata = [NSJSONSerialization dataWithJSONObject:arr options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsondata encoding:NSUTF8StringEncoding];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55&orderList=%@",jsonString];
-    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *str = @"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{\"storeId\":4,\"list\":[{\"product\":9,\"quantity\":1},{\"product\":10,\"quantity\":1}]},{\"storeId\":13,\"list\":[{\"product\":18,\"quantity\":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00";
-    
-    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    //http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{"storeId":4,"list":[{"product":9,"quantity":1},{"product":10,"quantity":1}]},{"storeId":13,"list":[{"product":18,"quantity":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00
-
-    
-//    NSArray* words = [urlStr componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    urlStr = [words componentsJoinedByString:@""];
-    
-//    urlStr = [urlStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-//    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:str]
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-    
-    
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-//    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
-    
-//    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
-    //[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonString length]] forHTTPHeaderField:@"Content-Length"];
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        
-        if (!connectionError) {
-            if (!data) {
-                NSLog(@"no data");
-            } else {
-            NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"%@",res);
-            }
-        }
-    }];
-    
-}
-
-//- (void)performSendOrder:(NSArray *)items {
-//    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&list=%@&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet",_cartItems];
+//- (void)sendOrder {
 //    
-//    
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for (int i = 0; i<items.count; i++) {
+//    NSMutableArray *arr = [[NSMutableArray alloc] init];
+//    for (int i= 0; i<5; i++) {
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        NSDictionary *valDic = items[i];
-//        [dic setObject:valDic [@"id"] forKey:@"product"];
-//        [dic setObject:@"3" forKey:@"quantity"];
-//        [array addObject:dic];
+//        [dic setObject:@(5+i).stringValue forKey:@"product"];
+//        [dic setObject:@"5" forKey:@"quantity"];
+//        [arr addObject:dic];
 //    }
 //    
-//    NSDictionary *paramDic = [[NSDictionary alloc] initWithObjectsAndKeys:array,@"orderList", nil];
+//    NSData *jsondata = [NSJSONSerialization dataWithJSONObject:arr options:NSJSONWritingPrettyPrinted error:nil];
+//    NSString *jsonString = [[NSString alloc] initWithData:jsondata encoding:NSUTF8StringEncoding];
 //    
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:paramDic options:NSJSONWritingPrettyPrinted error:nil];
-//    NSData *jsondata2 = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
-//    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//    NSString *jsonstring2 = [[NSString alloc] initWithData:jsondata2 encoding:NSUTF8StringEncoding];
+//    NSString *urlStr = [NSString stringWithFormat:@"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55&orderList=%@",jsonString];
+//    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //    
-//    NSString *urlStr = [NSString stringWithFormat:@"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55&orderList=%@",[jsonstring2 stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]];
+//    NSString *str = @"http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{\"storeId\":4,\"list\":[{\"product\":9,\"quantity\":1},{\"product\":10,\"quantity\":1}]},{\"storeId\":13,\"list\":[{\"product\":18,\"quantity\":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00";
 //    
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]
+//    str = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    //http://ec2-52-26-37-114.us-west-2.compute.amazonaws.com/Lapanzo/portal?a=order&userId=14&orderList=[{"storeId":4,"list":[{"product":9,"quantity":1},{"product":10,"quantity":1}]},{"storeId":13,"list":[{"product":18,"quantity":1}]}]&paymentType=1&deliveryType=2&contactName=&addr1=&addr2=&area=&landmark=&deliveryDate=2016-06-04&deliveryTime=10:00
+//    
+//    
+//    //    NSArray* words = [urlStr componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    //    urlStr = [words componentsJoinedByString:@""];
+//    
+//    //    urlStr = [urlStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//    //    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:str]
 //                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
 //                                                       timeoutInterval:60.0];
-//    
 //    [request setHTTPMethod:@"POST"];
-//    //    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    //    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//    [request addValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-//    //    [request setHTTPBody:jsonData];
-//    //    [request setValue:[jsonstring2 stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet] forHTTPHeaderField:@"orderList"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //    
-//    //    [request setValue:[jsonstring2 stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet] forKey:@"list"];
+//    //    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
+//    //    [request setValue:jsonString forHTTPHeaderField:@"orderList"];
+//    //[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonString length]] forHTTPHeaderField:@"Content-Length"];
 //    
-//    //    [request setValue:jsonData forHTTPHeaderField:@"list"];
 //    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
 //        
-//        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-//        
 //        if (!connectionError) {
-//            NSLog(@"%@",res);
+//            if (!data) {
+//                NSLog(@"no data");
+//            } else {
+//                NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//                NSLog(@"%@",res);
+//            }
 //        }
 //    }];
-//    
-//    //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:items options:NSJSONWritingPrettyPrinted error:nil];
-//    
-//    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=order&storeId=1&userId=14&deliveryType=1&paymentType=1&contactName=ramki&addr1=ameerpet&area=ameerpet&deliveryDate=2016-05-11&deliveryTime=10:55"];
-//    ////    //YYYY-MM-dd HH:mm
-//    ////
-//    ////    //deliveryType – 1 means HOME DELIVERY, 2 means TAKE AWAY
-//    ////    //    paymentType – 1 means CASH ON DELIVERY, 2 means ONLINE PAYMENT
-//    ////
-//    //    [self showHUD];
-//    //
-//    //
-//    //    [_client performPostOperationWithUrl:urlStr andParams:array andCompletionHandler:^(NSDictionary *responseObject) {
-//    //
-//    //        [self hideHud];
-//    //        if ([responseObject.status isEqualToString:@"fail"]) {
-//    //            [self showAlert:@"Proceed" message:responseObject.message];
-//    //        } else {
-//    //            //"a":"orderAck","status":"success","ack":"SBPC2015072445503994","orderno":"7","branchid":1,"amount":557.96
-//    //            NSString *message = [NSString stringWithFormat:@"Order has been suceess. Ack Id : %@ , Amount : %@",responseObject[@"ack"],responseObject[@"amount"]];
-//    //            [self showAlert:nil message:message];
-//    //            //[self performSegueWithIdentifier:@"historySegueId" sender:nil];
-//    //        }
-//    //
-//    //    } failure:^(NSError * _Nullable connectionError) {
-//    //        [self hideHud];
-//    //        [self showAlert:nil message:connectionError.localizedDescription];
-//    //    }];
 //    
 //}
 
@@ -359,25 +238,14 @@
     }
 }
 
-
-//- (IBAction)switchChanged:(UISwitch *)sender {
-//    if (sender.on) {
-//        [self fetchCurrentLOcation];
-//    } else {
-//        [self manualLocationTapped:nil];
-//    }
-//}
-
 - (IBAction)manualLocationTapped:(id)sender {
-    
+    [self performSegueWithIdentifier:SEARCH_SEGUEID sender:nil];
     //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //    SearchViewController *svc = [mainStoryboard instantiateViewControllerWithIdentifier:SEARCHM_SEGUEID];
     //    //svc.view.alpha = 0.5;
     //    svc.selectionDelegate = self;
     //    svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     //    [self presentViewController:svc animated:NO completion:nil];
-    
-    [self performSegueWithIdentifier:SEARCH_SEGUEID sender:nil];
 }
 
 #pragma mark Others
@@ -396,6 +264,9 @@
                                                                     CLPlacemark *place = placemarks[0];
                                                                     NSString *cityNameCode = [NSString stringWithFormat:@"%@,%@",place.locality,place.ISOcountryCode];
                                                                     [self fetchWeatherDetails:cityNameCode];
+                                                                    NSArray *lines = place.addressDictionary[ @"FormattedAddressLines"];
+                                                                    NSString *addressString = [lines componentsJoinedByString:@","];
+                                                                    _locationLbl.text = addressString;
                                                                 }];
                                                  [_client setLocationLatitude:currentLocation.coordinate.latitude logitude:currentLocation.coordinate.longitude];
                                              }
@@ -410,16 +281,10 @@
 
 #pragma mark ManualSelectionDelegate
 
-- (void)didManualLocationSelected:(BOOL)isManual {
-    
-    //    if (isManual) {
-    //        [_locationSwitch setOn:NO];
-    //        _locationtypeLbl.text = @"Manual Location";
-    //    } else {
-    //        [_locationSwitch setOn:YES];
-    //        _locationtypeLbl.text = @"Current Location";
-    //    }
-    //    self.isManualLoaction = isManual;
+- (void)selectedCity:(NSString *)city andArea:(NSString *)area {
+    if (city.length && area.length) {
+        _locationLbl.text = [NSString stringWithFormat:@"Located at : %@, %@",city,area];
+    }
 }
 
 

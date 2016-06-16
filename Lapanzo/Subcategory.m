@@ -15,7 +15,7 @@ static NSString * const KEY_LISTOFITEMS = @"list";
 @implementation Subcategory
 
 ///- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary
-- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary andStoreId:(NSNumber *)storeId {
+- (instancetype)initWithSubcatogarywithDictionary:(NSDictionary *)dictionary andStoreId:(NSNumber *)storeIdVal andCategoryId:(NSNumber *)catId {
     if (![dictionary isKindOfClass:[NSDictionary class]]) {
         [NSException raise:@"Invalid parameter." format:@"This method should not be called if parameter is nil or not an NSDictionary"];
     }
@@ -30,8 +30,9 @@ static NSString * const KEY_LISTOFITEMS = @"list";
             [listofItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 Item *item = [[Item alloc] initWithDictionary:obj];
                 item.subcategoryId = self.subCategoryId;
+                item.categoryId = catId;
                 item.subcategaryName = self.subCategoryName;
-                item.storeId = storeId? storeId :nil;
+                item.storeId = storeIdVal;
                 [mutableItems addObject:item];
             }];
             self.items = [[NSArray alloc] initWithArray:mutableItems copyItems:NO];

@@ -66,27 +66,19 @@
         [self showAlert:nil message:@"plse select all fileds."];
         return;
     }
-    
     if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(selectedCity:andArea:)]) {
         [self.selectionDelegate selectedCity:_cityButton.titleLabel.text andArea:_localityButton.titleLabel.text];
+        [[Lapanzo_Client sharedClient] setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
     }
-    
-//    [_client setLastLocationCity:_cityButton.titleLabel.text area:_localityButton.titleLabel.text];
-//    [self showAlert:nil message:@"Your location has been set now."];
+    [self showAlert:nil message:@"Your location has been set now."];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 - (IBAction)cancelTapped:(id)sender {
-
-//    if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(didManualLocationSelected:)]) {
-//        [self.selectionDelegate didManualLocationSelected:NO];
-//    }
-    
     if (self.selectionDelegate && [self.selectionDelegate respondsToSelector:@selector(selectedCity:andArea:)]) {
         [self.selectionDelegate selectedCity:nil andArea:nil];
     }
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -158,7 +150,7 @@
 
 - (void)fetchAreaList:(NSString *)city {
     [self.areaList removeAllObjects];
-//    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",@"Hyderabad"];
+    //    NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",@"Hyderabad"];
     NSString *urlStr = [NSString stringWithFormat:@"portal?a=areaList&city=%@",city];
     [self showHUD];
     [_client performOperationWithUrl:urlStr  andCompletionHandler:^(NSDictionary *responseObject) {

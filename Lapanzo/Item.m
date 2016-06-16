@@ -50,6 +50,9 @@
     [coder encodeObject:_itemDescription forKey:@"itemDes"];
     [coder encodeObject:_image forKey:@"image"];
     [coder encodeObject:_noOfItems forKey:@"noOfItems"];
+    [coder encodeObject:_storeId forKey:@"storeId"];
+    [coder encodeObject:_categoryId forKey:@"categoryId"];
+    //categoryId
 }
 
 - (id)initWithCoder:(NSCoder *)coder;
@@ -68,6 +71,8 @@
         self.itemDescription = [coder decodeObjectForKey:@"itemDes"];
         self.image = [coder decodeObjectForKey:@"image"];
         self.noOfItems = [coder decodeObjectForKey:@"noOfItems"];
+        self.storeId = [coder decodeObjectForKey:@"storeId"];
+        self.categoryId = [coder decodeObjectForKey:@"categoryId"];
     }
     return self;
 }
