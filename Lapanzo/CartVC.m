@@ -45,6 +45,10 @@
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     _cartItems = [[NSMutableArray alloc] initWithArray:_client.cartItems copyItems:NO];
     
+    if (!_cartItems.count) {
+        [self showAlert:nil message:@"No Cart Items Found"];
+    }
+    
     NSMutableArray *storeIds = [[NSMutableArray alloc] init];
     for (Item *itm in _cartItems) {
         [storeIds addObject:itm.storeId];
@@ -53,6 +57,8 @@
     if (storeIdSet.count >1) {
 //        [_backStoreButton setHidden:YES];
         _multipleStoreStatLabel.text = @"You Have selected Multiple Stores";
+    } else if (storeIdSet.count == 0) {
+       _multipleStoreStatLabel.text = @""; 
     }
     _totalAmountLabel.text = [self totalPrice];
 }
@@ -70,21 +76,21 @@
 #pragma mark tableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_cartItems.count == 0) {
-        return 1;
-    } else{
+//    if (_cartItems.count == 0) {
+//        return 1;
+//    } else{
         return _cartItems.count;
-    }
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_cartItems.count == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCellIdentifier"];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
-        cell.textLabel.text = @"No Items Found in Cart";
-        return cell;
-    } else {
+//    if (_cartItems.count == 0) {
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCellIdentifier"];
+//        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+//        cell.textLabel.font = [UIFont boldSystemFontOfSize:18.0];
+//        cell.textLabel.text = @"No Items Found in Cart";
+//        return cell;
+//    } else {
         StoresTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:STORES_TABLECELLID];
         if (!cell) {
             cell = [[StoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:STORES_TABLECELLID];
@@ -92,7 +98,7 @@
         cell.currentItem = _cartItems[indexPath.row];
         cell.delegate = self;
         return cell;
-    }
+//    }
 }
 
 

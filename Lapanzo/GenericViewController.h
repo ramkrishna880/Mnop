@@ -14,7 +14,7 @@
 
 @interface GenericViewController : UIViewController
 @property (nonatomic) UILabel *cartLabel;
-
+@property (nonatomic) UIButton *cartBtn;
 //Methods
 - (void)showAlert:(NSString *)title message:(NSString *)message;
 - (void)fetchUserDetails;

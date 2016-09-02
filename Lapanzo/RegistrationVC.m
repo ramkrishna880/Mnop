@@ -52,7 +52,7 @@
 #pragma mark Actions
 
 - (IBAction)registerButtonClicked:(id)sender {
-    if (_userNameTxtFiled.text.length == 0 || _emailTxtFiled.text.length==0 || _mobileNoTxtFiled.text.length==0 || _passwordTxtFiled.text.length==0) {
+    if (_userNameTxtFiled.text.length == 0 || _emailTxtFiled.text.length==0 || _passwordTxtFiled.text.length==0) {
         [self showAlert:nil message:@"Please enter all fields"];
     } else if (!([[_emailTxtFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isValidEmail])){
         [self showAlert:nil message:@"Please enter a valid mail"];

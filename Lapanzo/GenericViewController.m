@@ -47,6 +47,12 @@
     [_cartLabel setFont:[UIFont systemFontOfSize:12.0f]];
     _cartLabel.clipsToBounds =  YES;
     [view addSubview:_cartLabel];
+    
+    _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_cartBtn setFrame:view.bounds];
+    [_cartBtn setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:_cartBtn];
+    
     return view;
 }
 
@@ -104,12 +110,15 @@
 
 - (void)fetchUserDetails {
     Lapanzo_Client *client = [Lapanzo_Client sharedClient];
+    [self showHUD];
     [client performOperationWithUrl:[NSString stringWithFormat:@"portal?a=userdetails&userid=%@",client.userId] andCompletionHandler:^(NSDictionary *responseObject) {
         if ([responseObject.status isEqualToString:@"success"]) {
+            [self hideHud];
             [client setUserDetails:responseObject];
             //[[NSNotificationCenter defaultCenter] postNotificationName:USERDETAILSFETCHEDNOTIFICATION object:self userInfo:nil];
         }
     } failure:^(NSError *connectionError) {
+        [self hideHud];
         NSLog(@"%@",connectionError.localizedDescription);
     }];
 }

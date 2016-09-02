@@ -218,7 +218,7 @@
         //        Subcategory *sbCat = _subCategories [_index];
         //        Item *crntItem =  sbCat.items [indexPath.row];
         NSArray *checkedItems = [self checkForSelectedFromCartOfItems:crntItem.itemId];
-        NSLog(@"inside cell :%lu",checkedItems.count);
+        NSLog(@"inside cell :%lu",(unsigned long)checkedItems.count);
         if (!checkedItems.count) {
             cell.currentItem = crntItem;
         } else {

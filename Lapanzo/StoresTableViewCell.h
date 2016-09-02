@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PAStepper.h"
+//#import "PAStepper.h"
 #import "Item.h"
 
 @protocol StoreTableCellDelegate;
@@ -15,7 +15,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *storeTitle;
 @property (nonatomic) IBOutlet UILabel *quantityLbl;
 @property (nonatomic) IBOutlet UILabel *amountLbl;
-@property (nonatomic) IBOutlet PAStepper *stepper;
+//@property (nonatomic) IBOutlet PAStepper *stepper;
 
 @property (nonatomic) Item *currentItem;
 

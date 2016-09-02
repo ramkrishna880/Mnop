@@ -58,6 +58,8 @@
     
     [self.navigationController.navigationBar addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    [self.cartBtn addTarget:self action:@selector(cartBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     LCollectionViewFlowLayout *flowLayout = [[LCollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)]; //previously 120
     [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
@@ -246,6 +248,10 @@
     //    svc.selectionDelegate = self;
     //    svc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     //    [self presentViewController:svc animated:NO completion:nil];
+}
+
+- (void)cartBtnAction:(id)sender {
+    
 }
 
 #pragma mark Others
